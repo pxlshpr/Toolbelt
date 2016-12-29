@@ -1,0 +1,4 @@
+# .travis.yml
+osx_image: xcode8.2
+language: objective-c
+script: ./test
