@@ -1,0 +1,10 @@
+# .slather.yml
+
+coverage_service: cobertura_xml
+xcodeproj: Toolbelt.xcodeproj
+scheme: Toolbelt 
+source_directory: ./
+output_directory: ./
+#ignore:
+#  - ExamplePodCode/*
+#  - ProjectTestsGroup/*
