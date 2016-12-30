@@ -11,6 +11,8 @@
 		E2516DAA1E1401710026FAA8 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2516DA91E1401710026FAA8 /* StringTests.swift */; };
 		E2516DAC1E1401710026FAA8 /* Toolbelt.h in Headers */ = {isa = PBXBuildFile; fileRef = E2516D9E1E1401710026FAA8 /* Toolbelt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2516DB61E1401F00026FAA8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2516DB51E1401F00026FAA8 /* String.swift */; };
+		E28FF15E1E16A88000320D29 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF15D1E16A88000320D29 /* UIColor.swift */; };
+		E28FF1601E16AB2B00320D29 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 		E2516DA91E1401710026FAA8 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		E2516DAB1E1401710026FAA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2516DB51E1401F00026FAA8 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		E28FF15D1E16A88000320D29 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,7 @@
 			children = (
 				E2516D9E1E1401710026FAA8 /* Toolbelt.h */,
 				E2516DB51E1401F00026FAA8 /* String.swift */,
+				E28FF15D1E16A88000320D29 /* UIColor.swift */,
 				E2516D9F1E1401710026FAA8 /* Info.plist */,
 			);
 			path = Toolbelt;
@@ -84,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				E2516DA91E1401710026FAA8 /* StringTests.swift */,
+				E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */,
 				E2516DAB1E1401710026FAA8 /* Info.plist */,
 			);
 			path = ToolbeltTests;
@@ -203,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2516DB61E1401F00026FAA8 /* String.swift in Sources */,
+				E28FF15E1E16A88000320D29 /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2516DAA1E1401710026FAA8 /* StringTests.swift in Sources */,
+				E28FF1601E16AB2B00320D29 /* UIColorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
