@@ -2,6 +2,11 @@ import UIKit
 
 public extension UIColor {
     
+    /**
+     Initializes and returns a color object using the specified hex number.
+     - parameter hexString: The hexadecimal value of the color. It may be optionally prepended with the '#' symbol.
+     - returns: The color object for the provided hexadecimal value, if valid. If an invalid hexadecimal number is provided, UIColor.white is returned.
+    */
     public convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
         guard hex.isValidHexNumber() else {

@@ -39,7 +39,8 @@ class UIColorTests: XCTestCase {
         let invalid1 = UIColor(hexString: "#ASMX@S)@")
         let invalid2 = UIColor(hexString: "not a hex string")
         let invalid3 = UIColor(hexString: "")
-        for color in [invalid1, invalid2, invalid3] {
+        let invalid4 = UIColor(hexString: "FF#FFFF")
+        for color in [invalid1, invalid2, invalid3, invalid4] {
         //            XCTAssertEqual(color, UIColor.black)
         
             XCTAssertEqual(0.0, CIColor(color: color).red * 255.0)
