@@ -3,13 +3,18 @@ import UIKit
 public extension UIColor {
     
     /**
-     Initializes and returns a color object using the specified hex number.
-     - parameter hexString: The hexadecimal value of the color. It may be optionally prepended with the '#' symbol.
-     - returns: The color object for the provided hexadecimal value, if valid. If an invalid hexadecimal number is provided, UIColor.white is returned.
+     Initializes and returns a color object using the provided string representation of a hexadecimal number.
+     
+     - parameters:
+        - hexString: The hexadecimal number of the color, represented as a string. It may be optionally prepended with the '#' symbol.
+     
+     - returns:
+     The color object for the provided hexadecimal, if valid. If an invalid hexadecimal number is provided, UIColor.white is returned.
     */
+    
     public convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
-        guard hex.isValidHexNumber() else {
+        guard hex.isValidHexadecimal else {
             // non HEX numbers just return a white color
             self.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
             return

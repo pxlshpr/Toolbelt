@@ -11,7 +11,7 @@ class ToolbeltTests: XCTestCase {
         super.tearDown()
     }
     
-    func testIsValidHexNumber() {
+    func testIsValidHexadecimal() {
         
         let valid1 = "ABF0C5"
         let valid2 = "FFF"
@@ -21,13 +21,13 @@ class ToolbeltTests: XCTestCase {
         let invalid2 = "GGG"
         let invalid3 = "^$&@#(&@#"
         
-        XCTAssertTrue(valid1.isValidHexNumber())
-        XCTAssertTrue(valid2.isValidHexNumber())
-        XCTAssertTrue(valid3.isValidHexNumber())
+        XCTAssertTrue(valid1.isValidHexadecimal)
+        XCTAssertTrue(valid2.isValidHexadecimal)
+        XCTAssertTrue(valid3.isValidHexadecimal)
 
-        XCTAssertFalse(invalid1.isValidHexNumber())
-        XCTAssertFalse(invalid2.isValidHexNumber())
-        XCTAssertFalse(invalid3.isValidHexNumber())
+        XCTAssertFalse(invalid1.isValidHexadecimal)
+        XCTAssertFalse(invalid2.isValidHexadecimal)
+        XCTAssertFalse(invalid3.isValidHexadecimal)
     }
     
 }
