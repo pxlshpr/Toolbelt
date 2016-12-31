@@ -1,8 +1,8 @@
 import UIKit
 
-extension UIColor {
+public extension UIColor {
     
-    convenience init(hexString: String) {
+    public convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
         guard hex.isValidHexNumber() else {
             // non HEX numbers just return a white color
