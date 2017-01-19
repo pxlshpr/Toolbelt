@@ -1,6 +1,6 @@
 //TODO: how do we test this? maybe test that every single enum was actually reached?
 //http://stackoverflow.com/questions/24007461/how-to-enumerate-an-enum-with-string-type
-func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
+public func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
     var i = 0
     return AnyIterator {
         let next = withUnsafePointer(to: &i) {
