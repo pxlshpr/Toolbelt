@@ -1,5 +1,5 @@
 import Foundation
-
+/*
 /// Asynchronously runs the given closure in the background
 ///
 /// :param: closure the closure to run in the background
@@ -34,3 +34,4 @@ private func delay(seconds: Double, queue: dispatch_queue_t, closure: () -> ()) 
     let when = dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC)))
     dispatch_after(when, queue, closure)
 }
+*/

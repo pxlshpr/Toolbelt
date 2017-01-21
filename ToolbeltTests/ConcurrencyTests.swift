@@ -1,6 +1,7 @@
 import XCTest
 @testable import Toolbelt
 
+/*
 class ConcurrencyTests: XCTestCase {
     
     override func setUp() {
@@ -72,3 +73,4 @@ class ConcurrencyTests: XCTestCase {
         }
     }
 }
+*/
