@@ -45,7 +45,9 @@ class ToolbeltTests: XCTestCase {
         let returnsWord3 = " Word"        
         let returnsWord4 = " Word "
         let returnsWord5 = " Word is a normal word."
-        for sentence in [returnsWord1, returnsWord2, returnsWord3, returnsWord4, returnsWord5] {
+        let returnsWord6 = "\nWord"
+        let returnsWord7 = "  \n\t\t Word"
+        for sentence in [returnsWord1, returnsWord2, returnsWord3, returnsWord4, returnsWord5, returnsWord6, returnsWord7] {
             XCTAssertEqual(sentence.firstWord, "Word")
         }         
 
@@ -67,5 +69,12 @@ class ToolbeltTests: XCTestCase {
         
         let bulletPoint = "- This is a bullet point."
         XCTAssertEqual(bulletPoint.firstWord, "-")
+        
+        let emptySentence = ""
+        let whitespace = "    "
+        let whitespaceNewLinesAndTabs = "  \t\n\n\t\t    \t\t   \n\n"
+        for sentence in [emptySentence, whitespace, whitespaceNewLinesAndTabs] {
+          XCTAssertEqual(sentence.firstWord, "")
+        }
     }
 }
