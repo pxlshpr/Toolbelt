@@ -42,20 +42,19 @@ class ToolbeltTests: XCTestCase {
 
         let returnsWord1 = "Word is a normal word."
         let returnsWord2 = "Word "
-        for sentence in [returnsWord1, returnsWord2] {
+        let returnsWord3 = " Word"        
+        let returnsWord4 = " Word "
+        let returnsWord5 = " Word is a normal word."
+        for sentence in [returnsWord1, returnsWord2, returnsWord3, returnsWord4, returnsWord5] {
             XCTAssertEqual(sentence.firstWord, "Word")
         }         
 
-        let returnsWord3 = "Word. This is a sentence."
-        XCTAssertEqual(returnsWord3.firstWord, "Word.")
-        
-        let returnsBlank1 = " Word"        
-        let returnsBlank2 = " Word "
-        let returnsBlank3 = " Word is a normal word."
-        let returnsBlank4 = " Word. This is a sentence."
-        for sentence in [returnsBlank1, returnsBlank2, returnsBlank3, returnsBlank4] {
-            XCTAssertEqual(sentence.firstWord, "")
+        let returnsWordAndPeriod1 = "Word. This is a sentence."
+        let returnsWordAndPeriod2 = " Word. This is a sentence."
+        for sentence in [returnsWordAndPeriod1, returnsWordAndPeriod2] {
+            XCTAssertEqual(sentence.firstWord, "Word.")
         }
+        
         
         let numbersWord = "98675 is also a word."
         XCTAssertEqual(numbersWord.firstWord, "98675")
