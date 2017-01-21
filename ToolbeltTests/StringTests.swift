@@ -36,8 +36,8 @@ class ToolbeltTests: XCTestCase {
         let returnsItself2 = "Word."
         let returnsItself3 = "Word$@%^"
         let returnsItself4 = "words-separated-by-hyphens"
-        for word in [returnsItself1, returnsItself2, returnsItself3, returnsItself4] {
-            XCTAssertEqual(word.firstWord, word)
+        for sentence in [returnsItself1, returnsItself2, returnsItself3, returnsItself4] {
+            XCTAssertEqual(sentence.firstWord, sentence)
         }
 
         let returnsWord1 = "Word is a normal word."
@@ -47,7 +47,7 @@ class ToolbeltTests: XCTestCase {
         }         
 
         let returnsWord3 = "Word. This is a sentence."
-        XCTAssertEqual(word.firstWord, "Word.")
+        XCTAssertEqual(returnsWord3.firstWord, "Word.")
         
         let returnsBlank1 = " Word"        
         let returnsBlank2 = " Word "
