@@ -32,14 +32,14 @@ class ToolbeltTests: XCTestCase {
     
     func testStartOfDay() {
     
-    	let now = Date()
+    	let date = Date()
     	let calendar = Calendar.current
     	let hour = calendar.component(.hour, from: date)
     	let minutes = calendar.component(.minute, from: date)
     	let seconds = calendar.component(.second, from: date)
-    	XCTAssertEquals(hour, 0)
-    	XCTAssertEquals(minutes, 0)
-    	XCTAssertEquals(seconds, 0)
+    	XCTAssertEqual(hour, 0)
+    	XCTAssertEqual(minutes, 0)
+    	XCTAssertEqual(seconds, 0)
     	
     	//TODO: test custome dates too and also check day month year
     }
