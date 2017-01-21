@@ -1,7 +1,7 @@
 public extension String {
 
     public var firstWord: String? {
-        return self.components(separatedBy: " ").first
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: " ").first
     }
     
     
