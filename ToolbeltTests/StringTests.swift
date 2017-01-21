@@ -34,9 +34,10 @@ class ToolbeltTests: XCTestCase {
     
     	let date = Date()
     	let calendar = Calendar.current
-    	let hour = calendar.component(.hour, from: date)
-    	let minutes = calendar.component(.minute, from: date)
-    	let seconds = calendar.component(.second, from: date)
+    	let startOfDay = date.startOfDay
+    	let hour = calendar.component(.hour, from: startOfDay)
+    	let minutes = calendar.component(.minute, from: startOfDay)
+    	let seconds = calendar.component(.second, from: startOfDay)
     	XCTAssertEqual(hour, 0)
     	XCTAssertEqual(minutes, 0)
     	XCTAssertEqual(seconds, 0)
