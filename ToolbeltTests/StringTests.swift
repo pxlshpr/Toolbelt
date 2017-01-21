@@ -11,6 +11,18 @@ class ToolbeltTests: XCTestCase {
         super.tearDown()
     }
     
+    func testConcurrency() {
+      let queue = DispatchQueue.global()
+      background {
+         dispatchPrecondition(condition: .notOnQueue(mainQueue))
+         XCTAssertTrue(true)
+         // This code should execute
+         dispatchPrecondition(condition: .onQueue(queue))
+         XCTAssertTrue(true)
+        // This code should not execute
+      }
+    }
+
     func testIsValidHexadecimal() {
         
         let valid1 = "ABF0C5"

@@ -1,12 +1,16 @@
 import Foundation
-/*
+
 /// Asynchronously runs the given closure in the background
 ///
 /// :param: closure the closure to run in the background
 public func background(closure: () -> ()) {
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), closure)
+  DispatchQueue.global().async {
+    closure()
+  }
+  // dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), closure)
 }
 
+/*
 /// This method runs a closure in the background after a specified delay
 ///
 /// :param: seconds the delay in seconds
