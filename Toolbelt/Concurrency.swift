@@ -3,7 +3,7 @@ import Foundation
 /// Asynchronously runs the given closure in the background
 ///
 /// :param: closure the closure to run in the background
-public func background(closure: () -> ()) {
+public func background(closure: @escaping () -> ()) {
   DispatchQueue.global().async {
     closure()
   }

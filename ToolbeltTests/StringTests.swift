@@ -1,7 +1,7 @@
 import XCTest
 @testable import Toolbelt
 
-class ToolbeltTests: XCTestCase {
+class StringTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -14,12 +14,12 @@ class ToolbeltTests: XCTestCase {
     func testConcurrency() {
       let queue = DispatchQueue.global()
       background {
-         dispatchPrecondition(condition: .notOnQueue(mainQueue))
-         XCTAssertTrue(true)
-         // This code should execute
-         dispatchPrecondition(condition: .onQueue(queue))
-         XCTAssertTrue(true)
-        // This code should not execute
+//         dispatchPrecondition(condition: .notOnQueue(mainQueue))
+//         XCTAssertTrue(true)
+//         // This code should execute
+//         dispatchPrecondition(condition: .onQueue(queue))
+//         XCTAssertTrue(true)
+//        // This code should not execute
       }
     }
 
