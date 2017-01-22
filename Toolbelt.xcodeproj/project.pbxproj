@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E23635401E343D9C00C9AF39 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236353E1E343D9C00C9AF39 /* Date.swift */; };
-		E23635411E343D9C00C9AF39 /* NSLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236353F1E343D9C00C9AF39 /* NSLocale.swift */; };
+		E23635431E3441C700C9AF39 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23635421E3441C700C9AF39 /* DateTests.swift */; };
 		E2516DA51E1401710026FAA8 /* Toolbelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2516D9B1E1401710026FAA8 /* Toolbelt.framework */; };
 		E2516DAA1E1401710026FAA8 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2516DA91E1401710026FAA8 /* StringTests.swift */; };
 		E2516DAC1E1401710026FAA8 /* Toolbelt.h in Headers */ = {isa = PBXBuildFile; fileRef = E2516D9E1E1401710026FAA8 /* Toolbelt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E2516DB61E1401F00026FAA8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2516DB51E1401F00026FAA8 /* String.swift */; };
-		E26D8D3B1E31B72B00B6FA5F /* Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26D8D3A1E31B72B00B6FA5F /* Concurrency.swift */; };
-		E26D8D3D1E31B74200B6FA5F /* ConcurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26D8D3C1E31B74200B6FA5F /* ConcurrencyTests.swift */; };
 		E28FF15E1E16A88000320D29 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF15D1E16A88000320D29 /* UIColor.swift */; };
 		E28FF1601E16AB2B00320D29 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */; };
 		E2B9D9451E30CC6B00EBB44E /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D9441E30CC6B00EBB44E /* Enum.swift */; };
@@ -33,7 +31,7 @@
 
 /* Begin PBXFileReference section */
 		E236353E1E343D9C00C9AF39 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		E236353F1E343D9C00C9AF39 /* NSLocale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLocale.swift; sourceTree = "<group>"; };
+		E23635421E3441C700C9AF39 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		E2516D9B1E1401710026FAA8 /* Toolbelt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toolbelt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2516D9E1E1401710026FAA8 /* Toolbelt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toolbelt.h; sourceTree = "<group>"; };
 		E2516D9F1E1401710026FAA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,8 +39,6 @@
 		E2516DA91E1401710026FAA8 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		E2516DAB1E1401710026FAA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2516DB51E1401F00026FAA8 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		E26D8D3A1E31B72B00B6FA5F /* Concurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concurrency.swift; sourceTree = "<group>"; };
-		E26D8D3C1E31B74200B6FA5F /* ConcurrencyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrencyTests.swift; sourceTree = "<group>"; };
 		E28FF15D1E16A88000320D29 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTests.swift; sourceTree = "<group>"; };
 		E2B9D9441E30CC6B00EBB44E /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -71,8 +67,8 @@
 		E2516D911E1401710026FAA8 = {
 			isa = PBXGroup;
 			children = (
-				E2516D9D1E1401710026FAA8 /* Toolbelt */,
 				E2516DA81E1401710026FAA8 /* ToolbeltTests */,
+				E2516D9D1E1401710026FAA8 /* Toolbelt */,
 				E2516D9C1E1401710026FAA8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,9 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				E2516D9E1E1401710026FAA8 /* Toolbelt.h */,
-				E26D8D3A1E31B72B00B6FA5F /* Concurrency.swift */,
 				E236353E1E343D9C00C9AF39 /* Date.swift */,
-				E236353F1E343D9C00C9AF39 /* NSLocale.swift */,
 				E2B9D9441E30CC6B00EBB44E /* Enum.swift */,
 				E2516DB51E1401F00026FAA8 /* String.swift */,
 				E28FF15D1E16A88000320D29 /* UIColor.swift */,
@@ -104,8 +98,8 @@
 		E2516DA81E1401710026FAA8 /* ToolbeltTests */ = {
 			isa = PBXGroup;
 			children = (
+				E23635421E3441C700C9AF39 /* DateTests.swift */,
 				E2B9D9461E30CCA100EBB44E /* EnumTests.swift */,
-				E26D8D3C1E31B74200B6FA5F /* ConcurrencyTests.swift */,
 				E2516DA91E1401710026FAA8 /* StringTests.swift */,
 				E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */,
 				E2516DAB1E1401710026FAA8 /* Info.plist */,
@@ -228,10 +222,8 @@
 			files = (
 				E2516DB61E1401F00026FAA8 /* String.swift in Sources */,
 				E23635401E343D9C00C9AF39 /* Date.swift in Sources */,
-				E23635411E343D9C00C9AF39 /* NSLocale.swift in Sources */,
 				E28FF15E1E16A88000320D29 /* UIColor.swift in Sources */,
 				E2B9D9451E30CC6B00EBB44E /* Enum.swift in Sources */,
-				E26D8D3B1E31B72B00B6FA5F /* Concurrency.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +234,7 @@
 				E2516DAA1E1401710026FAA8 /* StringTests.swift in Sources */,
 				E2B9D9471E30CCA100EBB44E /* EnumTests.swift in Sources */,
 				E28FF1601E16AB2B00320D29 /* UIColorTests.swift in Sources */,
-				E26D8D3D1E31B74200B6FA5F /* ConcurrencyTests.swift in Sources */,
+				E23635431E3441C700C9AF39 /* DateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

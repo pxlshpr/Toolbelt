@@ -1,6 +1,30 @@
 import XCTest
 @testable import Toolbelt
 
+class ConcurrencyTests: XCTestCase {
+    
+    override func setUp() {
+        super.setUp()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    func testConcurrency() {
+        let queue = DispatchQueue.global()
+//        background {
+//            //         dispatchPrecondition(condition: .notOnQueue(mainQueue))
+//            //         XCTAssertTrue(true)
+//            //         // This code should execute
+//            //         dispatchPrecondition(condition: .onQueue(queue))
+//            //         XCTAssertTrue(true)
+//            //        // This code should not execute
+//        }
+    }
+}
+
+
 /*
 class ConcurrencyTests: XCTestCase {
     
