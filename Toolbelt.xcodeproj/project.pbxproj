@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E23635401E343D9C00C9AF39 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E236353E1E343D9C00C9AF39 /* Date.swift */; };
 		E23635431E3441C700C9AF39 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23635421E3441C700C9AF39 /* DateTests.swift */; };
+		E2378D6F1E35899500C4C9F5 /* RandomNumbersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */; };
 		E2516DA51E1401710026FAA8 /* Toolbelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2516D9B1E1401710026FAA8 /* Toolbelt.framework */; };
 		E2516DAA1E1401710026FAA8 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2516DA91E1401710026FAA8 /* StringTests.swift */; };
 		E2516DAC1E1401710026FAA8 /* Toolbelt.h in Headers */ = {isa = PBXBuildFile; fileRef = E2516D9E1E1401710026FAA8 /* Toolbelt.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		E236353E1E343D9C00C9AF39 /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E23635421E3441C700C9AF39 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumbersTests.swift; sourceTree = "<group>"; };
 		E2516D9B1E1401710026FAA8 /* Toolbelt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toolbelt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2516D9E1E1401710026FAA8 /* Toolbelt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toolbelt.h; sourceTree = "<group>"; };
 		E2516D9F1E1401710026FAA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				E23635421E3441C700C9AF39 /* DateTests.swift */,
+				E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */,
 				E2B9D9461E30CCA100EBB44E /* EnumTests.swift */,
 				E2516DA91E1401710026FAA8 /* StringTests.swift */,
 				E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */,
@@ -231,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2378D6F1E35899500C4C9F5 /* RandomNumbersTests.swift in Sources */,
 				E2516DAA1E1401710026FAA8 /* StringTests.swift in Sources */,
 				E2B9D9471E30CCA100EBB44E /* EnumTests.swift in Sources */,
 				E28FF1601E16AB2B00320D29 /* UIColorTests.swift in Sources */,

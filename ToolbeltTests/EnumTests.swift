@@ -19,13 +19,13 @@ class EnumTests: XCTestCase {
     super.tearDown()
   }
   
-  func testnumberOfCases() {
+  func testNumberOfCases() {
     let message = "Failed to get correct number of enum cases"
     XCTAssertEqual(numberOfCases(Enum.self), 5, message)
     XCTAssertEqual(numberOfCases(EnumSingleCase.self), 1, message)
   }
   
-  func testenumIterator() {
+  func testEnumIterator() {
     var caseMatches = [false, false, false, false, false]
     for theCase in enumIterator(Enum.self) {
       if theCase == .Case1 { caseMatches[0] = true }
