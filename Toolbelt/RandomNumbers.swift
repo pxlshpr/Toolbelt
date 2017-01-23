@@ -1,9 +1,10 @@
-//
-//  RandomNumbers.swift
-//  Toolbelt
-//
-//  Created by Ahmed Khalaf on 23/1/17.
-//  Copyright © 2017 Ahmed Khalaf. All rights reserved.
-//
-
 import Foundation
+
+func randomIntegerInclusively(between min: Int, and max: Int) -> Int {
+  if max < min { return min }
+  return Int(arc4random_uniform(UInt32((max - min) + 1))) + min
+}
+
+func randomIntegerBetween0(and upperLimit: Int) -> Int {
+  return Int(arc4random_uniform(UInt32(upperLimit)))
+}
