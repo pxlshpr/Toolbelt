@@ -19,6 +19,10 @@ class RandomNumbersTests: XCTestCase {
       let random = randomIntegerBetween0(and: number)
       XCTAssertGreaterThanOrEqual(random, 0, "Random number generated was less than 0")
       XCTAssertGreaterThanOrEqual(number, random, "Random number generated was greater than the upper limit")
+      //TODO: Find out how to compare two Int.Type's or whatever and assert that the number spat out is of the same type as that which was submitted
+      //TODO: see if this existsa lready before attempting
+      //TODO: think about handling negative numbers with both functions
+      //TODO: try to extend the same functions to handle doubles and floats as well, if possible!, see if there is a protocl higher up than Integer that could be used for the generic
 //      XCTAssertEqual(type(of: random), type(of: number), "Returned random number wasn't of the same type as the input upper limit")
     }
   }
