@@ -16,17 +16,33 @@ class RandomNumbersTests: XCTestCase {
       let typeOfRandom = type(of: firstObject)
       let typeOfNumber = type(of: secondObject)
       let typesAreEqual = typeOfRandom == typeOfNumber
-      XCTAssertTrue(typesAreEqual, message ?? "Types don't match as expected")  
+      XCTAssertTrue(typesAreEqual, message ?? "Types do not match as expected")  
   }
   
   func testRandomNumbersFrom0() {
     
     let limitsInt = [-5000000, -5000, -100, -5, -2, -1, 0, 1, 2, 5, 100, 5000]
     var limitsInt8: [Int8] = []
-    
+    var limitsInt16: [Int16] = []
+    var limitsInt32: [Int32] = []
+    var limitsInt64: [Int64] = []
+    var limitsUInt: [UInt] = []
+    var limitsUInt8: [UInt8] = []
+    var limitsUInt16: [UInt16] = []
+    var limitsUInt32: [UInt32] = []
+    var limitsUInt64: [UInt64] = []
+ 
     for  limit in limitsInt {
       //TODO: handle negatives with unsigned types else overflows!
-      limitsInt8.append(Int8(max(Int8.min, min(limit, Int8.max)))
+      limitsInt8.append(Int8(max(Int8.min, min(limit, Int8.max))))
+      limitsInt16.append(Int16(max(Int16.min, min(limit, Int16.max))))
+      limitsInt32.append(Int32(max(Int32.min, min(limit, Int32.max))))
+      limitsInt64.append(Int64(max(Int64.min, min(limit, Int64.max))))
+      limitsUInt.append(UInt(max(UInt.min, min(limit, UInt.max))))
+      limitsUInt8.append(UInt8(max(UInt8.min, min(limit, UInt8.max))))
+      limitsUInt16.append(UInt16(max(UInt16.min, min(limit, UInt16.max))))
+      limitsUInt32.append(UInt32(max(UInt32.min, min(limit, UInt32.max))))
+      limitsUInt64.append(UInt64(max(UInt64.min, min(limit, UInt64.max))))
     }
     
     //TODO: find out how to 'swift define array with generic'.
