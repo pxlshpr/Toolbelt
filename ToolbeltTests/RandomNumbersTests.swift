@@ -12,11 +12,14 @@ class RandomNumbersTests: XCTestCase {
   }
   
   func testRandomNumbersFrom0() {
-    let upperLimits = [0, 5, 100, ]
-    for upperLimit in upperLimits {
-      let random = randomIntegerBetween0(and: upperLimit)
+    
+    let numbers = [0, 1, 5, 100, 5000, UInt(0), UInt(1), UInt(5), UInt(100), UInt(5000) ]
+    
+    for number in numbers {
+      let random = randomIntegerBetween0(and: number)
       XCTAssertGreaterThanOrEqual(random, 0, "Random number generated was less than 0")
-      XCTAssertGreaterThanOrEqual(upperLimit, random, "Random number generated was greater than the upper limit")
+      XCTAssertGreaterThanOrEqual(number, random, "Random number generated was greater than the upper limit")
+//      XCTAssertEqual(type(of: random), type(of: number), "Returned random number wasn't of the same type as the input upper limit")
     }
   }
   
