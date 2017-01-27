@@ -12,26 +12,34 @@ class RandomNumbersTests: XCTestCase {
   }
   
   //TODO: move to Toolbelt (under test helpers)
-  func assertThat(_ firstObject: Any, matchesType secondObject: Any, withmessage message: String?) {
-      let typeOfRandom = type(of: random)
-      let typeOfNumber = type(of: number)
+  func assertThat(_ firstObject: Any, matchesTypeOf secondObject: Any, message: String?) {
+      let typeOfRandom = type(of: firstObject)
+      let typeOfNumber = type(of: secondObject)
       let typesAreEqual = typeOfRandom == typeOfNumber
       XCTAssertTrue(typesAreEqual, message ?? "Types don't match as expected")  
   }
   
   func testRandomNumbersFrom0() {
     
-    let numbers = [0, 1, 5, 100, 5000, UInt(0), UInt(1), UInt(5), UInt(100), UInt(5000) ]
+    let limits = [0, 1, 5, 100, 5000, UInt(0), UInt(1), UInt(5), UInt(100), UInt(5000) ]
+    //TODO: find out how to 'swift define array with generic'.
+    // then add all randoms here as we generate them (and make sure we have a lot more samples to test on).
+    // then assert (in the end) that all the generated randoms weren't:
+    // 1. the same (but only depending on the range. So a range of (0, 0) if applicable might be an exception)
+    // 2. too similar to each other (ie. too many repeats – but that depends on the range doens't it? don't divulge in this too much. Maybe just trust that even a slight randomness (ie. different number) is random enough
+    var randoms: Any = []
     
-    for number in numbers {
-      let random = randomIntegerBetween0(and: number)
+    for limit in limits {
+      let random = randomIntegerBetween0(and: limit)
       XCTAssertGreaterThanOrEqual(random, 0, "Random number generated was less than 0")
-      XCTAssertGreaterThanOrEqual(number, random, "Random number generated was greater than the upper limit")
-      assertThat(number, matchesTypeOf: random, message: "Returned random number wasn't of the same type as the input upper limit")
-            
-      //TODO: see if this existsa lready before attempting
+      //TODO: need to change this if we're handling negative numbers
+      XCTAssertLessThanOrEqual(random, limit, "Random number generated was greater than the limit")
+      assertThat(random, matchesTypeOf: limit, message: "Returned random number wasn't of the same type as the input upper limit")
+
+      //TODO: we need a failing test for when we get a 'random' number that isn't random. ie. it's the same everytime. should we test for how variant/random they actually are too? or is that too abstract?
+      
       //TODO: think about handling negative numbers with both functions
-      //TODO: try to extend the same functions to handle doubles and floats as well, if possible!, see if there is a protocl higher up than Integer that could be used for the generic
+      //TODO: try to refactor to handle doubles and floats
     }
   }
   
