@@ -26,11 +26,7 @@ class RandomNumbersTests: XCTestCase {
     
     for  limit in limitsInt {
       //TODO: handle negatives with unsigned types else overflows!
-      //TODO: can we chain these?
-      var int8 = min(limit, Int8.max)
-      int8 = max(Int8.min, limit)
-      limitsInt8.append(Int8(int8)
-      )
+      limitsInt8.append(Int8(max(Int8.min, min(limit, Int8.max)))
     }
     
     //TODO: find out how to 'swift define array with generic'.
