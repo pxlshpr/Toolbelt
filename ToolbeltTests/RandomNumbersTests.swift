@@ -21,7 +21,18 @@ class RandomNumbersTests: XCTestCase {
   
   func testRandomNumbersFrom0() {
     
-    let limits = [0, 1, 5, 100, 5000, UInt(0), UInt(1), UInt(5), UInt(100), UInt(5000) ]
+    let limitsInt = [-5000000, -5000, -100, -5, -2, -1, 0, 1, 2, 5, 100, 5000]
+    var limitsInt8: [Int8] = []
+    
+    for  limit in limitsInt {
+      //TODO: handle negatives with unsigned types else overflows!
+      //TODO: can we chain these?
+      var int8 = min(limit, Int8.max)
+      int8 = max(Int8.min, limit)
+      limitsInt8.append(Int8(int8)
+      )
+    }
+    
     //TODO: find out how to 'swift define array with generic'.
     // then add all randoms here as we generate them (and make sure we have a lot more samples to test on).
     // then assert (in the end) that all the generated randoms weren't:
