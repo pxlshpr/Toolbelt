@@ -21,6 +21,7 @@ class RandomNumbersTests: XCTestCase {
   
   func testRandomNumbersFrom0() {
     
+    //TODO: use ranges instead, relook into whether we really need types?
     let limitsInt = [Int.min, -5000000000000, -5000000, -5000, -100, -5, -2, -1, 0, 1, 2, 5, 100, 5000, 5000000, 5000000000000, Int.max]
     let limitsUInt: [UInt] = [0, 1, 2, 5, 100, 5000, 5000000, 5000000000000, UInt.max]
 
