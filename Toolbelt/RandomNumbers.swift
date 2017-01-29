@@ -1,18 +1,5 @@
 import Foundation
 
-//MARK: - NIH
-//source: http://stackoverflow.com/questions/29588158/check-if-all-elements-of-an-array-have-the-same-value-in-swift
-//TODO: move this to its own file
-public extension Array where Element : Equatable {
-  public var containsDuplicates: Bool {
-    if let firstElement = first {
-      return !dropFirst().contains { $0 != firstElement }
-    }
-    return true
-  }
-}
-//MARK: ***
-
 //MARK: - NIH (Modified)
 //source: http://stackoverflow.com/questions/34712453/random-number-x-amount-till-x-amount-swift/34712601#34712601
 func randomNumber(between lower: Int, and upper: Int) -> Int {
