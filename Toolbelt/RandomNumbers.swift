@@ -15,13 +15,31 @@ public extension Array where Element : Equatable {
 //MARK: - NIH (Modified)
 //source: http://stackoverflow.com/questions/34712453/random-number-x-amount-till-x-amount-swift/34712601#34712601
 public extension CountableRange where Bound: Integer {
-  public var random: Int {
-    return Int(lowerBound.toIntMax()) + Int(arc4random_uniform(UInt32((upperBound - lowerBound).toIntMax())))
+  public func random() throws -> Int {
+    
+    let lower = Int(lowerBound.toIntMax())
+
+    var delta = Int(upperBound.toIntMax() - lowerBound.toIntMax())
+    delta = Swift.min(delta, Int(UInt32.max - 1))
+    
+    let random = Int(arc4random_uniform(UInt32(delta.toIntMax())))
+    return lower + random
   }
 }
 
+func doIt(lower: Bound, upper: Int) -> Int {
+  let lower = Int(lowerBound.toIntMax())
+  
+  //TODO: even though this makes things safer (by forbi
+  var delta = Int(upperBound.toIntMax() - lowerBound.toIntMax())
+  delta = Swift.min(delta, Int(UInt32.max - 2))
+  
+  let random = Int(arc4random_uniform(UInt32((delta + 1).toIntMax())))
+  return lower + random
+}
+
 public extension CountableClosedRange where Bound: Integer {
-  public var random: Int {
+  public func random() throws -> Int {
     let lower = Int(lowerBound.toIntMax())
     
     //TODO: even though this makes things safer (by forbi
