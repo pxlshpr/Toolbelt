@@ -2,7 +2,7 @@ import XCTest
 @testable import Toolbelt
 
 class ArrayTests: XCTestCase {
-
+  
   override func setUp() {
     super.setUp()
   }
@@ -36,39 +36,44 @@ class RandomNumbersTests: XCTestCase {
   func testRandomNumberForARange() {
     
     //TODO: think about handling negatives, UInt32, Int8, Doubles, Floats
-    let ranges1 = [(0...10), (0...1000), (0...Int.max)]
-let ranges2 = [(0..<10), (0..<1000), (0..<Int.max)]
-let times = 1000
-
-let doIt2 = { (range: Any) -> Void in
-    var randoms: [Int] = []
+    let ranges1 = [(Int.min...0), (0...10), (0...1000), (0...Int.max), (-5...0), (-1...1), (Int.min...Int.max)]
+    let ranges2 = [(Int.min..<0), (0..<10), (0..<1000), (0..<Int.max), (-5..<0), (-1..<1), (Int.min..<Int.max)]
+    let times = 100
     
-    (0...times).forEach({ _ in
+    let runTestsOnRange = { (range: Any) -> Void in
+      var randoms: [Int] = []
+      
+      (0...times).forEach({ _ in
         
-        let doIt = { (random: Int, lowerBound: Int, upperBound: Int) in
-            XCTAssertGreaterThanOrEqual(random, lowerBound, "Random number generated was less than 0")
-            XCTAssertLessThanOrEqual(random, upperBound, "Random number generated was greater than the limit")
-            //TODO: randoms should be weak, right?
+        let checkRange = { (random: Int, lowerBound: Int, upperBound: Int) in
+          XCTAssertGreaterThanOrEqual(random, lowerBound, "Random number generated was less than the lower limit")
+          XCTAssertLessThan(random, upperBound, "Random number generated was greater than the upper limit")
+          //TODO: randoms should be weak, right?
+          
+          if upperBound == lowerBound || upperBound > lowerBound + 1 {
             randoms.append(random)
+          }
         }
         
         if let range = range as? CountableRange<Int> {
-            doIt(range.random, range.lowerBound, range.upperBound)
+          checkRange(range.random, range.lowerBound, range.upperBound)
         } else if let range = range as? CountableClosedRange<Int> {
-            let upper = Swift.min(Int(range.upperBound), Int.max - 1)
-            doIt(range.random, range.lowerBound, upper)
+          let upper = Swift.min(Int(range.upperBound), Int.max - 1)
+          checkRange(range.random, range.lowerBound, upper+1)
         }
-    })
-    print(randoms)
+      })
+      print(randoms)
+      
+      if !randoms.isEmpty {
+        XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+      }
+    }
     
-    XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
-}
-
-for range in ranges1 {
-    doIt2(range)
-}
-for range in ranges2 {
-    doIt2(range)
-}    
-}
+    for range in ranges1 {
+      runTestsOnRange(range)
+    }
+    for range in ranges2 {
+      runTestsOnRange(range)
+    }    
+  }
 }
