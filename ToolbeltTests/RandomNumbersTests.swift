@@ -32,11 +32,12 @@ class RandomNumbersTests: XCTestCase {
   func testRandomNumberForARange() {
     
     //TODO: think about handling negatives, UInt32, Int8, Doubles, Floats
+    //TODO: expect errors to be thrown when we have incorrect ranges and too large of a range, and try catch them in tests and throw them accordingly in code
     let ranges1 = [(0...10), (0...1000), (0...Int.max)]
     let ranges2 = [(0..<10), (0..<1000), (0..<Int.max)]
     let times = 1000
     
-    let doIt = { (Range) -> () range in
+    var doIt: (Range) -> Void = { (range: Range) -> Void in
       var randoms: [Int] = []
       
       (0...times).forEach({ _ in
@@ -51,6 +52,10 @@ class RandomNumbersTests: XCTestCase {
     }
     
     for range in ranges1 {
+      doIt(range)
     }
+    for range in ranges2 {
+      doIt(range)
+    }    
   }
 }
