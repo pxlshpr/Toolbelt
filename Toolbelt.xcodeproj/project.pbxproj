@@ -17,6 +17,8 @@
 		E2516DB61E1401F00026FAA8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2516DB51E1401F00026FAA8 /* String.swift */; };
 		E28FF15E1E16A88000320D29 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF15D1E16A88000320D29 /* UIColor.swift */; };
 		E28FF1601E16AB2B00320D29 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */; };
+		E291200F1E3E8A40004942A0 /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E291200E1E3E8A40004942A0 /* ArrayTests.swift */; };
+		E29120111E3E8A6C004942A0 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29120101E3E8A6C004942A0 /* Array.swift */; };
 		E2B9D9451E30CC6B00EBB44E /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D9441E30CC6B00EBB44E /* Enum.swift */; };
 		E2B9D9471E30CCA100EBB44E /* EnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9D9461E30CCA100EBB44E /* EnumTests.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,8 @@
 		E2516DB51E1401F00026FAA8 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		E28FF15D1E16A88000320D29 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTests.swift; sourceTree = "<group>"; };
+		E291200E1E3E8A40004942A0 /* ArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
+		E29120101E3E8A6C004942A0 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		E2B9D9441E30CC6B00EBB44E /* Enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		E2B9D9461E30CCA100EBB44E /* EnumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				E2516D9E1E1401710026FAA8 /* Toolbelt.h */,
+				E29120101E3E8A6C004942A0 /* Array.swift */,
 				E236353E1E343D9C00C9AF39 /* Date.swift */,
 				E2B9D9441E30CC6B00EBB44E /* Enum.swift */,
 				E2378D701E358D2C00C4C9F5 /* RandomNumbers.swift */,
@@ -103,9 +108,10 @@
 		E2516DA81E1401710026FAA8 /* ToolbeltTests */ = {
 			isa = PBXGroup;
 			children = (
+				E291200E1E3E8A40004942A0 /* ArrayTests.swift */,
 				E23635421E3441C700C9AF39 /* DateTests.swift */,
-				E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */,
 				E2B9D9461E30CCA100EBB44E /* EnumTests.swift */,
+				E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */,
 				E2516DA91E1401710026FAA8 /* StringTests.swift */,
 				E28FF15F1E16AB2B00320D29 /* UIColorTests.swift */,
 				E2516DAB1E1401710026FAA8 /* Info.plist */,
@@ -229,6 +235,7 @@
 				E2516DB61E1401F00026FAA8 /* String.swift in Sources */,
 				E23635401E343D9C00C9AF39 /* Date.swift in Sources */,
 				E28FF15E1E16A88000320D29 /* UIColor.swift in Sources */,
+				E29120111E3E8A6C004942A0 /* Array.swift in Sources */,
 				E2378D711E358D2C00C4C9F5 /* RandomNumbers.swift in Sources */,
 				E2B9D9451E30CC6B00EBB44E /* Enum.swift in Sources */,
 			);
@@ -241,6 +248,7 @@
 				E2378D6F1E35899500C4C9F5 /* RandomNumbersTests.swift in Sources */,
 				E2516DAA1E1401710026FAA8 /* StringTests.swift in Sources */,
 				E2B9D9471E30CCA100EBB44E /* EnumTests.swift in Sources */,
+				E291200F1E3E8A40004942A0 /* ArrayTests.swift in Sources */,
 				E28FF1601E16AB2B00320D29 /* UIColorTests.swift in Sources */,
 				E23635431E3441C700C9AF39 /* DateTests.swift in Sources */,
 			);
