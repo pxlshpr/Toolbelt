@@ -36,35 +36,39 @@ class RandomNumbersTests: XCTestCase {
   func testRandomNumberForARange() {
     
     //TODO: think about handling negatives, UInt32, Int8, Doubles, Floats
-    //TODO: expect errors to be thrown when we have incorrect ranges and too large of a range, and try catch them in tests and throw them accordingly in code
-//    let ranges1 = [(0...10), (0...1000), (0...Int.max)]
-    let ranges2 = [(0..<10), (0..<1000), (0..<Int.max)]
-    let times = 1000
+    let ranges1 = [(0...10), (0...1000), (0...Int.max)]
+let ranges2 = [(0..<10), (0..<1000), (0..<Int.max)]
+let times = 1000
+
+let doIt2 = { (range: Any) -> Void in
+    var randoms: [Int] = []
     
-    let doIt = { (range: CountableRange<Int>) -> Void in
-      var randoms: [Int] = []
-      
-      (0...times).forEach({ _ in
-        let random = try! range.random()
-        XCTAssertGreaterThanOrEqual(random, range.lowerBound, "Random number generated was less than 0")
-        //TODO: need to change this if we're handling negative numbers
-        XCTAssertLessThanOrEqual(random, range.upperBound, "Random number generated was greater than the limit")
-        randoms.append(random)
-      })
-      print(randoms)
-      XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
-    }
+    (0...times).forEach({ _ in
+        
+        let doIt = { (random: Int, lowerBound: Int, upperBound: Int) in
+            XCTAssertGreaterThanOrEqual(random, lowerBound, "Random number generated was less than 0")
+            XCTAssertLessThanOrEqual(random, upperBound, "Random number generated was greater than the limit")
+            //TODO: randoms should be weak, right?
+            randoms.append(random)
+        }
+        
+        if let range = range as? CountableRange<Int> {
+            doIt(range.random, range.lowerBound, range.upperBound)
+        } else if let range = range as? CountableClosedRange<Int> {
+            let upper = Swift.min(Int(range.upperBound), Int.max - 1)
+            doIt(range.random, range.lowerBound, upper)
+        }
+    })
+    print(randoms)
     
-    for range in ranges2 {
-      doIt(range)
-    }
-//    for range in ranges2 {
-//      doIt(range)
-//    }    
-    
-    let largeRange = 0..<Int.max
-    XCTAssertThrowsError(try largeRange.random) { error in
-      XCTAssertEqual(error as? ToolbeltError, .overflowError)
-    }
-  }
+    XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+}
+
+for range in ranges1 {
+    doIt2(range)
+}
+for range in ranges2 {
+    doIt2(range)
+}    
+}
 }
