@@ -1,32 +1,35 @@
 import Foundation
 
-public func randomIntegerInclusively(between min: Int, and max: Int) -> Int {
-  if max < min { return min }
-  return Int(arc4random_uniform(UInt32((max - min) + 1))) + min
-}
-
-//public func randomIntegerBetween0(and upperLimit: Int) -> Int {
-//  return Int(arc4random_uniform(UInt32(upperLimit)))
-//}
-
-public func randomIntegerBetween0<T: Integer>(and upperLimit: T) -> T {
-  
-//  return Int(arc4random_uniform(UInt32(upperLimit)))
-  
-  // use something like this:
-  //from: http://stackoverflow.com/questions/34712453/random-number-x-amount-till-x-amount-swift/34712601#34712601
-  /*extension ClosedRange where Bound: Integer {
-    var random: Int {
-        return Int(lowerBound.toIntMax()) + Int(arc4random_uniform(UInt32((upperBound - lowerBound + 1).toIntMax())))
+//MARK: - NIH
+//source: http://stackoverflow.com/questions/29588158/check-if-all-elements-of-an-array-have-the-same-value-in-swift
+public extension Array where Element : Equatable {
+  public var containsDuplicates: Bool {
+    if let firstElement = first {
+      return !dropFirst().contains { $0 != firstElement }
     }
+    return true
+  }
 }
-extension CountableRange where Bound: Integer {
-    var random: Int {
-        return Int(lowerBound.toIntMax()) + Int(arc4random_uniform(UInt32((upperBound - lowerBound).toIntMax())))
-    }
+//MARK: ***
+
+//MARK: - NIH (Modified)
+//source: http://stackoverflow.com/questions/34712453/random-number-x-amount-till-x-amount-swift/34712601#34712601
+public extension CountableRange where Bound: Integer {
+  public var random: Int {
+    return Int(lowerBound.toIntMax()) + Int(arc4random_uniform(UInt32((upperBound - lowerBound).toIntMax())))
+  }
 }
 
-
-(10...20).random   // 16*/
-  return 0
+public extension CountableClosedRange where Bound: Integer {
+  public var random: Int {
+    let lower = Int(lowerBound.toIntMax())
+    
+    //TODO: even though this makes things safer (by forbi
+    var delta = Int(upperBound.toIntMax() - lowerBound.toIntMax())
+    delta = Swift.min(delta, Int(UInt32.max - 2))
+    
+    let random = Int(arc4random_uniform(UInt32((delta + 1).toIntMax())))
+    return lower + random
+  }
 }
+//MARK: ***
