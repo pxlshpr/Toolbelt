@@ -23,8 +23,7 @@ class RandomNumbersTests: XCTestCase {
     return [-DBL_MAX ,-2.5 ,-1.5 ,-1 ,-0.5 ,-0.1 ,-DBL_MIN ,0 ,DBL_MIN ,0.1 ,0.5 ,1 ,1.5 ,2.5, DBL_MAX]
   }()
 
-  //TODO: rename this test
-  func testUIntRandom_ValidParameters_ReturnsARandomUInt() {
+  func testUIntRandom_ValidCases_ReturnsARandomUInt() {
     for min in testValues_UInts {
       for max in testValues_UInts {
         if min < max {
@@ -41,7 +40,7 @@ class RandomNumbersTests: XCTestCase {
     }
   }
   
-  func testIntRandom_ValidParameters_ReturnsARandomUInt() {
+  func testIntRandom_ValidCases_ReturnsARandomUInt() {
     for min in testValues_Ints {
       for max in testValues_Ints {
         if min < max {
@@ -58,7 +57,7 @@ class RandomNumbersTests: XCTestCase {
     }
   }
   
-  func testDoubleRandom_ValidParameters_ReturnsARandomUInt() {
+  func testDoubleRandom_ValidCases_ReturnsARandomUInt() {
     for min in testValues_Doubles {
       for max in testValues_Doubles {
         if min < max {
@@ -66,7 +65,6 @@ class RandomNumbersTests: XCTestCase {
           (0..<100).forEach { _ in
             let random = Double.random(minValue: min, maxValue: max)
             XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
-            //TODO: figure out why we're getting an 'inf' value on one of the upper limits?
             XCTAssertLessThanOrEqual(random, max, "Random number wasn't less or equal to the maximum")
             randoms.append(random)
           }
@@ -75,65 +73,33 @@ class RandomNumbersTests: XCTestCase {
       }
     }
   }
+  
+  func testUIntRandom_InvalidCases_() { }
+  func testIntRandom_InvalidCases_() { }
+  func testDoubleRandom_InvalidCases_() { }
 
-  func _testRandomNumberForARange() {
-    let ranges1 = [(Int.min...0), (0...10), (0...1000), (0...Int.max), (-5...0), (-1...1), (Int.min...Int.max)]
-    let ranges2 = [(Int.min..<0), (0..<10), (0..<1000), (0..<Int.max), (-5..<0), (-1..<1), (Int.min..<Int.max)]
-    
-    //TODO: fix double ranges (not working at all) and test functions by themselves too
-    //TODO: modularize code here and in Random Numbers file depending on how much is shared between Integer and Double's
-    let ranges3 = [(0.5...10.5), (50000.25...50000.255)]
-    let ranges4 = [(0.5..<10.5), (50000.25..<50000.255)]
-    let times = 100
-    
-    let runTestsOnRange = { (range: Any) -> Void in
-      var randoms: [Int] = []
-      var randomsDouble: [Double] = []
-      
-      (0...times).forEach({ _ in
-        
-        let assertRandomNumberIsInRange = { (random: Int, lowerBound: Int, upperBound: Int) in
-          XCTAssertGreaterThanOrEqual(random, lowerBound, "Random number generated was less than the lower limit")
-          XCTAssertLessThan(random, upperBound, "Random number generated was greater than the upper limit")
-          //TODO: randoms should be weak, right?
-          
-          if upperBound == lowerBound || upperBound > lowerBound + 1 {
-            randoms.append(random)
-          }
-        }
-        
-        let assertDouble = { (random: Double, lowerBound: Double, upperBound: Double) in
-          XCTAssertGreaterThanOrEqual(random, lowerBound, "Random number generated was less than the lower limit")
-          XCTAssertLessThan(random, upperBound, "Random number generated was greater than the upper limit")
-          //TODO: randoms should be weak, right?
-          
-          randomsDouble.append(random)
-        }
-        
-        
-        if let range = range as? CountableRange<Int> {
-          assertRandomNumberIsInRange(range.random, range.lowerBound, range.upperBound)
-        } else if let range = range as? CountableClosedRange<Int> {
-          let upper = Swift.min(Int(range.upperBound), Int.max - 1)
-          assertRandomNumberIsInRange(range.random, range.lowerBound, upper+1)
-        } else if let range = range as? Range<Double> {
-          assertDouble(range.random, range.lowerBound, range.upperBound)
-        } else if let range = range as? ClosedRange<Double> {
-          let upper = Swift.min(Double(range.upperBound), Double(Int.max - 1))
-          assertDouble(range.random, range.lowerBound, upper+1)
-        }
-      })
-      print(randoms)
-      
-      if !randoms.isEmpty {
-        XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
-      }
-    }
-    
-    for range in ranges1 { runTestsOnRange(range) }
-    for range in ranges2 { runTestsOnRange(range) }
-    for range in ranges3 { runTestsOnRange(range) }
-    for range in ranges4 { runTestsOnRange(range) }
-    
-  }
+  func testUIntRandom_RedundantCases_() { }
+  func testIntRandom_RedundantCases_() { }
+  func testDoubleRandom_RedundantCases_() { }
+
+  func testUIntRangeRandom_ValidCases_ReturnsARandomInt() { }
+  func testClosedUIntRangeRandom_ValidCases_ReturnsARandomInt() { }
+  func testIntRangeRandom_ValidCases_ReturnsARandomInt() { }
+  func testClosedIntRangeRandom_ValidCases_ReturnsARandomInt() { }
+  func testDoubleRangeRandom_ValidCases_ReturnsARandomInt() { }
+  func testClosedDoubleRangeRandom_ValidCases_ReturnsARandomInt() { }
+
+  func testUIntRangeRandom_InvalidCases_() { }
+  func testClosedUIntRangeRandom_InvalidCases_() { }
+  func testIntRangeRandom_InvalidCases_() { }
+  func testClosedIntRangeRandom_InvalidCases_() { }
+  func testDoubleRangeRandom_InvalidCases_() { }
+  func testClosedDoubleRangeRandom_InvalidCases_() { }
+
+  func testUIntRangeRandom_RedundantCases_() { }
+  func testClosedUIntRangeRandom_RedundantCases_() { }
+  func testIntRangeRandom_RedundantCases_() { }
+  func testClosedIntRangeRandom_RedundantCases_() { }
+  func testDoubleRangeRandom_RedundantCases_() { }
+  func testClosedDoubleRangeRandom_RedundantCases_() { }
 }

@@ -53,7 +53,11 @@ extension Double {
     let rnd = Double(UInt.random(minValue: 0, maxValue: UInt.max))/Double(UInt.max)
     
     // Scale to range minValue ... maxValue:
-    return minValue + rnd * (maxValue - minValue)
+    var delta = maxValue - minValue
+    if delta == Double.infinity {
+      delta = DBL_MAX
+    }
+    return minValue + rnd * delta
   }
 }
 //***
