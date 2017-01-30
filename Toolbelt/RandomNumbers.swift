@@ -3,8 +3,10 @@ import Foundation
 //MARK: - NIH
 //source: http://stackoverflow.com/questions/31391577/how-can-i-generate-large-ranged-random-numbers-in-swift
 extension UInt {
-  static func random(minValue: UInt, maxValue: UInt) -> UInt {
-    precondition(minValue <= maxValue, "attempt to call random() with minValue > maxValue")
+  static func random(between first: UInt, and second: UInt) -> UInt {
+    
+    let minValue = first > second ? second : first
+    let maxValue = first > second ? first : second
     
     if minValue == UInt.min && maxValue == UInt.max {
       // Random number in the full range of UInt:
@@ -33,12 +35,14 @@ extension UInt {
 }
 
 extension Int {
-  static func random(minValue: Int, maxValue: Int) -> Int {
-    precondition(minValue <= maxValue, "attempt to call random() with minValue > maxValue")
+  static func random(between first: Int, and second: Int) -> Int {
+    
+    let minValue = first > second ? second : first
+    let maxValue = first > second ? first : second
     
     // Compute unsigned random number in the range 0 ... (maxValue-minValue):
     let diff = UInt(bitPattern: maxValue &- minValue)
-    let rnd = UInt.random(minValue: 0, maxValue: diff)
+    let rnd = UInt.random(between: 0, and: diff)
     
     // Transform `rnd` back to the range minValue ... maxValue:
     return minValue &+ Int(bitPattern: rnd)
@@ -46,11 +50,14 @@ extension Int {
 }
 
 extension Double {
-  static func random(minValue: Double, maxValue: Double) -> Double {
-    precondition(minValue <= maxValue, "attempt to call random() with minValue > maxValue")
+  static func random(between first: Double, and second: Double) -> Double {
+    
+    //TODO can we modularize this?
+    let minValue = first > second ? second : first
+    let maxValue = first > second ? first : second
     
     // Random floating point number in the range 0.0 ... 1.0:
-    let rnd = Double(UInt.random(minValue: 0, maxValue: UInt.max))/Double(UInt.max)
+    let rnd = Double(UInt.random(between: 0, and: UInt.max))/Double(UInt.max)
     
     // Scale to range minValue ... maxValue:
     var delta = maxValue - minValue
@@ -60,28 +67,62 @@ extension Double {
     return minValue + rnd * delta
   }
 }
+
+extension Float {
+  static func random(between first: Float, and second: Float) -> Float {
+    
+    //TODO can we modularize this?
+    let minValue = first > second ? second : first
+    let maxValue = first > second ? first : second
+    
+    // Random floating point number in the range 0.0 ... 1.0:
+    let rnd = Float(UInt.random(between: 0, and: UInt.max))/Float(UInt.max)
+    
+    // Scale to range minValue ... maxValue:
+    var delta = maxValue - minValue
+    if delta == Float.infinity {
+      delta = FLT_MAX
+    }
+    return minValue + rnd * delta
+  }
+}
+
 //***
 
 //MARK: - NIH (Modified)
 //source: http://stackoverflow.com/questions/34712453/random-number-x-amount-till-x-amount-swift/34712601#34712601
 public extension CountableRange where Bound: Integer {
-    public var random: Int {
-        return Int.random(minValue: Int(lowerBound.toIntMax()), maxValue: Int(upperBound.toIntMax())-1)
-    }
+  public var random: Int {
+    return Int.random(between: Int(lowerBound.toIntMax()), and: Int(upperBound.toIntMax())-1)
+  }
 }
 
 public extension CountableClosedRange where Bound: Integer {
-    public var random: Int {
-        let upper = Swift.min(Int(upperBound.toIntMax()), Int.max - 1)
-        return Int.random(minValue: Int(lowerBound.toIntMax()), maxValue: upper)
+  
+  //TODO: Document that this always returns an Int, not a UInt
+  //TODO: Document that this does wierd things with UInt range's specifically containing larger numbers that are greater than Int.max (as UInt.max > Int.max). So for something like (UInt.max-1...UInt.max).random we would get a value not within that range! This is inherently because we are returning an Int (and not a UInt), so the type isn't big enough to contain a number in that domain anyway. The alternative would be to return Any and then be checkd and casted whenever retrieving (as we're unable to constrain the extension to where Bound is an Int and not the protocol Integer).
+  public var random: Int {
+    let first: Int
+    let second: Int
+    if let lower = lowerBound as? UInt, let upper = upperBound as? UInt {
+      first = Int(Swift.min(lower, UInt(Int.max - 1)))
+      second = Int(Swift.min(upper, UInt(Int.max - 1)))
+    } else {
+      // has to be an Int (Int64 or smaller)
+      //TODO: why do we return 0 here?
+      first = Int(lowerBound.toIntMax())
+      second = Swift.min(Int(upperBound.toIntMax()), Int.max - 1)
     }
+    return Int.random(between: first, and: second)
+  }
 }
 
 public extension Range where Bound: FloatingPoint {
   public var random: Double {
     if let lower = lowerBound as? Double, let upper = upperBound as? Double {
-      return Double.random(minValue: lower, maxValue: upper)
+      return Double.random(between: lower, and: upper)
     } else {
+      //TODO: why do we return 0 here?
       return 0
     }
   }
@@ -89,11 +130,13 @@ public extension Range where Bound: FloatingPoint {
 
 public extension ClosedRange where Bound: FloatingPoint {
   public var random: Double {
+    
     if let lower = lowerBound as? Double, let upper = upperBound as?
       Double {
       let closedUpper = Swift.min(upper, Double(Int.max - 1))
-      return Double.random(minValue: lower, maxValue: closedUpper)
+      return Double.random(between: lower, and: closedUpper)
     } else {
+      //TODO: why do we return 0 here?
       return 0
     }
   }
