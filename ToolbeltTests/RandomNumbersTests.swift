@@ -25,26 +25,55 @@ class RandomNumbersTests: XCTestCase {
 
   //TODO: rename this test
   func testUIntRandom_ValidParameters_ReturnsARandomUInt() {
-    
     for min in testValues_UInts {
       for max in testValues_UInts {
         if min < max {
-          
-          //TODO: do this x100 or x1000 times and save the results and check if its varied (as long the range is greater than 1
-          let random = UInt.random(minValue: min, maxValue: max)
-          XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
-          XCTAssertLessThanOrEqual(random, max, "Random number wasn't less or equal to the maximum")
+          var randoms: [UInt] = []
+          (0..<100).forEach { _ in
+            let random = UInt.random(minValue: min, maxValue: max)
+            XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+            XCTAssertLessThanOrEqual(random, max, "Random number wasn't less or equal to the maximum")
+            randoms.append(random)
+          }
+          XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
         }
       }
     }
   }
   
   func testIntRandom_ValidParameters_ReturnsARandomUInt() {
-    
+    for min in testValues_Ints {
+      for max in testValues_Ints {
+        if min < max {
+          var randoms: [Int] = []
+          (0..<100).forEach { _ in
+            let random = Int.random(minValue: min, maxValue: max)
+            XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+            XCTAssertLessThanOrEqual(random, max, "Random number wasn't less or equal to the maximum")
+            randoms.append(random)
+          }
+          XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+        }
+      }
+    }
   }
   
   func testDoubleRandom_ValidParameters_ReturnsARandomUInt() {
-    
+    for min in testValues_Doubles {
+      for max in testValues_Doubles {
+        if min < max {
+          var randoms: [Double] = []
+          (0..<100).forEach { _ in
+            let random = Double.random(minValue: min, maxValue: max)
+            XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+            //TODO: figure out why we're getting an 'inf' value on one of the upper limits?
+            XCTAssertLessThanOrEqual(random, max, "Random number wasn't less or equal to the maximum")
+            randoms.append(random)
+          }
+          XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+        }
+      }
+    }
   }
 
   func _testRandomNumberForARange() {
