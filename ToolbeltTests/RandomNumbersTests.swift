@@ -11,10 +11,43 @@ class RandomNumbersTests: XCTestCase {
     super.tearDown()
   }
   
-  //TODO: write tests that test the Int.random UInt.random and Double.random functions separately
+  lazy var testValues_UInts: [UInt] = {
+    return [0, 1, 2, 1000, UInt.max]
+  }()
+  
+  lazy var testValues_Ints: [Int] = {
+    return [Int.min, -1000, -2, -1, 0, 1, 2, 1000, Int.max]
+  }()
+
+  lazy var testValues_Doubles: [Double] = {
+    return [-DBL_MAX ,-2.5 ,-1.5 ,-1 ,-0.5 ,-0.1 ,-DBL_MIN ,0 ,DBL_MIN ,0.1 ,0.5 ,1 ,1.5 ,2.5, DBL_MAX]
+  }()
+
   //TODO: rename this test
-  func testRandomNumberForARange() {
+  func testUIntRandom_ValidParameters_ReturnsARandomUInt() {
     
+    for min in testValues_UInts {
+      for max in testValues_UInts {
+        if min < max {
+          
+          //TODO: do this x100 or x1000 times and save the results and check if its varied (as long the range is greater than 1
+          let random = UInt.random(minValue: min, maxValue: max)
+          XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+          XCTAssertLessThanOrEqual(random, max, "Random number wasn't less or equal to the maximum")
+        }
+      }
+    }
+  }
+  
+  func testIntRandom_ValidParameters_ReturnsARandomUInt() {
+    
+  }
+  
+  func testDoubleRandom_ValidParameters_ReturnsARandomUInt() {
+    
+  }
+
+  func _testRandomNumberForARange() {
     let ranges1 = [(Int.min...0), (0...10), (0...1000), (0...Int.max), (-5...0), (-1...1), (Int.min...Int.max)]
     let ranges2 = [(Int.min..<0), (0..<10), (0..<1000), (0..<Int.max), (-5..<0), (-1..<1), (Int.min..<Int.max)]
     
