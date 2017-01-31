@@ -159,13 +159,21 @@ public extension Range where Bound: _Double {
   public var random: Double {
     let lower = lowerBound as! Double
     var upper = upperBound as! Double
-    if lower == -2.5 && upper == -1.5 {
-      print("Here we are")
-    }
     if lower != upper {
-      upper = upper == -DBL_MAX ? -DBL_MAX : upper - DBL_MIN // not 1
+      upper = upper == -DBL_MAX ? -DBL_MAX : upper - DBL_MIN
     }
     return Double.random(between: lower, and: upper)
+  }
+}
+
+public extension Range where Bound: _Float {
+  public var random: Float {
+    let lower = lowerBound as! Float
+    var upper = upperBound as! Float
+    if lower != upper {
+      upper = upper == -FLT_MAX ? -FLT_MAX : upper - FLT_MIN
+    }
+    return Float.random(between: lower, and: upper)
   }
 }
 
