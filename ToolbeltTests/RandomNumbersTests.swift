@@ -12,7 +12,7 @@ class RandomNumbersTests: XCTestCase {
   }
   
   lazy var testValues_UInts: [UInt] = {
-    return [0, 1, 2, 1000, UInt.max]
+    return [0, 1, 2, 1000, Int.max, UInt.max]
   }()
   
   lazy var testValues_Ints: [Int] = {
@@ -20,11 +20,11 @@ class RandomNumbersTests: XCTestCase {
   }()
 
   lazy var testValues_Doubles: [Double] = {
-    return [-DBL_MAX ,-2.5 ,-1.5 ,-1 ,-0.5 ,-0.1 ,-DBL_MIN ,0 ,DBL_MIN ,0.1 ,0.5 ,1 ,1.5 ,2.5, DBL_MAX]
+    return [-DBL_MAX, -FLT_MAX, -2.5, -1.5, -1, -0.5, -0.1, -DBL_MIN, -FLT_MIN, 0, FLT_MIN, DBL_MIN, 0.1, 0.5, 1, 1.5, 2.5, FLT_MAX, DBL_MAX]
   }()
 
   lazy var testValues_Floats: [Float] = {
-    return [-FLT_MAX ,-2.5 ,-1.5 ,-1 ,-0.5 ,-0.1 ,-FLT_MIN ,0 ,FLT_MIN ,0.1 ,0.5 ,1 ,1.5 ,2.5, FLT_MAX]
+    return [-FLT_MAX, -2.5, -1.5, -1, -0.5, -0.1, -DBL_MIN, -FLT_MIN, 0, FLT_MIN, DBL_MIN, 0.1, 0.5, 1, 1.5, 2.5, FLT_MAX]
   }()
 
   //TODO modularize the code
