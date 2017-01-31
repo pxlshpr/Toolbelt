@@ -101,6 +101,19 @@ public extension CountableClosedRange where Bound: Integer {
   
   //TODO: Document that this always returns an Int, not a UInt
   //TODO: Document that this does wierd things with UInt range's specifically containing larger numbers that are greater than Int.max (as UInt.max > Int.max). So for something like (UInt.max-1...UInt.max).random we would get a value not within that range! This is inherently because we are returning an Int (and not a UInt), so the type isn't big enough to contain a number in that domain anyway. The alternative would be to return Any and then be checkd and casted whenever retrieving (as we're unable to constrain the extension to where Bound is an Int and not the protocol Integer).
+  
+  //TODO: Instead of all that ^^ – for completion's sake, we should have both
+  // public var randomUInt
+  //AND
+  // public var randomInt
+  //additionally, have
+  // public var randomDouble
+  //AND
+  // public var randomFloat
+  // based on what we want and what the inputs are
+  // but still –
+  // (UInt.max-1...UInt.max).randomInt would yield what??
+  
   public var random: Int {
     let first: Int
     let second: Int
