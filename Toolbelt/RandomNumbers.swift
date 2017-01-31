@@ -97,7 +97,12 @@ public extension CountableRange where Bound: Integer {
   }
 }
 
-public extension CountableClosedRange where Bound: Integer {
+//Workaround for extending a Range of a specific type
+//source: http://stackoverflow.com/questions/40580054/swift-3-extend-range-of-specific-type
+public protocol _Int {}
+extension Int: _Int {}
+
+public extension CountableClosedRange where Bound: _Int {
   
   //TODO: Document that this always returns an Int, not a UInt
   //TODO: Document that this does wierd things with UInt range's specifically containing larger numbers that are greater than Int.max (as UInt.max > Int.max). So for something like (UInt.max-1...UInt.max).random we would get a value not within that range! This is inherently because we are returning an Int (and not a UInt), so the type isn't big enough to contain a number in that domain anyway. The alternative would be to return Any and then be checkd and casted whenever retrieving (as we're unable to constrain the extension to where Bound is an Int and not the protocol Integer).
@@ -121,7 +126,7 @@ public extension CountableClosedRange where Bound: Integer {
       first = Int(Swift.min(lower, UInt(Int.max - 1)))
       second = Int(Swift.min(upper, UInt(Int.max - 1)))
     } else {
-      // has to be an Int (Int64 or smaller)
+      //TODO: are we correct in makin the assumption that this – has to be an Int (Int64 or smaller)
       //TODO: why do we return 0 here?
       first = Int(lowerBound.toIntMax())
       second = Swift.min(Int(upperBound.toIntMax()), Int.max - 1)
