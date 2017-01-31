@@ -120,9 +120,10 @@ public extension CountableRange where Bound: _UInt {
     if lower == upper {
       upper = lower
     } else {
+      //TODO: why is code coverage claiming this is never being called?
       upper = upper == 0 ? 0 : upper - 1
     }
-    return UInt.random(between: lowerBound as! UInt, and: upper)
+    return UInt.random(between: lower, and: upper)
   }
 }
 
