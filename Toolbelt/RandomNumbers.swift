@@ -89,51 +89,44 @@ extension Float {
 
 //***
 
-//MARK: - NIH (Modified)
-//source: http://stackoverflow.com/questions/34712453/random-number-x-amount-till-x-amount-swift/34712601#34712601
-public extension CountableRange where Bound: Integer {
-  public var random: Int {
-    return Int.random(between: Int(lowerBound.toIntMax()), and: Int(upperBound.toIntMax())-1)
-  }
-}
+// MARK: - Range Extensions
 
-//Workaround for extending a Range of a specific type
-//source: http://stackoverflow.com/questions/40580054/swift-3-extend-range-of-specific-type
+//References:
+//- http://stackoverflow.com/questions/34712453/random-number-x-amount-till-x-amount-swift/34712601#34712601
+//- http://stackoverflow.com/questions/40580054/swift-3-extend-range-of-specific-type
+
 public protocol _Int {}
 extension Int: _Int {}
 
+public protocol _UInt {}
+extension UInt: _UInt {}
+
 public extension CountableClosedRange where Bound: _Int {
-  
-  //TODO: Document that this always returns an Int, not a UInt
-  //TODO: Document that this does wierd things with UInt range's specifically containing larger numbers that are greater than Int.max (as UInt.max > Int.max). So for something like (UInt.max-1...UInt.max).random we would get a value not within that range! This is inherently because we are returning an Int (and not a UInt), so the type isn't big enough to contain a number in that domain anyway. The alternative would be to return Any and then be checkd and casted whenever retrieving (as we're unable to constrain the extension to where Bound is an Int and not the protocol Integer).
-  
-  //TODO: Instead of all that ^^ – for completion's sake, we should have both
-  // public var randomUInt
-  //AND
-  // public var randomInt
-  //additionally, have
-  // public var randomDouble
-  //AND
-  // public var randomFloat
-  // based on what we want and what the inputs are
-  // but still –
-  // (UInt.max-1...UInt.max).randomInt would yield what??
-  
   public var random: Int {
-    let first: Int
-    let second: Int
-    if let lower = lowerBound as? UInt, let upper = upperBound as? UInt {
-      first = Int(Swift.min(lower, UInt(Int.max - 1)))
-      second = Int(Swift.min(upper, UInt(Int.max - 1)))
-    } else {
-      //TODO: are we correct in makin the assumption that this – has to be an Int (Int64 or smaller)
-      //TODO: why do we return 0 here?
-      first = Int(lowerBound.toIntMax())
-      second = Swift.min(Int(upperBound.toIntMax()), Int.max - 1)
-    }
-    return Int.random(between: first, and: second)
+    return Int.random(between: lowerBound as! Int, and: upperBound as! Int)
   }
 }
+
+public extension CountableClosedRange where Bound: _UInt {
+  public var random: UInt {
+    return UInt.random(between: lowerBound as! UInt, and: upperBound as! UInt)
+  }
+}
+
+public extension CountableRange where Bound: _UInt {
+  public var random: UInt {
+    let lower = lowerBound as! UInt
+    var upper = upperBound as! UInt
+    if lower == upper {
+      upper = lower
+    } else {
+      upper = upper == 0 ? 0 : upper - 1
+    }
+    return UInt.random(between: lowerBound as! UInt, and: upper)
+  }
+}
+
+// MARK: Doubles
 
 public extension Range where Bound: FloatingPoint {
   public var random: Double {
