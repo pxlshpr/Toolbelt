@@ -131,6 +131,7 @@ class RandomNumbersTests: XCTestCase {
   //MARK: - Range Extensions
   
   func testClosedUIntRangeRandom_ValidCases_ReturnsARandomInt() {
+    
     for min in testValues_UInts {
       for max in testValues_UInts {
         if min < max {
@@ -154,11 +155,12 @@ class RandomNumbersTests: XCTestCase {
       }
     }
   }
+  
   func testClosedIntRangeRandom_ValidCases_ReturnsARandomInt() {
+    
     for min in testValues_Ints {
       for max in testValues_Ints {
         if min < max {
-          print("Int \(min)...\(max)")
           let range = (min...max)
           
           var randoms: [Int] = []
@@ -174,7 +176,7 @@ class RandomNumbersTests: XCTestCase {
           let random = (min...max).random
           XCTAssertEqual(random, min, "Random number generated was out of the (empty) range")
         } else {
-          // Can't form Range with upperBound < lowerBound
+          // Range's cannot be created with lowerBound > upperBound – so we skip this combination
         }
       }
     }
@@ -182,13 +184,10 @@ class RandomNumbersTests: XCTestCase {
 
   func testOpenUIntRangeRandom_ValidCases_ReturnsARandomInt() {
     
-    //TODO: print out all values to make sure they're being called
-    //TODO: clean this up
     for min in testValues_UInts {
       for max in testValues_UInts {
         if min < max {
           if min < max - 1 {
-            print("testing \(min)..<\(max), checking for dupes")
             let range = (min..<max)
             
             var randoms: [UInt] = []
@@ -200,31 +199,157 @@ class RandomNumbersTests: XCTestCase {
             }
             XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
           } else {
-            print("testing \(min)..<\(max), no check for dupes")
+            
             // these test the cases such as 0..<1 which is technically 0...0
             let random = (min..<max).random
             XCTAssertGreaterThanOrEqual(random, min, "Random number generated was outside the provided range")
             XCTAssertLessThanOrEqual(random, max, "Random number generated was outside the provided range")
           }
         } else if min == max {
-          print("testing \(min)..<\(max), no check for dupes")
+          
           // these tests are for the wierd closed range possibilities (0..<0 et al.)
           let random = (min..<max).random
           XCTAssertGreaterThanOrEqual(random, min, "Random number generated was outside the provided range")
         } else {
-          print("NOT testing \(min)..<\(max)")
-          // Can't form Range with lowerBound > upperBound
+          // Range's cannot be created with lowerBound > upperBound – so we skip this combination
         }
       }
     }
   }
   
-  func testOpenIntRangeRandom_ValidCases_ReturnsARandomInt() { }
+  func testOpenIntRangeRandom_ValidCases_ReturnsARandomInt() {
+    for min in testValues_Ints {
+      for max in testValues_Ints {
+        if min < max {
+          if min < max - 1 {
+            let range = (min..<max)
+            
+            var randoms: [Int] = []
+            (0..<100).forEach { _ in
+              let random = range.random
+              XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+              XCTAssertLessThan(random, max, "Random number wasn't less or equal to the maximum")
+              randoms.append(random)
+            }
+            XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+          } else {
+            
+            // these test the cases such as 0..<1 which is technically 0...0
+            let random = (min..<max).random
+            XCTAssertGreaterThanOrEqual(random, min, "Random number generated was outside the provided range")
+            XCTAssertLessThanOrEqual(random, max, "Random number generated was outside the provided range")
+          }
+        } else if min == max {
+          
+          // these tests are for the wierd closed range possibilities (0..<0 et al.)
+          let random = (min..<max).random
+          XCTAssertGreaterThanOrEqual(random, min, "Random number generated was outside the provided range")
+        } else {
+          // Range's cannot be created with lowerBound > upperBound – so we skip this combination
+        }
+      }
+    }
+  }
 
-  func testClosedDoubleRangeRandom_ValidCases_ReturnsARandomInt() { }
-  func testOpenDoubleRangeRandom_ValidCases_ReturnsARandomInt() { }
-  func testClosedFloatRangeRandom_ValidCases_ReturnsARandomInt() { }
-  func testOpenFloatRangeRandom_ValidCases_ReturnsARandomInt() { }
+  func testClosedDoubleRangeRandom_ValidCases_ReturnsARandomInt() {
+    for min in testValues_Doubles {
+      for max in testValues_Doubles {
+        if min < max {
+          let range = (min...max)
+          
+          var randoms: [Double] = []
+          (0..<100).forEach { _ in
+            let random = range.random
+            XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+            XCTAssertLessThanOrEqual(random, max, "Random number wasn't less or equal to the maximum")
+            randoms.append(random)
+          }
+          XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+        } else if min == max {
+          
+          let random = (min...max).random
+          XCTAssertEqual(random, min, "Random number generated was out of the (empty) range")
+        } else {
+          // Range's cannot be created with lowerBound > upperBound – so we skip this combination
+        }
+      }
+    }
+  }
+  
+  func testClosedFloatRangeRandom_ValidCases_ReturnsARandomInt() {
+    for min in testValues_Floats {
+      for max in testValues_Floats {
+        if min < max {
+          let range = (min...max)
+          
+          var randoms: [Float] = []
+          (0..<100).forEach { _ in
+            let random = range.random
+            XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+            XCTAssertLessThanOrEqual(random, max, "Random number wasn't less or equal to the maximum")
+            randoms.append(random)
+          }
+          XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+        } else if min == max {
+          let random = (min...max).random
+          XCTAssertEqual(random, min, "Random number generated was out of the (empty) range")
+        } else {
+          // Range's cannot be created with lowerBound > upperBound – so we skip this combination
+        }
+      }
+    }
+  }
+  
+  func testOpenDoubleRangeRandom_ValidCases_ReturnsARandomInt() {
+    for min in testValues_Doubles {
+      for max in testValues_Doubles {
+        if min < max {
+          let range = (min..<max)
+          
+          print("testing \(range)")
+          var randoms: [Double] = []
+          (0..<100).forEach { _ in
+            let random = range.random
+            XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+            XCTAssertLessThan(random, max, "Random number wasn't less or equal to the maximum")
+            randoms.append(random)
+          }
+          XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+        } else if min == max {
+          
+          let random = (min...max).random
+          XCTAssertEqual(random, min, "Random number generated was out of the (empty) range")
+        } else {
+          // Range's cannot be created with lowerBound > upperBound – so we skip this combination
+        }
+      }
+    }
+  }
+  
+//  func testOpenFloatRangeRandom_ValidCases_ReturnsARandomInt() {
+//    for min in testValues_Floats {
+//      for max in testValues_Floats {
+//        if min < max {
+//          let range = (min...max)
+//          
+//          var randoms: [Float] = []
+//          (0..<100).forEach { _ in
+//            let random = range.random
+//            XCTAssertGreaterThanOrEqual(random, min, "Random number wasn't greater than or equal to the minimum")
+//            XCTAssertLessThan(random, max, "Random number wasn't less or equal to the maximum")
+//            randoms.append(random)
+//          }
+//          XCTAssertFalse(randoms.containsDuplicates, "Generated random numbers were all equal")
+//        } else if min == max {
+//          
+//          let random = (min...max).random
+//          XCTAssertEqual(random, min, "Random number generated was out of the (empty) range")
+//        } else {
+//          // Range's cannot be created with lowerBound > upperBound – so we skip this combination
+//        }
+//      }
+//    }
+//  }
 
   func testUIntRangeRandom_InvalidCases_() { }
   func testClosedUIntRangeRandom_InvalidCases_() { }

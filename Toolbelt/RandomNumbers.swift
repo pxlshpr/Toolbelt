@@ -117,40 +117,55 @@ public extension CountableRange where Bound: _UInt {
   public var random: UInt {
     let lower = lowerBound as! UInt
     var upper = upperBound as! UInt
-    if lower == upper {
-      upper = lower
-    } else {
-      //TODO: why is code coverage claiming this is never being called?
-      upper = upper == 0 ? 0 : upper - 1
+    if lower != upper {
+      upper = upper == UInt.min ? UInt.min : upper - 1
     }
     return UInt.random(between: lower, and: upper)
   }
 }
 
-// MARK: Doubles
-
-public extension Range where Bound: FloatingPoint {
-  public var random: Double {
-    if let lower = lowerBound as? Double, let upper = upperBound as? Double {
-      return Double.random(between: lower, and: upper)
-    } else {
-      //TODO: why do we return 0 here?
-      return 0
+public extension CountableRange where Bound: _Int {
+  public var random: Int {
+    let lower = lowerBound as! Int
+    var upper = upperBound as! Int
+    if lower != upper {
+      upper = upper == Int.min ? Int.min : upper - 1
     }
+    return Int.random(between: lower, and: upper)
   }
 }
 
-public extension ClosedRange where Bound: FloatingPoint {
+// MARK: Doubles
+
+public protocol _Double {}
+extension Double: _Double {}
+
+public protocol _Float {}
+extension Float: _Float {}
+
+public extension ClosedRange where Bound: _Double {
   public var random: Double {
-    
-    if let lower = lowerBound as? Double, let upper = upperBound as?
-      Double {
-      let closedUpper = Swift.min(upper, Double(Int.max - 1))
-      return Double.random(between: lower, and: closedUpper)
-    } else {
-      //TODO: why do we return 0 here?
-      return 0
+    return Double.random(between: lowerBound as! Double, and: upperBound as! Double)
+  }
+}
+
+public extension ClosedRange where Bound: _Float {
+  public var random: Float {
+    return Float.random(between: lowerBound as! Float, and: upperBound as! Float)
+  }
+}
+
+public extension Range where Bound: _Double {
+  public var random: Double {
+    let lower = lowerBound as! Double
+    var upper = upperBound as! Double
+    if lower == -2.5 && upper == -1.5 {
+      print("Here we are")
     }
+    if lower != upper {
+      upper = upper == -DBL_MAX ? -DBL_MAX : upper - DBL_MIN // not 1
+    }
+    return Double.random(between: lower, and: upper)
   }
 }
 
