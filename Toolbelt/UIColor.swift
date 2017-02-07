@@ -3,6 +3,32 @@ import UIKit
 public extension UIColor {
   
   /**
+   A boolean value indicating whether this UIColor is light (implying that you would need black, instead of white font, to be visible over it).
+    
+    modified from: http://stackoverflow.com/a/29044899
+    which is originally derived from: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
+    */
+  public var isLight: Bool {
+    guard let components = self.cgColor.components else {
+      return false
+    }
+    
+    let componentColorR: CGFloat = components[0] * 299
+    let componentColorG: CGFloat = components[1] * 587
+    let componentColorB: CGFloat = components[2] * 114
+    
+    let brightness = componentColorR + componentColorG + componentColorB
+    return brightness >= 500 //try up to 700 too (tests should reveal this!)
+  }
+  
+  /**
+   A UIBarStyle value that would be appropriate if this UIColor was used as the background for a UINavigationBar.
+    */
+  public var barStyle: UIBarStyle {
+    return isLight() ? .default : .black
+  }
+  
+  /**
    Initializes and returns a color object using the provided string representation of a hexadecimal number.
    
    - parameters:
