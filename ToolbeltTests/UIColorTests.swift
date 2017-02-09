@@ -48,4 +48,10 @@ class UIColorTests: XCTestCase {
       XCTAssertNil(color, "UIColor was (incorrectly) created for invalid hex")
     }
   }
+  
+  func testIsLight() {
+  }
+  
+  func testBarStyle() {
+  }
 }
