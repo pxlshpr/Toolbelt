@@ -30,7 +30,9 @@ class UIColorTests: XCTestCase {
 
     let color2 = UIColor(hexString: "#35ECD5")
     let color3 = UIColor(hexString: "35ECD5")
-    for color in [color2, color3] {
+    let color4 = UIColor(hexString: "#35ecd5")
+    let color5 = UIColor(hexString: "35ecd5")
+    for color in [color2, color3, color4, color5] {
       XCTAssertNotNil(color, "Failed to create color from valid hex")
       XCTAssertEqual(53.0, CIColor(color: color!).red * 255.0, "Color created from hex has invalid red component")
       XCTAssertEqual(236.0, CIColor(color: color!).green * 255.0, "Color created from hex has invalid green component")

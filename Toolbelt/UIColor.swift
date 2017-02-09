@@ -1,6 +1,30 @@
 import UIKit
 
+//TODO: Move this to Toolbelt after we add it there with tests!
+//modified from: http://stackoverflow.com/a/29044899
+//which is originally derived from: https://www.w3.org/WAI/ER/WD-AERT/#color-contrast
+extension UIColor {
+  //TODO: try and make these variables
+  func isLight() -> Bool {
+    guard let components = self.cgColor.components else {
+      return false
+    }
+    
+    let componentColorR: CGFloat = components[0] * 299
+    let componentColorG: CGFloat = components[1] * 587
+    let componentColorB: CGFloat = components[2] * 114
+    
+    let brightness = componentColorR + componentColorG + componentColorB
+    return brightness >= 500 //try up to 700 too (tests should reveal this!)
+  }
+  
+  func barStyle() -> UIBarStyle {
+    return isLight() ? .default : .black
+  }
+}
+
 public extension UIColor {
+  
   
   /**
    Initializes and returns a color object using the provided string representation of a hexadecimal number.
