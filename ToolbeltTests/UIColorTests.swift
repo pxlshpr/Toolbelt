@@ -50,8 +50,10 @@ class UIColorTests: XCTestCase {
   }
   
   func testIsLight() {
+    XCTFail("No tests yet")
   }
   
   func testBarStyle() {
+    XCTFail("No tests yet")
   }
 }
