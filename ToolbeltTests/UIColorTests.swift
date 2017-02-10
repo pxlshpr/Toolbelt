@@ -55,6 +55,10 @@ class UIColorTests: XCTestCase {
   
   func testColorVisibility() {
     
+    //TODO: test that color visibility only works if the model is rgb – we should get nil otherwise
+    //TODO: try and see if we can convert from the grayscale models to rgb so that we can use UIColor.black and stuff -- we can do this using the getRed(… func of a UI color -> so we should be able to convert any color to this theretically)
+    //TODO: bring in and test a function that grabs the RGB values (after converting the color if necessary) – from here https://github.com/Flinesoft/HandyUIKit
+    //TODO: Read up on the luminance and see if we want to use this instead or additionally: read this -> http://stackoverflow.com/a/41965452
     let testData: [UIColor: Double] = [
       UIColor.black: 0.5,
       UIColor.white: 1.0]
