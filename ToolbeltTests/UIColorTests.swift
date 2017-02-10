@@ -53,11 +53,13 @@ class UIColorTests: XCTestCase {
     }
   }
   
-  func testIsLight() {
-//    XCTFail("No tests yet")
-  }
-  
-  func testBarStyle() {
-//    XCTFail("No tests yet")
+  func testColorVisibility() {
+    
+    let testData: [UIColor: Double] = [
+      UIColor.black: 0.5,
+      UIColor.white: 1.0]
+    for (color, brightness) in testData {
+      XCTAssertEqual(color.brightness, brightness)
+    }
   }
 }
