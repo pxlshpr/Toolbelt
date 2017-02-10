@@ -39,7 +39,7 @@ public extension UIColor {
    */
   
   public convenience init?(hexString: String) {
-    let hex = hexString.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
+    let hex = hexString.trimmingCharacters(in: CharacterSet(charactersIn: "#")).uppercased()
     guard hex.isValidHexadecimal else {
       return nil
     }
