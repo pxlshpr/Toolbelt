@@ -2,7 +2,7 @@
  Returns an iteratory that iterates through all cases of a provided enum.
  
  - Author:
- @rintaro on StackOverflow
+ @rintaro on StackOverflowTO
  
  - returns:
  An iterator that iterates through all the cases of the provided enum.

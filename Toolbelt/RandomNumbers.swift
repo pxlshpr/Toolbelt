@@ -52,7 +52,6 @@ extension Int {
 extension Double {
   static func random(between first: Double, and second: Double) -> Double {
     
-    //TODO can we modularize this?
     let minValue = first > second ? second : first
     let maxValue = first > second ? first : second
     
@@ -71,7 +70,6 @@ extension Double {
 extension Float {
   static func random(between first: Float, and second: Float) -> Float {
     
-    //TODO can we modularize this?
     let minValue = first > second ? second : first
     let maxValue = first > second ? first : second
     

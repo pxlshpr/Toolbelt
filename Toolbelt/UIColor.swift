@@ -36,7 +36,7 @@ public extension UIColor {
 //MARK: Color Visibility
 
 /**
- Most of the following has been dervied from 
+ The following extension has been dervied from 
  https://www.w3.org/WAI/ER/WD-AERT/#color-contrast, 
  which was initially discovered in 
  http://stackoverflow.com/a/29044899
@@ -55,7 +55,6 @@ public extension UIColor {
       return nil
     }
     
-    //TODO fails on anything outside the RGB color space. What else is there apart from Grayspace?
     let componentColorR = Double(components[0]) * K.MultiplierR
     let componentColorG = Double(components[1]) * K.MultiplierG
     let componentColorB = Double(components[2]) * K.MultiplierB
