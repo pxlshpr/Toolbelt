@@ -62,7 +62,7 @@ extension Double {
     // Scale to range minValue ... maxValue:
     var delta = maxValue - minValue
     if delta == Double.infinity {
-      delta = DBL_MAX
+      delta = Double.greatestFiniteMagnitude
     }
     return minValue + rnd * delta
   }
@@ -81,7 +81,7 @@ extension Float {
     // Scale to range minValue ... maxValue:
     var delta = maxValue - minValue
     if delta == Float.infinity {
-      delta = FLT_MAX
+      delta = Float.greatestFiniteMagnitude
     }
     return minValue + rnd * delta
   }
@@ -160,7 +160,7 @@ public extension Range where Bound: _Double {
     let lower = lowerBound as! Double
     var upper = upperBound as! Double
     if lower != upper {
-      upper = upper == -DBL_MAX ? -DBL_MAX : upper - DBL_MIN
+      upper = upper == -Double.greatestFiniteMagnitude ? -Double.greatestFiniteMagnitude : upper - Double.leastNormalMagnitude
     }
     return Double.random(between: lower, and: upper)
   }
@@ -171,7 +171,7 @@ public extension Range where Bound: _Float {
     let lower = lowerBound as! Float
     var upper = upperBound as! Float
     if lower != upper {
-      upper = upper == -FLT_MAX ? -FLT_MAX : upper - FLT_MIN
+      upper = upper == -Float.greatestFiniteMagnitude ? -Float.greatestFiniteMagnitude : upper - Float.leastNormalMagnitude
     }
     return Float.random(between: lower, and: upper)
   }

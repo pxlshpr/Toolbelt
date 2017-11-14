@@ -12,7 +12,7 @@ public extension String {
    */
   public var isValidHexadecimal: Bool {
     let chars = CharacterSet(charactersIn: "0123456789ABCDEF").inverted
-    guard self.characters.count != 0, self.rangeOfCharacter(from: chars, options: .caseInsensitive, range: nil) == nil else {
+    guard self.count != 0, self.rangeOfCharacter(from: chars, options: .caseInsensitive, range: nil) == nil else {
       return false
     }
     return true

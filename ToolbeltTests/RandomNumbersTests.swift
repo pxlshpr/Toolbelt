@@ -20,11 +20,11 @@ class RandomNumbersTests: XCTestCase {
   }()
 
   lazy var testValues_Doubles: [Double] = {
-    return [-DBL_MAX, Double(-FLT_MAX), -2.5, -1.5, -1, -0.5, -0.1, -DBL_MIN, -Double(FLT_MIN), 0, Double(FLT_MIN), DBL_MIN, 0.1, 0.5, 1, 1.5, 2.5, Double(FLT_MAX), DBL_MAX]
+    return [-Double.greatestFiniteMagnitude, Double(-Float.greatestFiniteMagnitude), -2.5, -1.5, -1, -0.5, -0.1, -Double.leastNormalMagnitude, -Double(Float.leastNormalMagnitude), 0, Double(Float.leastNormalMagnitude), Double.leastNormalMagnitude, 0.1, 0.5, 1, 1.5, 2.5, Double(Float.greatestFiniteMagnitude), Double.greatestFiniteMagnitude]
   }()
 
   lazy var testValues_Floats: [Float] = {
-    return [-FLT_MAX, -2.5, -1.5, -1, -0.5, -0.1, Float(-DBL_MIN), -FLT_MIN, 0, FLT_MIN, Float(DBL_MIN), 0.1, 0.5, 1, 1.5, 2.5, FLT_MAX]
+    return [-Float.greatestFiniteMagnitude, -2.5, -1.5, -1, -0.5, -0.1, Float(-Double.leastNormalMagnitude), -Float.leastNormalMagnitude, 0, Float.leastNormalMagnitude, Float(Double.leastNormalMagnitude), 0.1, 0.5, 1, 1.5, 2.5, Float.greatestFiniteMagnitude]
   }()
 
   //MARK: - Class Random Functions
@@ -303,7 +303,7 @@ class RandomNumbersTests: XCTestCase {
   func testOpenDoubleRangeRandom_ValidCases_ReturnsARandomInt() {
     for min in testValues_Doubles {
       for max in testValues_Doubles {
-        if max > min + DBL_MIN  {
+        if max > min + Double.leastNormalMagnitude  {
           let range = (min..<max)
           
           var randoms: [Double] = []
@@ -328,7 +328,7 @@ class RandomNumbersTests: XCTestCase {
   func testOpenFloatRangeRandom_ValidCases_ReturnsARandomInt() {
     for min in testValues_Floats {
       for max in testValues_Floats {
-        if max > min + FLT_MIN  {
+        if max > min + Float.leastNormalMagnitude  {
           let range = (min..<max)
           
           print("testing \(range)")

@@ -4,7 +4,7 @@ import XCTest
 class DateTests: XCTestCase {
   
   var testDates: [Date] {
-    return [Date(), Date.distantPast, Date.distantFuture, Date.init(timeIntervalSince1970: 0), Date.init(timeIntervalSinceNow: DBL_MAX)]
+    return [Date(), Date.distantPast, Date.distantFuture, Date.init(timeIntervalSince1970: 0), Date.init(timeIntervalSinceNow: Double.greatestFiniteMagnitude)]
   }
   
   override func setUp() {
