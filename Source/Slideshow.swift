@@ -50,6 +50,7 @@ public class Slideshow: UIView {
     setupConstraints()
   }
   
+  
   //MARK: - Public
   public func setupWithImageURLs(_ imageURLs: [URL]) {
     prepareForReuse()
@@ -63,7 +64,7 @@ public class Slideshow: UIView {
     return self.imageViews.first?.image
   }
   
-  func prepareForReuse() {
+  public func prepareForReuse() {
     clearImageViews()
     //TODO: remember contentOffset when reusing (but selectedIndex or something instead)
     scrollView.contentOffset = .zero
