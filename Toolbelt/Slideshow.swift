@@ -8,7 +8,7 @@ protocol SlideshowDelegate {
 }
 
 //MARK: - Class
-class Slideshow: UIView {
+public class Slideshow: UIView {
   
   //MARK: Variables
   var delegate: SlideshowDelegate?
@@ -45,13 +45,13 @@ class Slideshow: UIView {
     setupSubviews()
   }
   
-  override func layoutSubviews() {
+  public override func layoutSubviews() {
     super.layoutSubviews()
     setupConstraints()
   }
   
   //MARK: - Public
-  func setupWithImageURLs(_ imageURLs: [URL]) {
+  public func setupWithImageURLs(_ imageURLs: [URL]) {
     prepareForReuse()
     imageURLs.forEach { contentView.addSubview(createImageView(withURL: $0)) }
     setupConstraints()
