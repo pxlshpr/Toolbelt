@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E251B7902059877B004C9DCD /* Toolbelt.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E251B78B205986D9004C9DCD /* Toolbelt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E251B79E20598F0E004C9DCD /* TinyConstraints.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E251B79D20598F0E004C9DCD /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E251B7A520599002004C9DCD /* Nuke.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E251B7A420599002004C9DCD /* Nuke.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2DA261E205971F10099EC13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA261D205971F10099EC13 /* AppDelegate.swift */; };
 		E2DA2620205971F10099EC13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA261F205971F10099EC13 /* ViewController.swift */; };
 		E2DA2625205971F10099EC13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DA2624205971F10099EC13 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E251B7A520599002004C9DCD /* Nuke.framework in CopyFiles */,
 				E251B79E20598F0E004C9DCD /* TinyConstraints.framework in CopyFiles */,
 				E251B7902059877B004C9DCD /* Toolbelt.framework in CopyFiles */,
 			);
@@ -49,6 +51,7 @@
 /* Begin PBXFileReference section */
 		E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolbelt.xcodeproj; path = ../Toolbelt.xcodeproj; sourceTree = "<group>"; };
 		E251B79D20598F0E004C9DCD /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = ../Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
+		E251B7A420599002004C9DCD /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = ../Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
 		E2DA261A205971F10099EC13 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DA261D205971F10099EC13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2DA261F205971F10099EC13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +86,7 @@
 				E2DA261C205971F10099EC13 /* Source */,
 				E2DA262F205972440099EC13 /* Resources */,
 				E2DA261B205971F10099EC13 /* Products */,
+				E251B7A420599002004C9DCD /* Nuke.framework */,
 				E251B79D20598F0E004C9DCD /* TinyConstraints.framework */,
 				E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */,
 			);

@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .white
     view.addSubview(slideshow)
-    slideshow.edges(to: view)
+    slideshow.width(300)
+    slideshow.height(100)
+    slideshow.centerInSuperview()
   }
 }
