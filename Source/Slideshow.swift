@@ -3,7 +3,7 @@ import TinyConstraints
 import Nuke
 
 //MARK: - Protocol
-protocol SlideshowDelegate {
+public protocol SlideshowDelegate {
   func didTapSlideshow()
 }
 
@@ -11,7 +11,7 @@ protocol SlideshowDelegate {
 public class Slideshow: UIView {
   
   //MARK: Variables
-  var delegate: SlideshowDelegate?
+  public var delegate: SlideshowDelegate?
   var imageViews: [UIImageView] = []
   
   var constraintsToRemove: [NSLayoutConstraint] = []

@@ -99,7 +99,6 @@
 		E2516D911E1401710026FAA8 = {
 			isa = PBXGroup;
 			children = (
-				E251B7A8205990B1004C9DCD /* New Group */,
 				E2443391205967D000255B8D /* Source */,
 				E2516DA81E1401710026FAA8 /* Tests */,
 				E2516D9C1E1401710026FAA8 /* Products */,
@@ -129,13 +128,6 @@
 				E2516DAB1E1401710026FAA8 /* Info.plist */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		E251B7A8205990B1004C9DCD /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
