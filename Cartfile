@@ -1,0 +1,20 @@
+github "kean/Nuke"
+github "roberthein/TinyConstraints"
+
+
+
+
+
+#github "realm/realm-cocoa"
+#github "xmartlabs/Eureka"
+
+#github "gavinbunney/Toucan"
+#github "pxlshpr/Sugar" "74c3d23c32dcd3febcdd3be7e6042f4c9dcf9066"
+#github "tid-kijyun/Kanna"
+#github "Alamofire/Alamofire"
+
+github "Ramotion/folding-cell"
+
+#github "thii/FontAwesome.swift"
+#github "SwiftKickMobile/SwiftMessages"
+#github "icanzilb/SwiftSpinner"

@@ -11,6 +11,9 @@
 		E23635431E3441C700C9AF39 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23635421E3441C700C9AF39 /* DateTests.swift */; };
 		E2378D6F1E35899500C4C9F5 /* RandomNumbersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */; };
 		E2378D711E358D2C00C4C9F5 /* RandomNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2378D701E358D2C00C4C9F5 /* RandomNumbers.swift */; };
+		E24432FD20581DF200255B8D /* Slideshow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24432FC20581DF200255B8D /* Slideshow.swift */; };
+		E244330120581ED500255B8D /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E24432FF20581ED500255B8D /* TinyConstraints.framework */; };
+		E244330220581ED500255B8D /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E244330020581ED500255B8D /* Nuke.framework */; };
 		E2516DA51E1401710026FAA8 /* Toolbelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2516D9B1E1401710026FAA8 /* Toolbelt.framework */; };
 		E2516DAA1E1401710026FAA8 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2516DA91E1401710026FAA8 /* StringTests.swift */; };
 		E2516DAC1E1401710026FAA8 /* Toolbelt.h in Headers */ = {isa = PBXBuildFile; fileRef = E2516D9E1E1401710026FAA8 /* Toolbelt.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,6 +41,9 @@
 		E23635421E3441C700C9AF39 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumbersTests.swift; sourceTree = "<group>"; };
 		E2378D701E358D2C00C4C9F5 /* RandomNumbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumbers.swift; sourceTree = "<group>"; };
+		E24432FC20581DF200255B8D /* Slideshow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slideshow.swift; sourceTree = "<group>"; };
+		E24432FF20581ED500255B8D /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
+		E244330020581ED500255B8D /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
 		E2516D9B1E1401710026FAA8 /* Toolbelt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Toolbelt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2516D9E1E1401710026FAA8 /* Toolbelt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toolbelt.h; sourceTree = "<group>"; };
 		E2516D9F1E1401710026FAA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E244330120581ED500255B8D /* TinyConstraints.framework in Frameworks */,
+				E244330220581ED500255B8D /* Nuke.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +86,8 @@
 				E2516DA81E1401710026FAA8 /* ToolbeltTests */,
 				E2516D9D1E1401710026FAA8 /* Toolbelt */,
 				E2516D9C1E1401710026FAA8 /* Products */,
+				E244330020581ED500255B8D /* Nuke.framework */,
+				E24432FF20581ED500255B8D /* TinyConstraints.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +111,7 @@
 				E2516DB51E1401F00026FAA8 /* String.swift */,
 				E28FF15D1E16A88000320D29 /* UIColor.swift */,
 				E2516D9F1E1401710026FAA8 /* Info.plist */,
+				E24432FC20581DF200255B8D /* Slideshow.swift */,
 			);
 			path = Toolbelt;
 			sourceTree = "<group>";
@@ -236,6 +247,7 @@
 				E2516DB61E1401F00026FAA8 /* String.swift in Sources */,
 				E23635401E343D9C00C9AF39 /* Date.swift in Sources */,
 				E28FF15E1E16A88000320D29 /* UIColor.swift in Sources */,
+				E24432FD20581DF200255B8D /* Slideshow.swift in Sources */,
 				E29120111E3E8A6C004942A0 /* Array.swift in Sources */,
 				E2378D711E358D2C00C4C9F5 /* RandomNumbers.swift in Sources */,
 				E2B9D9451E30CC6B00EBB44E /* Enum.swift in Sources */,
@@ -388,6 +400,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Toolbelt/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
@@ -412,6 +428,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Toolbelt/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
