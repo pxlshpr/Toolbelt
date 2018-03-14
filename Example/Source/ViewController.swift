@@ -1,25 +1,24 @@
-//
-//  ViewController.swift
-//  iOS Example
-//
-//  Created by pxlshpr on 14/3/18.
-//  Copyright © 2018 pxlshpr. All rights reserved.
-//
-
 import UIKit
+import Toolbelt
+import TinyConstraints
 
 class ViewController: UIViewController {
 
+  lazy var slideshow: Slideshow = {
+    let slideshow = Slideshow()
+    let imageURLs = [
+      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room.jpg")!,
+      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bathroom.jpg")!,
+      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bedroom.jpg")!,
+      ]
+    slideshow.setupWithImageURLs(imageURLs)
+    return slideshow
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    view.backgroundColor = .white
+    view.addSubview(slideshow)
+    slideshow.edges(to: view)
   }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-
-
 }
-

@@ -80,15 +80,17 @@ extension Slideshow {
   
   private func setupConstraints() {
     
-    print("🛁 Setting up constraints")
-    
     NSLayoutConstraint.deactivate(constraintsToRemove)
     
     constraintsToRemove.append(scrollView.left(to: self))
     constraintsToRemove.append(scrollView.right(to: self))
     constraintsToRemove.append(scrollView.bottom(to: self))
-    constraintsToRemove.append(scrollView.top(to: self)) //needed to appear below status bar in profile/detail views
-    //    scrollView.top(to: self, offset: -safeAreaInsets.top) //needed to appear below status bar in profile/detail views
+    if #available(iOS 11.0, *) {
+      //needed to appear below status bar in profile/detail views
+      constraintsToRemove.append(scrollView.top(to: self, offset: -safeAreaInsets.top))
+    } else {
+      constraintsToRemove.append(scrollView.top(to: self))
+    }
     
     constraintsToRemove.append(contentView.left(to: scrollView))
     constraintsToRemove.append(contentView.right(to: scrollView))

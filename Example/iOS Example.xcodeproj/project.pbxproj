@@ -7,13 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E251B7902059877B004C9DCD /* Toolbelt.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E251B78B205986D9004C9DCD /* Toolbelt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E251B79E20598F0E004C9DCD /* TinyConstraints.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E251B79D20598F0E004C9DCD /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2DA261E205971F10099EC13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA261D205971F10099EC13 /* AppDelegate.swift */; };
 		E2DA2620205971F10099EC13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA261F205971F10099EC13 /* ViewController.swift */; };
 		E2DA2625205971F10099EC13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DA2624205971F10099EC13 /* Assets.xcassets */; };
 		E2DA2628205971F10099EC13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2DA2626205971F10099EC13 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E251B78A205986D9004C9DCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2516D9B1E1401710026FAA8;
+			remoteInfo = Toolbelt;
+		};
+		E251B78C205986D9004C9DCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2516DA41E1401710026FAA8;
+			remoteInfo = ToolbeltTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E251B78F20598774004C9DCD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E251B79E20598F0E004C9DCD /* TinyConstraints.framework in CopyFiles */,
+				E251B7902059877B004C9DCD /* Toolbelt.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolbelt.xcodeproj; path = ../Toolbelt.xcodeproj; sourceTree = "<group>"; };
+		E251B79D20598F0E004C9DCD /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = ../Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
 		E2DA261A205971F10099EC13 /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DA261D205971F10099EC13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2DA261F205971F10099EC13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,12 +68,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E251B786205986D8004C9DCD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E251B78B205986D9004C9DCD /* Toolbelt.framework */,
+				E251B78D205986D9004C9DCD /* ToolbeltTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E2DA2611205971F10099EC13 = {
 			isa = PBXGroup;
 			children = (
 				E2DA261C205971F10099EC13 /* Source */,
 				E2DA262F205972440099EC13 /* Resources */,
 				E2DA261B205971F10099EC13 /* Products */,
+				E251B79D20598F0E004C9DCD /* TinyConstraints.framework */,
+				E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +125,7 @@
 				E2DA2616205971F10099EC13 /* Sources */,
 				E2DA2617205971F10099EC13 /* Frameworks */,
 				E2DA2618205971F10099EC13 /* Resources */,
+				E251B78F20598774004C9DCD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -116,12 +163,35 @@
 			mainGroup = E2DA2611205971F10099EC13;
 			productRefGroup = E2DA261B205971F10099EC13 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E251B786205986D8004C9DCD /* Products */;
+					ProjectRef = E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E2DA2619205971F10099EC13 /* iOS Example */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E251B78B205986D9004C9DCD /* Toolbelt.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Toolbelt.framework;
+			remoteRef = E251B78A205986D9004C9DCD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E251B78D205986D9004C9DCD /* ToolbeltTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ToolbeltTests.xctest;
+			remoteRef = E251B78C205986D9004C9DCD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E2DA2618205971F10099EC13 /* Resources */ = {
@@ -162,6 +232,7 @@
 		E2DA262A205971F10099EC13 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -191,8 +262,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -219,6 +292,7 @@
 		E2DA262B205971F10099EC13 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -248,8 +322,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -269,9 +345,12 @@
 		E2DA262D205971F10099EC13 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/build/iOS";
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pxlshpr.iOS-Example";
@@ -284,9 +363,12 @@
 		E2DA262E205971F10099EC13 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../Carthage/build/iOS";
 				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pxlshpr.iOS-Example";
