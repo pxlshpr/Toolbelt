@@ -14,8 +14,6 @@ public class Slideshow: UIView {
   public var delegate: SlideshowDelegate?
   var imageViews: [UIImageView] = []
   
-  var constraintsToRemove: [NSLayoutConstraint] = []
-  
   //MARK: Subviews
   lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
@@ -33,8 +31,12 @@ public class Slideshow: UIView {
   }()
   
   //MARK: Lifecycle
-  convenience init() {
-    self.init(frame: .zero)
+  public convenience init() {
+    self.init(numberOfImages: 1)
+  }
+  
+  public init(numberOfImages: Int?) {
+    super.init(frame: .zero)
     
     self.backgroundColor = .blue
     
@@ -43,13 +45,12 @@ public class Slideshow: UIView {
     self.layer.masksToBounds = true
     
     setupSubviews()
-  }
-  
-  public override func layoutSubviews() {
-    super.layoutSubviews()
     setupConstraints()
   }
   
+  public required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
   
   //MARK: - Public
   public func setupWithImageURLs(_ imageURLs: [URL]) {
@@ -81,37 +82,35 @@ extension Slideshow {
   
   private func setupConstraints() {
     
-    NSLayoutConstraint.deactivate(constraintsToRemove)
-    
-    constraintsToRemove.append(scrollView.left(to: self))
-    constraintsToRemove.append(scrollView.right(to: self))
-    constraintsToRemove.append(scrollView.bottom(to: self))
+    scrollView.left(to: self)
+    scrollView.right(to: self)
+    scrollView.bottom(to: self)
     if #available(iOS 11.0, *) {
       //needed to appear below status bar in profile/detail views
-      constraintsToRemove.append(scrollView.top(to: self, offset: -safeAreaInsets.top))
+      scrollView.top(to: self, offset: -safeAreaInsets.top)
     } else {
-      constraintsToRemove.append(scrollView.top(to: self))
+      scrollView.top(to: self)
     }
     
-    constraintsToRemove.append(contentView.left(to: scrollView))
-    constraintsToRemove.append(contentView.right(to: scrollView))
-    constraintsToRemove.append(contentView.top(to: scrollView))
-    constraintsToRemove.append(contentView.bottom(to: scrollView))
-    constraintsToRemove.append(contentView.width(to: scrollView, priority: .defaultLow))
+    contentView.left(to: scrollView)
+    contentView.right(to: scrollView)
+    contentView.top(to: scrollView)
+    contentView.bottom(to: scrollView)
+    contentView.width(to: scrollView, priority: .defaultLow)
     
     for i in 0..<imageViews.endIndex {
       let imageView = imageViews[i]
-      constraintsToRemove.append(imageView.top(to: contentView))
-      constraintsToRemove.append(imageView.width(to: scrollView))
-      constraintsToRemove.append(imageView.height(to: scrollView))
+      imageView.top(to: contentView)
+      imageView.width(to: scrollView)
+      imageView.height(to: scrollView)
       if imageView == imageViews.first {
-        constraintsToRemove.append(imageView.leftToSuperview())
+        imageView.leftToSuperview()
       } else {
-        constraintsToRemove.append(imageView.leftToRight(of: imageViews[i-1]))
+        imageView.leftToRight(of: imageViews[i-1])
       }
       
       if imageView == imageViews.last {
-        constraintsToRemove.append(imageView.right(to: contentView))
+        imageView.right(to: contentView)
       }
     }
   }
