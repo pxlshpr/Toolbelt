@@ -38,7 +38,7 @@ public class Slideshow: UIView {
   }()
   
   //MARK: Lifecycle
-  var numberOfImages: Int = 0 {
+  public var numberOfImages: Int = 0 {
     didSet {
       removeImageViews()
       
