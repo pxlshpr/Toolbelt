@@ -10,7 +10,6 @@ public protocol SlideshowDelegate {
 public class Slideshow: UIView {
   
   public var currentIndex: Int = 0
-  public var shouldIgnoreSafeArea: Bool = false
   
   //MARK: Variables
   public var delegate: SlideshowDelegate?
@@ -108,34 +107,16 @@ extension Slideshow {
                          multiplier: 1.0, constant: 0.0)
       ])
     
-    NSLayoutConstraint.deactivate(modifiableConstraints)
-    modifiableConstraints = []
-    
-    if shouldIgnoreSafeArea, #available(iOS 11.0, *) {
-      let safeInsets = UIApplication.shared.delegate?.window??.safeAreaInsets ?? UIEdgeInsets.zero
-      modifiableConstraints = [
-        NSLayoutConstraint(item: contentView, attribute: .top,
-                           relatedBy: .equal,
-                           toItem: scrollView, attribute: .top,
-                           multiplier: 1.0, constant: -safeInsets.top),
-        NSLayoutConstraint(item: scrollView, attribute: .top,
-                           relatedBy: .equal,
-                           toItem: self.safeAreaLayoutGuide, attribute: .top,
-                           multiplier: 1.0, constant: -safeInsets.top)
-      ]
-    } else {
-      modifiableConstraints = [
-        NSLayoutConstraint(item: contentView, attribute: .top,
-                           relatedBy: .equal,
-                           toItem: scrollView, attribute: .top,
-                           multiplier: 1.0, constant: 0.0),
-        NSLayoutConstraint(item: scrollView, attribute: .top,
-                           relatedBy: .equal,
-                           toItem: self, attribute: .top,
-                           multiplier: 1.0, constant: 0)
-      ]
-    }
-    NSLayoutConstraint.activate(modifiableConstraints)
+    NSLayoutConstraint.activate([
+      NSLayoutConstraint(item: contentView, attribute: .top,
+                         relatedBy: .equal,
+                         toItem: scrollView, attribute: .top,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: scrollView, attribute: .top,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .top,
+                         multiplier: 1.0, constant: 0)
+      ])
     
     NSLayoutConstraint.activate([
       NSLayoutConstraint(item: contentView, attribute: .left,
@@ -258,3 +239,5 @@ extension Slideshow: UIScrollViewDelegate {
     self.delegate?.didTapSlideshow(slideshow: self)
   }
 }
+
+
