@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     view.addSubview(slideshow)
     slideshow.width(300)
     slideshow.height(100)
-    slideshow.centerInSuperview()
+    slideshow.top(to: view)
+    slideshow.centerX(to: view)
   }
 }
