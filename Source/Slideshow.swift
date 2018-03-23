@@ -9,7 +9,11 @@ public protocol SlideshowDelegate {
 //MARK: - Class
 public class Slideshow: UIView {
   
-  public var currentIndex: Int = 0
+  public var currentIndex: Int = 0 {
+    didSet {
+      self.layoutIfNeeded()
+    }
+  }
   
   //MARK: Variables
   public var delegate: SlideshowDelegate?
@@ -27,6 +31,13 @@ public class Slideshow: UIView {
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedSlideshow))
     scrollView.addGestureRecognizer(tapGesture)
     scrollView.delegate = self
+    
+    if #available(iOS 11, *) {
+      scrollView.contentInsetAdjustmentBehavior = .never
+    }
+    //TODO: mention in README that following line is required on view controller for less than iOS 11
+    //    self.automaticallyAdjustsScrollViewInsets = false
+    
     return scrollView
   }()
   
@@ -78,11 +89,61 @@ public class Slideshow: UIView {
   
   public override func layoutIfNeeded() {
     super.layoutIfNeeded()
-    imageViews.forEach { imageView in
-      imageView.layoutIfNeeded()
-    }
-    
     setScrollViewContentOffsetBasedOnCurrentIndex()
+  }
+}
+
+//MARK: - Private
+extension Slideshow {
+  
+  private func removeImageViews() {
+    for imageView in imageViews {
+      imageView.removeFromSuperview()
+    }
+    imageViews = []
+  }
+  
+  private func addImageViews() {
+    for _ in 0..<numberOfImages {
+      contentView.addSubview(createImageView())
+    }
+  }
+  
+  private func addMainSubviews() {
+    guard scrollView.superview == nil else {
+      return
+    }
+    addSubview(scrollView)
+    scrollView.addSubview(contentView)
+  }
+  
+  private func setScrollViewContentOffsetBasedOnCurrentIndex() {
+    let newOffset = CGPoint(x: CGFloat(self.currentIndex) * scrollView.bounds.width, y: 0)
+    scrollView.setContentOffset(newOffset, animated: false)
+  }
+  
+  private func createImageView() -> UIImageView {
+    let imageView = UIImageView()
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.contentMode = .scaleAspectFill
+    imageView.clipsToBounds = true
+    imageViews.append(imageView)
+    return imageView
+  }
+}
+
+extension Slideshow: UIScrollViewDelegate {
+  
+  public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    currentIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+    self.delegate?.didChangeCurrentIndex(to: currentIndex, onSlideshow: self)
+  }
+}
+
+//MARK: - Actions
+@objc extension Slideshow {
+  func tappedSlideshow() {
+    self.delegate?.didTapSlideshow(slideshow: self)
   }
 }
 
@@ -186,58 +247,3 @@ extension Slideshow {
     }
   }
 }
-
-//MARK: - Private
-extension Slideshow {
-  
-  private func removeImageViews() {
-    for imageView in imageViews {
-      imageView.removeFromSuperview()
-    }
-    imageViews = []
-  }
-  
-  private func addImageViews() {
-    for _ in 0..<numberOfImages {
-      contentView.addSubview(createImageView())
-    }
-  }
-  
-  private func addMainSubviews() {
-    guard scrollView.superview == nil else {
-      return
-    }
-    addSubview(scrollView)
-    scrollView.addSubview(contentView)
-  }
-  
-  private func setScrollViewContentOffsetBasedOnCurrentIndex() {
-    let newOffset = CGPoint(x: CGFloat(self.currentIndex) * scrollView.bounds.width, y: 0)
-    scrollView.setContentOffset(newOffset, animated: false)
-  }
-  
-  private func createImageView() -> UIImageView {
-    let imageView = UIImageView()
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.contentMode = .scaleAspectFill
-    imageView.clipsToBounds = true
-    imageViews.append(imageView)
-    return imageView
-  }
-}
-
-extension Slideshow: UIScrollViewDelegate {
-  public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    currentIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
-    self.delegate?.didChangeCurrentIndex(to: currentIndex, onSlideshow: self)
-  }
-}
-
-//MARK: - Actions
-@objc extension Slideshow {
-  func tappedSlideshow() {
-    self.delegate?.didTapSlideshow(slideshow: self)
-  }
-}
-
-
