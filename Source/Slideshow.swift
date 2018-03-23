@@ -27,7 +27,7 @@ public class Slideshow: UIView {
     scrollView.translatesAutoresizingMaskIntoConstraints = false
     scrollView.isPagingEnabled = true
     scrollView.showsHorizontalScrollIndicator = false
-    scrollView.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
+    scrollView.backgroundColor = .clear
     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedSlideshow))
     scrollView.addGestureRecognizer(tapGesture)
     scrollView.delegate = self
@@ -43,6 +43,7 @@ public class Slideshow: UIView {
   
   lazy var contentView: UIView = {
     let view = UIView()
+    view.backgroundColor = .clear
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
@@ -50,6 +51,7 @@ public class Slideshow: UIView {
   //MARK: Lifecycle
   public var numberOfImages: Int = 0 {
     didSet {
+      self.backgroundColor = .clear
       removeImageViews()
       
       addMainSubviews()
