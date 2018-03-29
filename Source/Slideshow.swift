@@ -13,7 +13,7 @@ public class Slideshow: UIView {
   
   public override var intrinsicContentSize: CGSize {
     //TODO: check repurcussions of this
-    return CGSize(width: UIScreen.main.bounds.width, height: 220.0)
+    return CGSize(width: 327.0, height: 218.0) //completely arbitrary numbers
   }
   
   public var currentIndex: Int = 0 {
