@@ -1,9 +1,11 @@
 import UIKit
 
-//MARK: - Protocol
-public protocol SlideshowDelegate {
-  func didTapSlideshow(slideshow: Slideshow)
-  func didChangeCurrentIndex(to currentIndex: Int, onSlideshow slideshow: Slideshow)
+extension UIView {
+  //TODO: move this to and utilize Sugar here
+  func makeCircle() {
+    let smallerSide = bounds.width < bounds.height ? bounds.width : bounds.height
+    self.layer.cornerRadius = smallerSide / 2.0
+  }
 }
 
 //MARK: - Class
@@ -22,6 +24,16 @@ public class Slideshow: UIView {
   private var modifiableConstraints: [NSLayoutConstraint] = []
   
   //MARK: Subviews
+  lazy var indicators: UIView = {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = .clear
+    view.isUserInteractionEnabled = false
+    return view
+  }()
+  
+  var indicatorViews: [UIView] = []
+  
   lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,16 +61,24 @@ public class Slideshow: UIView {
   }()
   
   //MARK: Lifecycle
+  public var showIndicators: Bool = false
+  
   public var numberOfImages: Int = 0 {
     didSet {
       self.backgroundColor = .clear
-      removeImageViews()
+      removeSubviews()
       
       addMainSubviews()
       addImageViews()
+      if showIndicators {
+        addIndicators()
+      }
       
       setupMainConstraints()
       setupImageConstraints()
+      if showIndicators {
+        setupIndicatorConstraints()
+      }
       
       scrollView.contentOffset = .zero
     }
@@ -72,9 +92,10 @@ public class Slideshow: UIView {
   //  }
   
   //TODO: rename this
-  func currentImage() -> UIImage? {
+  public func currentImage() -> UIImage? {
     //TODO: return the actual current image depeneding on which one has been selected, do this along with the indicator
-    return self.imageViews.first?.image
+    guard currentIndex < imageViews.count else { return nil }
+    return self.imageViews[currentIndex].image
   }
   
   public func prepareForNumberOfImages(_ numberOfImages: Int) {
@@ -84,7 +105,6 @@ public class Slideshow: UIView {
   }
   
   public func prepareForReuse() {
-    removeImageViews()
     //TODO: remember contentOffset when reusing (but selectedIndex or something instead)
     scrollView.contentOffset = .zero
   }
@@ -92,22 +112,37 @@ public class Slideshow: UIView {
   public override func layoutIfNeeded() {
     super.layoutIfNeeded()
     setScrollViewContentOffsetBasedOnCurrentIndex()
+    indicatorViews.forEach { $0.makeCircle() }
   }
 }
 
 //MARK: - Private
 extension Slideshow {
   
-  private func removeImageViews() {
-    for imageView in imageViews {
-      imageView.removeFromSuperview()
-    }
+  private func removeSubviews() {
+    imageViews.forEach { $0.removeFromSuperview() }
+    contentView.removeFromSuperview()
+    scrollView.removeFromSuperview()
+    
+    indicators.removeFromSuperview()
+    indicatorViews.forEach { $0.removeFromSuperview() }
+    
     imageViews = []
+    indicatorViews = []
   }
   
   private func addImageViews() {
     for _ in 0..<numberOfImages {
       contentView.addSubview(createImageView())
+    }
+  }
+  
+  private func addIndicators() {
+    addSubview(indicators)
+    for _ in 0..<numberOfImages {
+      let indicator = createIndicator()
+      indicators.addSubview(indicator)
+      indicatorViews.append(indicator)
     }
   }
   
@@ -122,6 +157,13 @@ extension Slideshow {
   private func setScrollViewContentOffsetBasedOnCurrentIndex() {
     let newOffset = CGPoint(x: CGFloat(self.currentIndex) * scrollView.bounds.width, y: 0)
     scrollView.setContentOffset(newOffset, animated: false)
+  }
+  
+  private func createIndicator() -> UIView {
+    let indicator = UIView()
+    indicator.translatesAutoresizingMaskIntoConstraints = false
+    indicator.backgroundColor = .white
+    return indicator
   }
   
   private func createImageView() -> UIImageView {
@@ -150,6 +192,77 @@ extension Slideshow: UIScrollViewDelegate {
 }
 
 extension Slideshow {
+  
+  fileprivate func setupIndicatorConstraints() {
+    
+    for i in 0..<indicatorViews.endIndex {
+      let indicator = indicatorViews[i]
+
+      NSLayoutConstraint.activate([
+//        indicator.topToSuperview()
+        NSLayoutConstraint(item: indicator, attribute: .top,
+                           relatedBy: .equal,
+                           toItem: indicators, attribute: .top,
+                           multiplier: 1.0, constant: 0.0),
+//        indicator.bottomToSuperview()
+        NSLayoutConstraint(item: indicator, attribute: .bottom,
+                           relatedBy: .equal,
+                           toItem: indicators, attribute: .bottom,
+                           multiplier: 1.0, constant: 0.0),
+//        indicator.height(8.0)
+        NSLayoutConstraint(item: indicator, attribute: .height,
+                           relatedBy: .equal,
+                           toItem: nil, attribute: .notAnAttribute,
+                           multiplier: 1.0, constant: 8.0),
+//        indicator.width(8.0)
+        NSLayoutConstraint(item: indicator, attribute: .width,
+                           relatedBy: .equal,
+                           toItem: indicator, attribute: .height,
+                           multiplier: 1.0, constant: 0.0)
+        ])
+
+      if i == 0 {
+        NSLayoutConstraint.activate([
+//          indicator.leftToSuperview()
+          NSLayoutConstraint(item: indicator, attribute: .left,
+                             relatedBy: .equal,
+                             toItem: indicators, attribute: .left,
+                             multiplier: 1.0, constant: 0.0)
+          ])
+      } else {
+        NSLayoutConstraint.activate([
+//          indicator.leftToRight(of: indicatorViews[i-1], offset: 7.0)
+          NSLayoutConstraint(item: indicator, attribute: .left,
+                             relatedBy: .equal,
+                             toItem: indicatorViews[i-1], attribute: .right,
+                             multiplier: 1.0, constant: 7.0)
+          ])
+      }
+      
+      if i == indicatorViews.endIndex - 1 {
+        NSLayoutConstraint.activate([
+//          indicator.rightToSuperview()
+          NSLayoutConstraint(item: indicator, attribute: .right,
+                             relatedBy: .equal,
+                             toItem: indicators, attribute: .right,
+                             multiplier: 1.0, constant: 0.0)
+          ])
+      }
+    }
+    
+    NSLayoutConstraint.activate([
+//      indicators.bottom(to: self, offset: -8)
+      NSLayoutConstraint(item: indicators, attribute: .bottom,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .bottom,
+                         multiplier: 1.0, constant: -8.0),
+//      indicators.centerXToSuperview()
+      NSLayoutConstraint(item: indicators, attribute: .centerX,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .centerX,
+                         multiplier: 1.0, constant: 0.0)
+      ])
+  }
   
   fileprivate func setupMainConstraints() {
     NSLayoutConstraint.activate([
@@ -248,4 +361,10 @@ extension Slideshow {
       }
     }
   }
+}
+
+//MARK: - Protocol
+public protocol SlideshowDelegate {
+  func didTapSlideshow(slideshow: Slideshow)
+  func didChangeCurrentIndex(to currentIndex: Int, onSlideshow slideshow: Slideshow)
 }
