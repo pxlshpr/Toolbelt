@@ -11,6 +11,11 @@ extension UIView {
 //MARK: - Class
 public class Slideshow: UIView {
   
+  public override var intrinsicContentSize: CGSize {
+    //TODO: check repurcussions of this
+    return CGSize(width: UIScreen.main.bounds.width, height: 220.0)
+  }
+  
   public var currentIndex: Int = 0 {
     didSet {
       self.layoutIfNeeded()
@@ -197,33 +202,33 @@ extension Slideshow {
     
     for i in 0..<indicatorViews.endIndex {
       let indicator = indicatorViews[i]
-
+      
       NSLayoutConstraint.activate([
-//        indicator.topToSuperview()
+        //        indicator.topToSuperview()
         NSLayoutConstraint(item: indicator, attribute: .top,
                            relatedBy: .equal,
                            toItem: indicators, attribute: .top,
                            multiplier: 1.0, constant: 0.0),
-//        indicator.bottomToSuperview()
+        //        indicator.bottomToSuperview()
         NSLayoutConstraint(item: indicator, attribute: .bottom,
                            relatedBy: .equal,
                            toItem: indicators, attribute: .bottom,
                            multiplier: 1.0, constant: 0.0),
-//        indicator.height(8.0)
+        //        indicator.height(8.0)
         NSLayoutConstraint(item: indicator, attribute: .height,
                            relatedBy: .equal,
                            toItem: nil, attribute: .notAnAttribute,
                            multiplier: 1.0, constant: 8.0),
-//        indicator.width(8.0)
+        //        indicator.width(8.0)
         NSLayoutConstraint(item: indicator, attribute: .width,
                            relatedBy: .equal,
                            toItem: indicator, attribute: .height,
                            multiplier: 1.0, constant: 0.0)
         ])
-
+      
       if i == 0 {
         NSLayoutConstraint.activate([
-//          indicator.leftToSuperview()
+          //          indicator.leftToSuperview()
           NSLayoutConstraint(item: indicator, attribute: .left,
                              relatedBy: .equal,
                              toItem: indicators, attribute: .left,
@@ -231,7 +236,7 @@ extension Slideshow {
           ])
       } else {
         NSLayoutConstraint.activate([
-//          indicator.leftToRight(of: indicatorViews[i-1], offset: 7.0)
+          //          indicator.leftToRight(of: indicatorViews[i-1], offset: 7.0)
           NSLayoutConstraint(item: indicator, attribute: .left,
                              relatedBy: .equal,
                              toItem: indicatorViews[i-1], attribute: .right,
@@ -241,7 +246,7 @@ extension Slideshow {
       
       if i == indicatorViews.endIndex - 1 {
         NSLayoutConstraint.activate([
-//          indicator.rightToSuperview()
+          //          indicator.rightToSuperview()
           NSLayoutConstraint(item: indicator, attribute: .right,
                              relatedBy: .equal,
                              toItem: indicators, attribute: .right,
@@ -251,12 +256,12 @@ extension Slideshow {
     }
     
     NSLayoutConstraint.activate([
-//      indicators.bottom(to: self, offset: -8)
+      //      indicators.bottom(to: self, offset: -8)
       NSLayoutConstraint(item: indicators, attribute: .bottom,
                          relatedBy: .equal,
                          toItem: self, attribute: .bottom,
                          multiplier: 1.0, constant: -8.0),
-//      indicators.centerXToSuperview()
+      //      indicators.centerXToSuperview()
       NSLayoutConstraint(item: indicators, attribute: .centerX,
                          relatedBy: .equal,
                          toItem: self, attribute: .centerX,
@@ -368,3 +373,5 @@ public protocol SlideshowDelegate {
   func didTapSlideshow(slideshow: Slideshow)
   func didChangeCurrentIndex(to currentIndex: Int, onSlideshow slideshow: Slideshow)
 }
+
+
