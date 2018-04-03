@@ -176,6 +176,7 @@ extension Slideshow {
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.contentMode = .scaleAspectFill
     imageView.clipsToBounds = true
+    imageView.backgroundColor = #colorLiteral(red: 0.9647058824, green: 0.9647058824, blue: 0.9647058824, alpha: 1)
     imageViews.append(imageView)
     return imageView
   }
