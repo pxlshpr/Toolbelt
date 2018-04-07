@@ -71,6 +71,7 @@ public class Slideshow: UIView {
   public var numberOfImages: Int = 0 {
     didSet {
       self.backgroundColor = .clear
+      self.clipsToBounds = true
       removeSubviews()
       
       addMainSubviews()
