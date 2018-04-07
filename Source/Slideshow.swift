@@ -23,7 +23,7 @@ public class Slideshow: UIView {
   }
   
   //MARK: Variables
-  public var delegate: SlideshowDelegate?
+  public weak var delegate: SlideshowDelegate?
   public var imageViews: [UIImageView] = []
   
   private var modifiableConstraints: [NSLayoutConstraint] = []
