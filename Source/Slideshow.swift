@@ -370,7 +370,7 @@ extension Slideshow {
 }
 
 //MARK: - Protocol
-public protocol SlideshowDelegate {
+public protocol SlideshowDelegate: class {
   func didTapSlideshow(slideshow: Slideshow)
   func didChangeCurrentIndex(to currentIndex: Int, onSlideshow slideshow: Slideshow)
 }
