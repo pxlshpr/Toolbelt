@@ -5,13 +5,14 @@ class ViewController: UIViewController {
 
   lazy var slideshow: Slideshow = {
     let slideshow = Slideshow()
+    slideshow.frame = CGRect(x: 0, y: 0, width: 350.0, height: 233.0)
     let imageURLs = [
       URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room.jpg")!,
       URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bathroom.jpg")!,
       URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bedroom.jpg")!,
       ]
     //TODO: load local images here or just raw Cocoa APIs
-//    slideshow.setupWithImageURLs(imageURLs)
+    slideshow.setupWithImages()
     return slideshow
   }()
   
@@ -19,10 +20,20 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .white
     view.addSubview(slideshow)
-//    slideshow.width(300)
-//    slideshow.height(100)
-//    slideshow.center(in: view)
+    slideshow.center = view.center
   }
 }
 
-
+extension Slideshow {
+  
+  func setupWithImages() {
+    self.numberOfImages = 4
+    guard self.numberOfImages == imageViews.count else {
+      fatalError("Not enough imageViews; expected \(self.numberOfImages), but got \(imageViews.count)")
+    }
+    imageViews[0].image = #imageLiteral(resourceName: "2")
+    imageViews[1].image = #imageLiteral(resourceName: "1")
+    imageViews[2].image = #imageLiteral(resourceName: "3")
+    imageViews[3].image = #imageLiteral(resourceName: "4")
+  }
+}

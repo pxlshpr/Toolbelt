@@ -1,32 +1,29 @@
+//TODO: move these to Sugar
 public extension Date {
   
-  /**
-   This property returns the first moment of this Date, as a Date.
-   */
-  public var startOfDay: Date {
-    return Calendar.current.startOfDay(for: self)
-  }
+  /** Date object for 00:00 on this date. */
+  public var startOfDay: Date { return Calendar.current.startOfDay(for: self) }
   
-  /** This property returns the year component of this Date. */
+  /** The year of this date. */
   public var year: Int { return component(.year) }
   
-  /** This property returns the month component of this Date. */
+  /** The month number of this date. */
   public var month: Int { return component(.month) }
   
-  /** This property returns the day component of this Date. */
+  /** The day of this date. */
   public var day: Int { return component(.day) }
   
-  /** This property returns the hour component of this Date. */
+  /** The hour of this date. */
   public var hour: Int { return component(.hour) }
-  
-  /** This property returns the minute component  of this Date. */
+
+  /** The minute of this date. */
   public var minute: Int { return component(.minute) }
   
-  /** This property returns the second component of this Date. */
+  /** The second of this date. */
   public var second: Int { return component(.second) }
-  
-  // MARK : - Functions
-  
+}
+
+private extension Date {
   /**
    Returns the specified component of this date, in the current calendar.
    
@@ -36,7 +33,7 @@ public extension Date {
    - parameters:
    - component: The calendar component to be returned.
    */
-  public func component(_ component: Calendar.Component) -> Int {
+  private func component(_ component: Calendar.Component) -> Int {
     return Calendar.current.component(component, from: self)
   }
 }

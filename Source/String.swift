@@ -1,4 +1,4 @@
-
+//TODO: MOVE THIS SHIT TO SUGAR
 public extension String {
   /**
    A string value that returns the first word of this string, as separated by whitespace. Any leading whitespaces or newlines are ignored.
