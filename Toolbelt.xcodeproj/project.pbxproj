@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E23635431E3441C700C9AF39 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23635421E3441C700C9AF39 /* DateTests.swift */; };
 		E2378D6F1E35899500C4C9F5 /* RandomNumbersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */; };
-		E244339B205967D000255B8D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2443392205967D000255B8D /* Date.swift */; };
 		E244339E205967D000255B8D /* Toolbelt.h in Headers */ = {isa = PBXBuildFile; fileRef = E2443395205967D000255B8D /* Toolbelt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E244339F205967D000255B8D /* Slideshow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2443396205967D000255B8D /* Slideshow.swift */; };
 		E24433A0205967D000255B8D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2443397205967D000255B8D /* String.swift */; };
@@ -33,7 +32,6 @@
 /* Begin PBXFileReference section */
 		E23635421E3441C700C9AF39 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		E2378D6E1E35899500C4C9F5 /* RandomNumbersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumbersTests.swift; sourceTree = "<group>"; };
-		E2443392205967D000255B8D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		E2443395205967D000255B8D /* Toolbelt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolbelt.h; sourceTree = "<group>"; };
 		E2443396205967D000255B8D /* Slideshow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slideshow.swift; sourceTree = "<group>"; };
 		E2443397205967D000255B8D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -69,13 +67,11 @@
 		E2443391205967D000255B8D /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E2443392205967D000255B8D /* Date.swift */,
 				E2443396205967D000255B8D /* Slideshow.swift */,
 				E2443397205967D000255B8D /* String.swift */,
 				E2443398205967D000255B8D /* RandomNumbers.swift */,
 				E2443399205967D000255B8D /* Enum.swift */,
-				E2443395205967D000255B8D /* Toolbelt.h */,
-				E244339A205967D000255B8D /* Info.plist */,
+				E2D926E1207B819100ECFE15 /* Supporting Files */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -108,6 +104,15 @@
 				E2516DAB1E1401710026FAA8 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		E2D926E1207B819100ECFE15 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E2443395205967D000255B8D /* Toolbelt.h */,
+				E244339A205967D000255B8D /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,7 +231,6 @@
 			files = (
 				E24433A2205967D000255B8D /* Enum.swift in Sources */,
 				E244339F205967D000255B8D /* Slideshow.swift in Sources */,
-				E244339B205967D000255B8D /* Date.swift in Sources */,
 				E24433A0205967D000255B8D /* String.swift in Sources */,
 				E24433A1205967D000255B8D /* RandomNumbers.swift in Sources */,
 			);

@@ -6,6 +6,7 @@ class ViewController: UIViewController {
   lazy var slideshow: Slideshow = {
     let slideshow = Slideshow()
     slideshow.frame = CGRect(x: 0, y: 0, width: 350.0, height: 233.0)
+    slideshow.showIndicators = true
     let imageURLs = [
       URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room.jpg")!,
       URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bathroom.jpg")!,
