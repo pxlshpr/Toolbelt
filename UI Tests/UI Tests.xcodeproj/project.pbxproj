@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E27C9840207C96E90099D3A3 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27C983E207C967B0099D3A3 /* FBSnapshotTestCase.framework */; };
+		E27C9843207C99730099D3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BB71F7207BF3940019C8B6 /* Assets.xcassets */; };
+		E27C9854207C9BDE0099D3A3 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = E27C9850207C9BDE0099D3A3 /* 4.png */; };
+		E27C9855207C9BDE0099D3A3 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = E27C9851207C9BDE0099D3A3 /* 1.png */; };
+		E27C9856207C9BDE0099D3A3 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = E27C9852207C9BDE0099D3A3 /* 2.png */; };
+		E27C9857207C9BDE0099D3A3 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = E27C9853207C9BDE0099D3A3 /* 3.png */; };
 		E2BB71F1207BF3930019C8B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB71F0207BF3930019C8B6 /* AppDelegate.swift */; };
 		E2BB71F3207BF3930019C8B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB71F2207BF3930019C8B6 /* ViewController.swift */; };
 		E2BB71F6207BF3930019C8B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2BB71F4207BF3930019C8B6 /* Main.storyboard */; };
@@ -26,6 +32,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E27C983E207C967B0099D3A3 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = Carthage/Build/iOS/FBSnapshotTestCase.framework; sourceTree = "<group>"; };
+		E27C9850207C9BDE0099D3A3 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		E27C9851207C9BDE0099D3A3 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1.png; path = "UI Tests/1.png"; sourceTree = SOURCE_ROOT; };
+		E27C9852207C9BDE0099D3A3 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		E27C9853207C9BDE0099D3A3 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		E2BB71ED207BF3930019C8B6 /* UI Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UI Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BB71F0207BF3930019C8B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2BB71F2207BF3930019C8B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,12 +61,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27C9840207C96E90099D3A3 /* FBSnapshotTestCase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E27C983A207C94910099D3A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E27C983E207C967B0099D3A3 /* FBSnapshotTestCase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E2BB71E4207BF3930019C8B6 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +83,7 @@
 				E2BB7210207BF46F0019C8B6 /* Resources */,
 				E2BB7204207BF3940019C8B6 /* UI Tests */,
 				E2BB71EE207BF3930019C8B6 /* Products */,
+				E27C983A207C94910099D3A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +109,10 @@
 			isa = PBXGroup;
 			children = (
 				E2BB7205207BF3940019C8B6 /* SlideshowUITests.swift */,
+				E27C9851207C9BDE0099D3A3 /* 1.png */,
+				E27C9852207C9BDE0099D3A3 /* 2.png */,
+				E27C9853207C9BDE0099D3A3 /* 3.png */,
+				E27C9850207C9BDE0099D3A3 /* 4.png */,
 				E2BB7207207BF3940019C8B6 /* Info.plist */,
 			);
 			path = "UI Tests";
@@ -114,6 +139,7 @@
 				E2BB71E9207BF3930019C8B6 /* Sources */,
 				E2BB71EA207BF3930019C8B6 /* Frameworks */,
 				E2BB71EB207BF3930019C8B6 /* Resources */,
+				E27C9839207C94340099D3A3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -131,6 +157,7 @@
 				E2BB71FD207BF3940019C8B6 /* Sources */,
 				E2BB71FE207BF3940019C8B6 /* Frameworks */,
 				E2BB71FF207BF3940019C8B6 /* Resources */,
+				E27C9842207C97830099D3A3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -195,10 +222,48 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27C9857207C9BDE0099D3A3 /* 3.png in Resources */,
+				E27C9855207C9BDE0099D3A3 /* 1.png in Resources */,
+				E27C9854207C9BDE0099D3A3 /* 4.png in Resources */,
+				E27C9856207C9BDE0099D3A3 /* 2.png in Resources */,
+				E27C9843207C99730099D3A3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E27C9839207C94340099D3A3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/FBSnapshotTestCase.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FBSnapshotTestCase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks ";
+		};
+		E27C9842207C97830099D3A3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/FBSnapshotTestCase.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/FBSnapshotTestCase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks ";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E2BB71E9207BF3930019C8B6 /* Sources */ = {
@@ -368,6 +433,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "UI Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,6 +455,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "UI Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -404,7 +477,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
-				INFOPLIST_FILE = "UI TestsUITests/Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,7 +501,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
-				INFOPLIST_FILE = "UI TestsUITests/Info.plist";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

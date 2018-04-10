@@ -1,32 +1,58 @@
-//
-//  UI_TestsUITests.swift
-//  UI TestsUITests
-//
-//  Created by pxlshpr on 10/4/18.
-//  Copyright © 2018 pxlshpr. All rights reserved.
-//
-
 import XCTest
+import FBSnapshotTestCase
+import Toolbelt
+import UIKit
 
-class UI_TestsUITests: XCTestCase {
-        
-    override func setUp() {
-        super.setUp()
-        continueAfterFailure = false
-        XCUIApplication().launch()
+class UITests: FBSnapshotTestCase {
+  
+  override func setUp() {
+    super.setUp()
+    continueAfterFailure = false
+    XCUIApplication().launch()
+//    recordMode = true
+  }
+  
+  override func tearDown() {
+    super.tearDown()
+  }
+  
+  func testExample() {
+    FBSnapshotVerifyView(slideshow)
+  }
+  
+  
+  //MARK: ---
+  
+  lazy var slideshow: Slideshow = {
+    let slideshow = Slideshow()
+    slideshow.frame = CGRect(x: 0, y: 0, width: 350.0, height: 233.0)
+    slideshow.showIndicators = true
+    let imageURLs = [
+      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room.jpg")!,
+      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bathroom.jpg")!,
+      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bedroom.jpg")!,
+      ]
+    //TODO: load local images here or just raw Cocoa APIs
+    slideshow.setupWithImages()
+    return slideshow
+  }()
+}
+
+extension Slideshow {
+  
+  func setupWithImages() {
+    self.numberOfImages = 3
+    guard self.numberOfImages == imageViews.count else {
+      fatalError("Not enough imageViews; expected \(self.numberOfImages), but got \(imageViews.count)")
     }
-    
-    override func tearDown() {
-        super.tearDown()
+    for i in 0..<3 {
+      let filename = "\(i+2).png"
+      let bundle = Bundle(for: UITests.self)
+      let image = UIImage(named: filename, in: bundle, compatibleWith: nil)
+      guard image != nil else {
+        fatalError("Couldn't read image \(filename)")
+      }
+      imageViews[i].image = image
     }
-    
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-      //TODO:
-      //- take snapshot of slideshow and confirm that its the first photo using Snapshot
-      //- then pan the slideshow and confirm that the next photo is what's expecetd too
-      //TODO: what about indicators?
-    }
-    
+  }
 }
