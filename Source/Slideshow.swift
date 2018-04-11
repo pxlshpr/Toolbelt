@@ -14,6 +14,8 @@ public class Slideshow: UIView {
       let offset = CGPoint(x: CGFloat(selectedImageIndex) * frame.width, y: 0)
       self.scrollView.setContentOffset(offset, animated: true)
 //      self.layoutIfNeeded()
+      
+      self.delegate?.didChangeSelectedImageIndex(to: selectedImageIndex, onSlideshow: self)
     }
   }
   public var numberOfImages: Int = 0 {
@@ -116,13 +118,13 @@ public class Slideshow: UIView {
   var timer: Timer?
   
   func restartScrolling() {
-    timer = Timer(timeInterval: 2.8, target: self, selector: #selector(restartTimerFired(timer:)), userInfo: nil, repeats: false)
+    timer = Timer(timeInterval: 3.8, target: self, selector: #selector(restartTimerFired(timer:)), userInfo: nil, repeats: false)
     guard let timer = timer else { return }
     RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
   }
   
   public func startScrolling() {
-    timer = Timer(timeInterval: 2.2, target: self, selector: #selector(timerFired(timer:)), userInfo: nil, repeats: true)
+    timer = Timer(timeInterval: 3.3, target: self, selector: #selector(timerFired(timer:)), userInfo: nil, repeats: true)
     guard let timer = timer else { return }
     RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
   }
@@ -220,27 +222,24 @@ extension Slideshow {
 
 extension Slideshow: UIScrollViewDelegate {
   
-  public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    selectedImageIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
-    self.delegate?.didChangeSelectedImageIndex(to: selectedImageIndex, onSlideshow: self)
-    if timer == nil {
-      startScrolling()
-    }
-  }
-  
-  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+  public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
     let index = Int(scrollView.contentOffset.x / scrollView.bounds.width)
     indicatorsView.selectedIndicatorIndex = index
     indicatorsView.reloadData()
-    
+  }
+  public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    selectedImageIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+    if timer == nil {
+      startScrolling()
+    }
+    indicatorsView.selectedIndicatorIndex = selectedImageIndex
+    indicatorsView.reloadData()
+  }
+  
+  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     switch scrollView.panGestureRecognizer.state {
     case .began:
-      // User began dragging
       stopScrolling()
-//    case .changed:
-//      // User is currently dragging the scroll view
-//    case .possible:
-//      // The scroll view scrolling but the user is no longer touching the scrollview (table is decelerating)
     default:
       break
     }
