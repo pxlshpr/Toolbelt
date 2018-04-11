@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     view.backgroundColor = .white
     view.addSubview(slideshow)
     slideshow.center = view.center
-    slideshow.scrollAutomatically()
+    slideshow.startScrolling()
   }
   
   lazy var images: [UIImage] = {

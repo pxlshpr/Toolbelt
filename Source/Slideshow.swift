@@ -113,15 +113,27 @@ public class Slideshow: UIView {
     setScrollViewContentOffsetBasedOnSelectedImageIndex()
   }
 
-  var timer: Timer = Timer()
+  var timer: Timer?
+  
+  func restartScrolling() {
+    timer = Timer(timeInterval: 2.8, target: self, selector: #selector(restartTimerFired(timer:)), userInfo: nil, repeats: false)
+    guard let timer = timer else { return }
+    RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
+  }
   
   public func startScrolling() {
     timer = Timer(timeInterval: 2.2, target: self, selector: #selector(timerFired(timer:)), userInfo: nil, repeats: true)
+    guard let timer = timer else { return }
     RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
   }
   
   public func stopScrolling() {
-    timer.invalidate()
+    timer?.invalidate()
+    timer = nil
+  }
+  
+  @objc func restartTimerFired(timer: Timer) {
+    startScrolling()
   }
   
   @objc func timerFired(timer: Timer) {
@@ -211,6 +223,23 @@ extension Slideshow: UIScrollViewDelegate {
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     selectedImageIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
     self.delegate?.didChangeSelectedImageIndex(to: selectedImageIndex, onSlideshow: self)
+    if timer == nil {
+      startScrolling()
+    }
+  }
+  
+  public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    switch scrollView.panGestureRecognizer.state {
+    case .began:
+      // User began dragging
+      stopScrolling()
+//    case .changed:
+//      // User is currently dragging the scroll view
+//    case .possible:
+//      // The scroll view scrolling but the user is no longer touching the scrollview (table is decelerating)
+    default:
+      break
+    }
   }
 }
 
