@@ -115,9 +115,13 @@ public class Slideshow: UIView {
 
   var timer: Timer = Timer()
   
-  public func scrollAutomatically() {
+  public func startScrolling() {
     timer = Timer(timeInterval: 2.2, target: self, selector: #selector(timerFired(timer:)), userInfo: nil, repeats: true)
     RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
+  }
+  
+  public func stopScrolling() {
+    timer.invalidate()
   }
   
   @objc func timerFired(timer: Timer) {
