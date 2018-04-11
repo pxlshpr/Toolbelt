@@ -9,10 +9,20 @@
 /* Begin PBXBuildFile section */
 		E27C9840207C96E90099D3A3 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E27C983E207C967B0099D3A3 /* FBSnapshotTestCase.framework */; };
 		E27C9843207C99730099D3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BB71F7207BF3940019C8B6 /* Assets.xcassets */; };
-		E27C9854207C9BDE0099D3A3 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = E27C9850207C9BDE0099D3A3 /* 4.png */; };
-		E27C9855207C9BDE0099D3A3 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = E27C9851207C9BDE0099D3A3 /* 1.png */; };
-		E27C9856207C9BDE0099D3A3 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = E27C9852207C9BDE0099D3A3 /* 2.png */; };
-		E27C9857207C9BDE0099D3A3 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = E27C9853207C9BDE0099D3A3 /* 3.png */; };
+		E27C9864207CA7AA0099D3A3 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C9858207CA7A80099D3A3 /* 9.jpg */; };
+		E27C9865207CA7AA0099D3A3 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C9859207CA7A80099D3A3 /* 1.jpg */; };
+		E27C9866207CA7AA0099D3A3 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C985A207CA7A80099D3A3 /* 11.jpg */; };
+		E27C9867207CA7AA0099D3A3 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C985B207CA7A80099D3A3 /* 12.jpg */; };
+		E27C9868207CA7AA0099D3A3 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C985C207CA7A80099D3A3 /* 6.jpg */; };
+		E27C9869207CA7AA0099D3A3 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C985D207CA7A90099D3A3 /* 5.jpg */; };
+		E27C986A207CA7AA0099D3A3 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C985E207CA7A90099D3A3 /* 4.jpg */; };
+		E27C986B207CA7AA0099D3A3 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C985F207CA7A90099D3A3 /* 3.jpg */; };
+		E27C986C207CA7AA0099D3A3 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C9860207CA7A90099D3A3 /* 8.jpg */; };
+		E27C986D207CA7AA0099D3A3 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C9861207CA7A90099D3A3 /* 7.jpg */; };
+		E27C986E207CA7AA0099D3A3 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C9862207CA7AA0099D3A3 /* 10.jpg */; };
+		E27C986F207CA7AA0099D3A3 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E27C9863207CA7AA0099D3A3 /* 2.jpg */; };
+		E2B8CD7D207CA9B9008F45EB /* Toolbelt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B8CD7A207CA996008F45EB /* Toolbelt.framework */; };
+		E2B8CD81207CAA03008F45EB /* Toolbelt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E2B8CD7A207CA996008F45EB /* Toolbelt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2BB71F1207BF3930019C8B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB71F0207BF3930019C8B6 /* AppDelegate.swift */; };
 		E2BB71F3207BF3930019C8B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB71F2207BF3930019C8B6 /* ViewController.swift */; };
 		E2BB71F6207BF3930019C8B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2BB71F4207BF3930019C8B6 /* Main.storyboard */; };
@@ -22,6 +32,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E2B8CD79207CA996008F45EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2B8CD74207CA996008F45EB /* Toolbelt.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2516D9B1E1401710026FAA8;
+			remoteInfo = Toolbelt;
+		};
+		E2B8CD7B207CA996008F45EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2B8CD74207CA996008F45EB /* Toolbelt.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E2516DA41E1401710026FAA8;
+			remoteInfo = ToolbeltTests;
+		};
+		E2B8CD82207CAA03008F45EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2B8CD74207CA996008F45EB /* Toolbelt.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E2516D9A1E1401710026FAA8;
+			remoteInfo = Toolbelt;
+		};
 		E2BB7202207BF3940019C8B6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E2BB71E5207BF3930019C8B6 /* Project object */;
@@ -31,12 +62,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E2B8CD84207CAA03008F45EB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E2B8CD81207CAA03008F45EB /* Toolbelt.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E27C983E207C967B0099D3A3 /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = Carthage/Build/iOS/FBSnapshotTestCase.framework; sourceTree = "<group>"; };
-		E27C9850207C9BDE0099D3A3 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
-		E27C9851207C9BDE0099D3A3 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1.png; path = "UI Tests/1.png"; sourceTree = SOURCE_ROOT; };
-		E27C9852207C9BDE0099D3A3 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		E27C9853207C9BDE0099D3A3 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		E27C9858207CA7A80099D3A3 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
+		E27C9859207CA7A80099D3A3 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		E27C985A207CA7A80099D3A3 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
+		E27C985B207CA7A80099D3A3 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
+		E27C985C207CA7A80099D3A3 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		E27C985D207CA7A90099D3A3 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		E27C985E207CA7A90099D3A3 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		E27C985F207CA7A90099D3A3 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		E27C9860207CA7A90099D3A3 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		E27C9861207CA7A90099D3A3 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		E27C9862207CA7AA0099D3A3 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
+		E27C9863207CA7AA0099D3A3 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		E2B8CD74207CA996008F45EB /* Toolbelt.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolbelt.xcodeproj; path = ../Toolbelt.xcodeproj; sourceTree = "<group>"; };
 		E2BB71ED207BF3930019C8B6 /* UI Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UI Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BB71F0207BF3930019C8B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2BB71F2207BF3930019C8B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E27C9840207C96E90099D3A3 /* FBSnapshotTestCase.framework in Frameworks */,
+				E2B8CD7D207CA9B9008F45EB /* Toolbelt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +131,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E27C9870207CA7AF0099D3A3 /* Test Images */ = {
+			isa = PBXGroup;
+			children = (
+				E27C9859207CA7A80099D3A3 /* 1.jpg */,
+				E27C9863207CA7AA0099D3A3 /* 2.jpg */,
+				E27C985F207CA7A90099D3A3 /* 3.jpg */,
+				E27C985E207CA7A90099D3A3 /* 4.jpg */,
+				E27C985D207CA7A90099D3A3 /* 5.jpg */,
+				E27C985C207CA7A80099D3A3 /* 6.jpg */,
+				E27C9861207CA7A90099D3A3 /* 7.jpg */,
+				E27C9860207CA7A90099D3A3 /* 8.jpg */,
+				E27C9858207CA7A80099D3A3 /* 9.jpg */,
+				E27C9862207CA7AA0099D3A3 /* 10.jpg */,
+				E27C985A207CA7A80099D3A3 /* 11.jpg */,
+				E27C985B207CA7A80099D3A3 /* 12.jpg */,
+			);
+			name = "Test Images";
+			path = "../../Example/Resources/Test Images";
+			sourceTree = "<group>";
+		};
+		E2B8CD75207CA996008F45EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2B8CD7A207CA996008F45EB /* Toolbelt.framework */,
+				E2B8CD7C207CA996008F45EB /* ToolbeltTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E2BB71E4207BF3930019C8B6 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +168,7 @@
 				E2BB7204207BF3940019C8B6 /* UI Tests */,
 				E2BB71EE207BF3930019C8B6 /* Products */,
 				E27C983A207C94910099D3A3 /* Frameworks */,
+				E2B8CD74207CA996008F45EB /* Toolbelt.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,10 +194,6 @@
 			isa = PBXGroup;
 			children = (
 				E2BB7205207BF3940019C8B6 /* SlideshowUITests.swift */,
-				E27C9851207C9BDE0099D3A3 /* 1.png */,
-				E27C9852207C9BDE0099D3A3 /* 2.png */,
-				E27C9853207C9BDE0099D3A3 /* 3.png */,
-				E27C9850207C9BDE0099D3A3 /* 4.png */,
 				E2BB7207207BF3940019C8B6 /* Info.plist */,
 			);
 			path = "UI Tests";
@@ -122,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				E2BB71F4207BF3930019C8B6 /* Main.storyboard */,
+				E27C9870207CA7AF0099D3A3 /* Test Images */,
 				E2BB71F7207BF3940019C8B6 /* Assets.xcassets */,
 				E2BB71F9207BF3940019C8B6 /* LaunchScreen.storyboard */,
 				E2BB71FC207BF3940019C8B6 /* Info.plist */,
@@ -140,10 +222,12 @@
 				E2BB71EA207BF3930019C8B6 /* Frameworks */,
 				E2BB71EB207BF3930019C8B6 /* Resources */,
 				E27C9839207C94340099D3A3 /* ShellScript */,
+				E2B8CD84207CAA03008F45EB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E2B8CD83207CAA03008F45EB /* PBXTargetDependency */,
 			);
 			name = "UI Tests";
 			productName = "UI Tests";
@@ -199,6 +283,12 @@
 			mainGroup = E2BB71E4207BF3930019C8B6;
 			productRefGroup = E2BB71EE207BF3930019C8B6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E2B8CD75207CA996008F45EB /* Products */;
+					ProjectRef = E2B8CD74207CA996008F45EB /* Toolbelt.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E2BB71EC207BF3930019C8B6 /* UI Tests */,
@@ -206,6 +296,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E2B8CD7A207CA996008F45EB /* Toolbelt.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Toolbelt.framework;
+			remoteRef = E2B8CD79207CA996008F45EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E2B8CD7C207CA996008F45EB /* ToolbeltTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ToolbeltTests.xctest;
+			remoteRef = E2B8CD7B207CA996008F45EB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E2BB71EB207BF3930019C8B6 /* Resources */ = {
@@ -222,11 +329,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E27C9857207C9BDE0099D3A3 /* 3.png in Resources */,
-				E27C9855207C9BDE0099D3A3 /* 1.png in Resources */,
-				E27C9854207C9BDE0099D3A3 /* 4.png in Resources */,
-				E27C9856207C9BDE0099D3A3 /* 2.png in Resources */,
+				E27C986D207CA7AA0099D3A3 /* 7.jpg in Resources */,
+				E27C986C207CA7AA0099D3A3 /* 8.jpg in Resources */,
+				E27C986B207CA7AA0099D3A3 /* 3.jpg in Resources */,
+				E27C986A207CA7AA0099D3A3 /* 4.jpg in Resources */,
+				E27C9868207CA7AA0099D3A3 /* 6.jpg in Resources */,
+				E27C9867207CA7AA0099D3A3 /* 12.jpg in Resources */,
+				E27C9865207CA7AA0099D3A3 /* 1.jpg in Resources */,
 				E27C9843207C99730099D3A3 /* Assets.xcassets in Resources */,
+				E27C9869207CA7AA0099D3A3 /* 5.jpg in Resources */,
+				E27C986F207CA7AA0099D3A3 /* 2.jpg in Resources */,
+				E27C9864207CA7AA0099D3A3 /* 9.jpg in Resources */,
+				E27C986E207CA7AA0099D3A3 /* 10.jpg in Resources */,
+				E27C9866207CA7AA0099D3A3 /* 11.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +401,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E2B8CD83207CAA03008F45EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Toolbelt;
+			targetProxy = E2B8CD82207CAA03008F45EB /* PBXContainerItemProxy */;
+		};
 		E2BB7203207BF3940019C8B6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E2BB71EC207BF3930019C8B6 /* UI Tests */;
@@ -430,6 +550,7 @@
 		E2BB720B207BF3940019C8B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;
@@ -452,6 +573,7 @@
 		E2BB720C207BF3940019C8B6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3EQ4PU3P2V;

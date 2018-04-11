@@ -11,25 +11,50 @@ extension UIView {
 //MARK: - Class
 public class Slideshow: UIView {
   
-  public override var intrinsicContentSize: CGSize {
-    //TODO: check repurcussions of this
-    return CGSize(width: 327.0, height: 218.0) //completely arbitrary numbers
-  }
-  
-  public var currentIndex: Int = 0 {
+  //MARK: - Public (Variables)
+  public weak var delegate: SlideshowDelegate?
+  public var imageViews: [UIImageView] = []
+  public var selectedImageIndex: Int = 0 {
     didSet {
       self.layoutIfNeeded()
     }
   }
+  public var shouldShowIndicators: Bool = false {
+    didSet {
+      if shouldShowIndicators {
+        addIndicators()
+        setupIndicatorConstraints()
+      }
+    }
+  }
+  public var numberOfImages: Int = 0 {
+    didSet {
+      setup()
+    }
+  }
+
   
-  //MARK: Variables
-  public weak var delegate: SlideshowDelegate?
-  public var imageViews: [UIImageView] = []
+//  public override var intrinsicContentSize: CGSize {
+//    //TODO: check repurcussions of this
+//    return CGSize(width: 327.0, height: 218.0) //completely arbitrary numbers
+//  }
+  
+  //MARK: Public (Initializers)
+  public init(withImages images: [UIImage]) {
+    super.init(frame: .zero)
+    numberOfImages = images.count
+    setup()
+    images.forEach({ image in
+      guard let index = images.index(of: image) else { return }
+      imageViews[index].image = image
+    })
+  }
   
   private var modifiableConstraints: [NSLayoutConstraint] = []
   
   //MARK: Subviews
-  lazy var indicators: UIView = {
+  private var indicatorViews: [UIView] = []
+  private lazy var indicators: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = .clear
@@ -37,9 +62,7 @@ public class Slideshow: UIView {
     return view
   }()
   
-  var indicatorViews: [UIView] = []
-  
-  lazy var scrollView: UIScrollView = {
+  private lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.translatesAutoresizingMaskIntoConstraints = false
     scrollView.isPagingEnabled = true
@@ -52,61 +75,29 @@ public class Slideshow: UIView {
     if #available(iOS 11, *) {
       scrollView.contentInsetAdjustmentBehavior = .never
     }
-    //TODO: mention in README that following line is required on view controller for less than iOS 11
-    //    self.automaticallyAdjustsScrollViewInsets = false
+    // TODO: mention in README that following line is required on view controller for less than iOS 11
+//    self.automaticallyAdjustsScrollViewInsets = false
     
     return scrollView
   }()
   
-  lazy var contentView: UIView = {
+  private lazy var contentView: UIView = {
     let view = UIView()
     view.backgroundColor = .clear
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
-  //MARK: Lifecycle
-  public var showIndicators: Bool = false
-  
-  public var numberOfImages: Int = 0 {
-    didSet {
-      self.backgroundColor = .clear
-      removeSubviews()
-      
-      addMainSubviews()
-      addImageViews()
-      if showIndicators {
-        addIndicators()
-      }
-      
-      setupMainConstraints()
-      setupImageConstraints()
-      if showIndicators {
-        setupIndicatorConstraints()
-      }
-      
-      scrollView.contentOffset = .zero
-    }
+  //MARK: Unsorted
+  public required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
-  
-  //MARK: - Public
-  //  public func setupWithImageURLs(_ imageURLs: [URL]) {
-  //    prepareForReuse()
-  //    imageURLs.forEach { contentView.addSubview(createImageView(withURL: $0)) }
-  //    setupConstraints()
-  //  }
   
   //TODO: rename this
   public func currentImage() -> UIImage? {
     //TODO: return the actual current image depeneding on which one has been selected, do this along with the indicator
-    guard currentIndex < imageViews.count else { return nil }
-    return self.imageViews[currentIndex].image
-  }
-  
-  public func prepareForNumberOfImages(_ numberOfImages: Int) {
-    //cleanup code
-    self.numberOfImages = numberOfImages
-    self.addImageViews()
+    guard selectedImageIndex < imageViews.count else { return nil }
+    return self.imageViews[selectedImageIndex].image
   }
   
   public func prepareForReuse() {
@@ -116,13 +107,32 @@ public class Slideshow: UIView {
   
   public override func layoutIfNeeded() {
     super.layoutIfNeeded()
-    setScrollViewContentOffsetBasedOnCurrentIndex()
+    setScrollViewContentOffsetBasedOnSelectedImageIndex()
     indicatorViews.forEach { $0.makeCircle() }
   }
+  
+//  public func setupWithImageURLs(_ imageURLs: [URL]) {
+//    prepareForReuse()
+//    imageURLs.forEach { contentView.addSubview(createImageView(withURL: $0)) }
+//    setupConstraints()
+//  }
 }
 
 //MARK: - Private
 extension Slideshow {
+  
+  private func setup() {
+    self.backgroundColor = .clear
+    removeSubviews()
+    
+    addMainSubviews()
+    addImageViews()
+    
+    setupMainConstraints()
+    setupImageConstraints()
+    
+    scrollView.contentOffset = .zero
+  }
   
   private func removeSubviews() {
     imageViews.forEach { $0.removeFromSuperview() }
@@ -159,8 +169,8 @@ extension Slideshow {
     scrollView.addSubview(contentView)
   }
   
-  private func setScrollViewContentOffsetBasedOnCurrentIndex() {
-    let newOffset = CGPoint(x: CGFloat(self.currentIndex) * scrollView.bounds.width, y: 0)
+  private func setScrollViewContentOffsetBasedOnSelectedImageIndex() {
+    let newOffset = CGPoint(x: CGFloat(self.selectedImageIndex) * scrollView.bounds.width, y: 0)
     scrollView.setContentOffset(newOffset, animated: false)
   }
   
@@ -185,8 +195,8 @@ extension Slideshow {
 extension Slideshow: UIScrollViewDelegate {
   
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    currentIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
-    self.delegate?.didChangeCurrentIndex(to: currentIndex, onSlideshow: self)
+    selectedImageIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+    self.delegate?.didChangeSelectedImageIndex(to: selectedImageIndex, onSlideshow: self)
   }
 }
 
@@ -372,7 +382,7 @@ extension Slideshow {
 //MARK: - Protocol
 public protocol SlideshowDelegate: class {
   func didTapSlideshow(slideshow: Slideshow)
-  func didChangeCurrentIndex(to currentIndex: Int, onSlideshow slideshow: Slideshow)
+  func didChangeSelectedImageIndex(to index: Int, onSlideshow slideshow: Slideshow)
 }
 
 

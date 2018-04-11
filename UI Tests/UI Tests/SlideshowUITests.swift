@@ -3,7 +3,11 @@ import FBSnapshotTestCase
 import Toolbelt
 import UIKit
 
-class UITests: FBSnapshotTestCase {
+enum K {
+  static let numberOfTestImages = 12
+}
+
+class SlideshowUITests: FBSnapshotTestCase {
   
   override func setUp() {
     super.setUp()
@@ -16,43 +20,37 @@ class UITests: FBSnapshotTestCase {
     super.tearDown()
   }
   
-  func testExample() {
-    FBSnapshotVerifyView(slideshow)
+  func testCreateSlideshow() {
+    
+    let slideshow = Slideshow(withImages: images)
+    slideshow.frame = CGRect(x: 0, y: 0, width: 350.0, height: 233.0)
+    slideshow.shouldShowIndicators = true
+    
+    FBSnapshotVerifyView(slideshow, identifier: "First image")
+
+    slideshow.selectedImageIndex = slideshow.numberOfImages/2
+    FBSnapshotVerifyView(slideshow, identifier: "Middle image")
+
+    slideshow.selectedImageIndex = slideshow.numberOfImages-1
+    FBSnapshotVerifyView(slideshow, identifier: "Last image")
   }
   
   
   //MARK: ---
   
-  lazy var slideshow: Slideshow = {
-    let slideshow = Slideshow()
-    slideshow.frame = CGRect(x: 0, y: 0, width: 350.0, height: 233.0)
-    slideshow.showIndicators = true
-    let imageURLs = [
-      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room.jpg")!,
-      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bathroom.jpg")!,
-      URL(string: "https://travelescapesmaldives.com/wp-content/uploads/2017/06/Meeru-Island-Resort-and-Spa-Garden-Room-bedroom.jpg")!,
-      ]
-    //TODO: load local images here or just raw Cocoa APIs
-    slideshow.setupWithImages()
-    return slideshow
-  }()
-}
-
-extension Slideshow {
-  
-  func setupWithImages() {
-    self.numberOfImages = 3
-    guard self.numberOfImages == imageViews.count else {
-      fatalError("Not enough imageViews; expected \(self.numberOfImages), but got \(imageViews.count)")
-    }
-    for i in 0..<3 {
-      let filename = "\(i+2).png"
-      let bundle = Bundle(for: UITests.self)
+  lazy var images: [UIImage] = {
+    var images: [UIImage] = []
+    for i in 0..<K.numberOfTestImages {
+      let filename = "\(i+1).jpg"
+      let bundle = Bundle(for: SlideshowUITests.self)
       let image = UIImage(named: filename, in: bundle, compatibleWith: nil)
-      guard image != nil else {
+      if let image = image {
+        images.append(image)
+      } else {
         fatalError("Couldn't read image \(filename)")
       }
-      imageViews[i].image = image
     }
-  }
+    return images
+  }()
+  
 }
