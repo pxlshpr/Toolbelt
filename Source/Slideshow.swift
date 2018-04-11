@@ -229,6 +229,10 @@ extension Slideshow: UIScrollViewDelegate {
   }
   
   public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let index = Int(scrollView.contentOffset.x / scrollView.bounds.width)
+    indicatorsView.selectedIndicatorIndex = index
+    indicatorsView.reloadData()
+    
     switch scrollView.panGestureRecognizer.state {
     case .began:
       // User began dragging
