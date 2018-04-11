@@ -71,7 +71,7 @@ extension IndicatorsView {
   
   func updateOffsetBasedOnSelectedIndicator() {
     //if index is (now going to be) the last *visible* cell, set the contentOffset so that the right end would be index+1 or endIndex, whichever is less
-    if selectedIndicatorIndex == lastVisibleCellIndex {
+    if selectedIndicatorIndex >= lastVisibleCellIndex {
       let endIndex = min(selectedIndicatorIndex+1, numberOfIndicators-1)
       let startIndex = endIndex - numberOfPossibleCells + 1
       let offset = CGPoint(x: leftXValueForCellIndex(startIndex), y: 0)
@@ -79,7 +79,7 @@ extension IndicatorsView {
     }
     
     //if index is (now going to be) the first *visible* cell, set the contentOffset to have the first cell on the left be 0 or index-1, whichever is more
-    if selectedIndicatorIndex == firstVisibleCellIndex {
+    if selectedIndicatorIndex <= firstVisibleCellIndex {
       let startIndex = max(0, selectedIndicatorIndex-1)
       let offset = CGPoint(x: leftXValueForCellIndex(startIndex), y: 0)
       self.setContentOffset(offset, animated: true)

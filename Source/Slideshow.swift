@@ -8,7 +8,12 @@ public class Slideshow: UIView {
   public var imageViews: [UIImageView] = []
   public var selectedImageIndex: Int = 0 {
     didSet {
-      self.layoutIfNeeded()
+      indicatorsView.selectedIndicatorIndex = selectedImageIndex
+      indicatorsView.reloadData()
+      
+      let offset = CGPoint(x: CGFloat(selectedImageIndex) * frame.width, y: 0)
+      self.scrollView.setContentOffset(offset, animated: true)
+//      self.layoutIfNeeded()
     }
   }
   public var numberOfImages: Int = 0 {
@@ -106,14 +111,22 @@ public class Slideshow: UIView {
   public override func layoutIfNeeded() {
     super.layoutIfNeeded()
     setScrollViewContentOffsetBasedOnSelectedImageIndex()
-//    indicatorViews.forEach { $0.makeCircle() }
+  }
+
+  var timer: Timer = Timer()
+  
+  public func scrollAutomatically() {
+    timer = Timer(timeInterval: 2.2, target: self, selector: #selector(timerFired(timer:)), userInfo: nil, repeats: true)
+    RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
   }
   
-//  public func setupWithImageURLs(_ imageURLs: [URL]) {
-//    prepareForReuse()
-//    imageURLs.forEach { contentView.addSubview(createImageView(withURL: $0)) }
-//    setupConstraints()
-//  }
+  @objc func timerFired(timer: Timer) {
+    if selectedImageIndex == numberOfImages - 1 {
+      selectedImageIndex = 0
+    } else {
+      selectedImageIndex = selectedImageIndex + 1
+    }
+  }
 }
 
 //MARK: - Private
@@ -193,8 +206,6 @@ extension Slideshow: UIScrollViewDelegate {
   
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     selectedImageIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
-    indicatorsView.selectedIndicatorIndex = selectedImageIndex
-    indicatorsView.reloadData()
     self.delegate?.didChangeSelectedImageIndex(to: selectedImageIndex, onSlideshow: self)
   }
 }
