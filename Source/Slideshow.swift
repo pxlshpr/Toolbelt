@@ -230,6 +230,7 @@ extension Slideshow: UIScrollViewDelegate {
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     selectedImageIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
     if timer == nil {
+    // FIXME: error here is that scrolling starts regardless of whether we've set it to or not
       startScrolling()
     }
     indicatorsView.selectedIndicatorIndex = selectedImageIndex
