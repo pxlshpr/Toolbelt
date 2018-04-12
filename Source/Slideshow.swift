@@ -271,8 +271,8 @@ extension Slideshow {
                          multiplier: 1.0, constant: 8.0),
       NSLayoutConstraint(item: indicatorsView, attribute: .width,
                          relatedBy: .equal,
-                         toItem: self, attribute: .width,
-                         multiplier: 1/5, constant: 0.0)
+                         toItem: nil, attribute: .notAnAttribute,
+                         multiplier: 1.0, constant: 14.0 * 4.0)
       ])
   }
   

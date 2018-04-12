@@ -39,7 +39,7 @@ class IndicatorCell: UICollectionViewCell {
                            multiplier: 1.0, constant: type.size)
       ]
       NSLayoutConstraint.activate(dimensionConstraints)
-      circleView.backgroundColor = type.color
+//      circleView.backgroundColor = type.color
       circleView.layer.cornerRadius = type.size / 2.0
     }
   }
@@ -77,7 +77,18 @@ class IndicatorCell: UICollectionViewCell {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.frame = frame
+    view.backgroundColor = .green
     view.alpha = 0.96
+    view.clipsToBounds = true
+    
+    let blurEffect = UIBlurEffect(style: .light)
+    let blurEffectView = UIVisualEffectView(effect: blurEffect)
+    //always fill the view
+    blurEffectView.frame = frame
+    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    
+    view.addSubview(blurEffectView)
+    
     return view
   }
 }
