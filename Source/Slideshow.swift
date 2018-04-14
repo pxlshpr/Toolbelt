@@ -23,7 +23,8 @@ public class Slideshow: UIView {
       setup()
     }
   }
-
+  var timer: Timer?
+  var shouldScrollAutomatically: Bool = false
   
 //  public override var intrinsicContentSize: CGSize {
 //    //TODO: check repurcussions of this
@@ -47,7 +48,7 @@ public class Slideshow: UIView {
 
   //MARK: Subviews
 //  private var indicatorViews: [UIView] = []
-  private lazy var indicatorsView: IndicatorsView = {
+  public lazy var indicatorsView: IndicatorsView = {
     let indicatorsView = IndicatorsView()
     indicatorsView.numberOfIndicators = self.numberOfImages
     indicatorsView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,6 +81,21 @@ public class Slideshow: UIView {
     return view
   }()
   
+  private lazy var gradientLayer: CAGradientLayer = {
+    let layer = CAGradientLayer()
+    layer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+    return layer
+  }()
+  
+  private lazy var gradientView: UIView = {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.layer.insertSublayer(gradientLayer, at: 0)
+    view.isUserInteractionEnabled = false
+//    view.backgroundColor = .green
+    return view
+  }()
+
   //MARK: Unsorted
   public required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
@@ -115,8 +131,6 @@ public class Slideshow: UIView {
     setScrollViewContentOffsetBasedOnSelectedImageIndex()
   }
 
-  var timer: Timer?
-  
   func restartScrolling() {
     timer = Timer(timeInterval: 3.8, target: self, selector: #selector(restartTimerFired(timer:)), userInfo: nil, repeats: false)
     guard let timer = timer else { return }
@@ -124,18 +138,28 @@ public class Slideshow: UIView {
   }
   
   public func startScrolling() {
-    timer = Timer(timeInterval: 3.3, target: self, selector: #selector(timerFired(timer:)), userInfo: nil, repeats: true)
+    shouldScrollAutomatically = true
+    startTimer()
+  }
+  
+  func startTimer() {
+    timer = Timer(timeInterval: 4.8, target: self, selector: #selector(timerFired(timer:)), userInfo: nil, repeats: true)
     guard let timer = timer else { return }
     RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
   }
   
   public func stopScrolling() {
+    shouldScrollAutomatically = false
+    stopTimer()
+  }
+  
+  func stopTimer() {
     timer?.invalidate()
     timer = nil
   }
   
   @objc func restartTimerFired(timer: Timer) {
-    startScrolling()
+    startTimer()
   }
   
   @objc func timerFired(timer: Timer) {
@@ -186,6 +210,7 @@ extension Slideshow {
   }
   
   private func addIndicators() {
+    addSubview(gradientView)
     addSubview(indicatorsView)
   }
   
@@ -225,22 +250,24 @@ extension Slideshow: UIScrollViewDelegate {
   public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
     let index = Int(scrollView.contentOffset.x / scrollView.bounds.width)
     indicatorsView.selectedIndicatorIndex = index
+    indicatorsView.updateOffsetBasedOnSelectedIndicator()
     indicatorsView.reloadData()
   }
+  
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
     selectedImageIndex = Int(scrollView.contentOffset.x / scrollView.bounds.width)
-    if timer == nil {
-    // FIXME: error here is that scrolling starts regardless of whether we've set it to or not
-      startScrolling()
+    if timer == nil && shouldScrollAutomatically {
+      startTimer()
     }
     indicatorsView.selectedIndicatorIndex = selectedImageIndex
-    indicatorsView.reloadData()
+    indicatorsView.updateOffsetBasedOnSelectedIndicator()
+//    indicatorsView.reloadData()
   }
   
   public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     switch scrollView.panGestureRecognizer.state {
     case .began:
-      stopScrolling()
+      stopTimer()
     default:
       break
     }
@@ -256,8 +283,35 @@ extension Slideshow: UIScrollViewDelegate {
 
 extension Slideshow {
   
+  public override func layoutSubviews() {
+    super.layoutSubviews()
+    if shouldShowIndicators {
+      gradientLayer.frame = CGRect(x: 0, y: 0, width: gradientView.frame.width, height: gradientView.frame.height)
+      gradientLayer.locations = [0, 6]
+    }
+  }
+  
   fileprivate func setupIndicatorConstraints() {
+    
     NSLayoutConstraint.activate([
+ 
+      NSLayoutConstraint(item: gradientView, attribute: .left,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .left,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: gradientView, attribute: .right,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .right,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: gradientView, attribute: .bottom,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .bottom,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: gradientView, attribute: .top,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .top,
+                         multiplier: 1.0, constant: 0.0),
+
       NSLayoutConstraint(item: indicatorsView, attribute: .bottom,
                          relatedBy: .equal,
                          toItem: self, attribute: .bottom,
@@ -273,7 +327,7 @@ extension Slideshow {
       NSLayoutConstraint(item: indicatorsView, attribute: .width,
                          relatedBy: .equal,
                          toItem: nil, attribute: .notAnAttribute,
-                         multiplier: 1.0, constant: 14.0 * 4.0)
+                         multiplier: 1.0, constant: 14.0 * 5.0)
       ])
   }
   

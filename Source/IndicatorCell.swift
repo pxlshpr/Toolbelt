@@ -2,13 +2,13 @@ import UIKit
 
 enum IndicatorType {
   case selected
-  case end
+  case small
   case normal
   
   var size: CGFloat {
     switch self {
     case .selected: return 8.0
-    case .end: return 4.0
+    case .small: return 4.0
     case .normal: return 6.0
     }
   }
@@ -21,30 +21,48 @@ enum IndicatorType {
   }
 }
 
+extension UIView {
+  func toImage() -> UIImage? {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0.0)
+    defer { UIGraphicsEndImageContext() }
+    if let context = UIGraphicsGetCurrentContext() {
+      self.layer.render(in: context)
+      let image = UIGraphicsGetImageFromCurrentImageContext()
+      return image
+    }
+    return nil
+  }
+}
+
 class IndicatorCell: UICollectionViewCell {
   
-  var dimensionConstraints: [NSLayoutConstraint] = []
   var circleView: UIView = UIView()
   var type: IndicatorType = .normal {
     didSet {
-      NSLayoutConstraint.deactivate(dimensionConstraints)
-      dimensionConstraints = [
-        NSLayoutConstraint(item: circleView, attribute: .width,
-                           relatedBy: .equal,
-                           toItem: nil, attribute: .notAnAttribute,
-                           multiplier: 1.0, constant: type.size),
-        NSLayoutConstraint(item: circleView, attribute: .height,
-                           relatedBy: .equal,
-                           toItem: nil, attribute: .notAnAttribute,
-                           multiplier: 1.0, constant: type.size)
-      ]
-      NSLayoutConstraint.activate(dimensionConstraints)
-//      circleView.backgroundColor = type.color
+      circleView.frame.size = CGSize(width: type.size, height: type.size)
+      circleView.center = contentView.center
+      circleView.backgroundColor = type.color
       circleView.layer.cornerRadius = type.size / 2.0
     }
   }
   
-  func makeCircle() {
+  func animateCircleToType(_ type: IndicatorType, completion: @escaping () -> Void) {
+    //make the dupe
+    let duplicateView = UIImageView(image: circleView.toImage())
+    duplicateView.frame = circleView.frame
+    duplicateView.backgroundColor = .clear
+    contentView.addSubview(duplicateView)
+
+    circleView.isHidden = true
+    UIView.animate(withDuration: 0.2, animations: {
+      duplicateView.frame.size = CGSize(width: type.size, height: type.size)
+      duplicateView.center = self.contentView.center
+    }) { finished in
+      self.type = type
+      duplicateView.removeFromSuperview()
+      self.circleView.isHidden = false
+      completion()
+    }
   }
   
   override init(frame: CGRect) {
@@ -58,36 +76,16 @@ class IndicatorCell: UICollectionViewCell {
   
   func addCircleView() {
     circleView = createCircleViewWithFrame(self.frame)
-    addSubview(circleView)
-    
-    NSLayoutConstraint.activate([
-      NSLayoutConstraint(item: circleView, attribute: .centerX,
-                         relatedBy: .equal,
-                         toItem: self, attribute: .centerX,
-                         multiplier: 1.0, constant: 0.0),
-      NSLayoutConstraint(item: circleView, attribute: .centerY,
-                         relatedBy: .equal,
-                         toItem: self, attribute: .centerY,
-                         multiplier: 1.0, constant: 0.0)
-      ])
-    self.type = .normal
+    contentView.addSubview(circleView)
+    type = .normal
   }
   
   func createCircleViewWithFrame(_ frame: CGRect) -> UIView {
     let view = UIView()
-    view.translatesAutoresizingMaskIntoConstraints = false
     view.frame = frame
-    view.backgroundColor = .green
+//    view.backgroundColor = .green
     view.alpha = 0.96
     view.clipsToBounds = true
-    
-    let blurEffect = UIBlurEffect(style: .light)
-    let blurEffectView = UIVisualEffectView(effect: blurEffect)
-    //always fill the view
-    blurEffectView.frame = frame
-    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    
-    view.addSubview(blurEffectView)
     
     return view
   }
