@@ -55,6 +55,24 @@ public class Slideshow: UIView {
     return indicatorsView
   }()
   
+  private lazy var leftTapView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .clear
+    view.translatesAutoresizingMaskIntoConstraints = false
+    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedLeft))
+    view.addGestureRecognizer(tapRecognizer)
+    return view
+  }()
+  
+  private lazy var rightTapView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .clear
+    view.translatesAutoresizingMaskIntoConstraints = false
+    let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedRight))
+    view.addGestureRecognizer(tapRecognizer)
+    return view
+  }()
+
   private lazy var scrollView: UIScrollView = {
     let scrollView = UIScrollView()
     scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -124,6 +142,23 @@ public class Slideshow: UIView {
       }
       imageViews[index].image = images[index]
     }
+  }
+  
+  @objc func tappedLeft() {
+    if selectedImageIndex > 0 {
+      selectedImageIndex = selectedImageIndex - 1
+    }
+  }
+  
+  @objc func tappedRight() {
+    if selectedImageIndex < numberOfImages-1 {
+      selectedImageIndex = selectedImageIndex + 1
+    }
+  }
+  
+  public var currentImageView: UIImageView? {
+    guard selectedImageIndex < imageViews.count else { return nil }
+    return imageViews[selectedImageIndex]
   }
   
   public override func layoutIfNeeded() {
@@ -212,6 +247,9 @@ extension Slideshow {
   private func addIndicators() {
     addSubview(gradientView)
     addSubview(indicatorsView)
+    
+    addSubview(leftTapView)
+    addSubview(rightTapView)
   }
   
   private func addMainSubviews() {
@@ -327,7 +365,41 @@ extension Slideshow {
       NSLayoutConstraint(item: indicatorsView, attribute: .width,
                          relatedBy: .equal,
                          toItem: nil, attribute: .notAnAttribute,
-                         multiplier: 1.0, constant: 14.0 * 5.0)
+                         multiplier: 1.0, constant: 14.0 * 5.0),
+      
+      NSLayoutConstraint(item: leftTapView, attribute: .width,
+                         relatedBy: .equal,
+                         toItem: indicatorsView, attribute: .width,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: leftTapView, attribute: .right,
+                         relatedBy: .equal,
+                         toItem: indicatorsView, attribute: .centerX,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: leftTapView, attribute: .top,
+                         relatedBy: .equal,
+                         toItem: indicatorsView, attribute: .top,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: leftTapView, attribute: .bottom,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .bottom,
+                         multiplier: 1.0, constant: 0.0),
+
+      NSLayoutConstraint(item: rightTapView, attribute: .width,
+                         relatedBy: .equal,
+                         toItem: indicatorsView, attribute: .width,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: rightTapView, attribute: .left,
+                         relatedBy: .equal,
+                         toItem: indicatorsView, attribute: .centerX,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: rightTapView, attribute: .top,
+                         relatedBy: .equal,
+                         toItem: indicatorsView, attribute: .top,
+                         multiplier: 1.0, constant: 0.0),
+      NSLayoutConstraint(item: rightTapView, attribute: .bottom,
+                         relatedBy: .equal,
+                         toItem: self, attribute: .bottom,
+                         multiplier: 1.0, constant: 0.0),
       ])
   }
   
