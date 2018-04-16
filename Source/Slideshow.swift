@@ -21,7 +21,7 @@ public class Slideshow: UIView {
     setup()
   }
   
-  func setupWithURLs(_ imageURLs: [URL]) {
+  public func setupWithURLs(_ imageURLs: [URL]) {
     imagesCollectionView.setupWithURLs(imageURLs)
     indicatorsView.setupWithNumberOfIndicators(imageURLs.count)
   }
