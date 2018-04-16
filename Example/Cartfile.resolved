@@ -1,1 +1,4 @@
-github "pxlshpr/Toolbelt" "v0.0.10"
+github "kean/Nuke" "6.1.1"
+github "SwiftyBeaver/SwiftyBeaver" "1.5.2"
+github "roberthein/TinyConstraints" "3.1.0"
+github "pxlshpr/Toolbelt" "4fd2956bf38517f6535139c94187530833ba5c66"
