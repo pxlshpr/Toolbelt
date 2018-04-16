@@ -103,7 +103,7 @@ class SlideshowUITests: FBSnapshotTestCase {
 
   // MARK: - Helpers
   private func verifySlideshow(_ slideshow: Slideshow, atIndex index: Int, withIdentifier identifier: String) {
-    slideshow.selectedImageIndex = index
+    slideshow.scrollToIndex(index)
     FBSnapshotVerifyView(slideshow, identifier: identifier)
   }
 

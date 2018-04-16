@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 class Navigation {
-  internal let viewController: UIViewController
+  let viewController: UIViewController
   
   init(window: UIWindow) {
     self.viewController = ViewController()

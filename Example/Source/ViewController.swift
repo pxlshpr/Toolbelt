@@ -4,7 +4,21 @@ import Toolbelt
 class ViewController: UIViewController {
 
   lazy var slideshow: Slideshow = {
-    let slideshow = Slideshow(withImages: images, showsIndicators: true)
+    let urlStrings = [
+      "http://lorempixel.com/1200/1200/sports/1",
+      "http://lorempixel.com/1200/1200/sports/2",
+      "http://lorempixel.com/1200/1200/sports/3",
+      "http://lorempixel.com/1200/1200/sports/5",
+      "http://lorempixel.com/1200/1200/sports/6",
+      "http://lorempixel.com/1200/1200/people/1",
+      "http://lorempixel.com/1200/1200/people/2",
+      "http://lorempixel.com/1200/1200/people/3",
+      "http://lorempixel.com/1200/1200/people/5",
+      "http://lorempixel.com/1200/1200/people/6"
+    ]
+    let urls = urlStrings.map { URL.init(string: $0) }.compactMap { $0 }
+    let slideshow = Slideshow(withImageURLs: urls, showsIndicators: true)
+//    let slideshow = Slideshow(withImages: images, showsIndicators: true)
     slideshow.translatesAutoresizingMaskIntoConstraints = false
     return slideshow
   }()

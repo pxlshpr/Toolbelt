@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E251B7902059877B004C9DCD /* Toolbelt.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E251B78B205986D9004C9DCD /* Toolbelt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2B8CD94207CADB2008F45EB /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2B8CD85207CAD79008F45EB /* 1.jpg */; };
 		E2B8CD95207CADB2008F45EB /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2B8CD86207CAD79008F45EB /* 2.jpg */; };
 		E2B8CD96207CADB2008F45EB /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E2B8CD87207CAD79008F45EB /* 3.jpg */; };
@@ -26,23 +25,6 @@
 		E2DA2628205971F10099EC13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2DA2626205971F10099EC13 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E251B78A205986D9004C9DCD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E2516D9B1E1401710026FAA8;
-			remoteInfo = Toolbelt;
-		};
-		E251B78C205986D9004C9DCD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E2516DA41E1401710026FAA8;
-			remoteInfo = ToolbeltTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		E251B78F20598774004C9DCD /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -50,14 +32,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E251B7902059877B004C9DCD /* Toolbelt.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Toolbelt.xcodeproj; path = ../Toolbelt.xcodeproj; sourceTree = "<group>"; };
 		E2B8CD85207CAD79008F45EB /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		E2B8CD86207CAD79008F45EB /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		E2B8CD87207CAD79008F45EB /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
@@ -89,13 +69,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E251B786205986D8004C9DCD /* Products */ = {
+		E2127CDC208448CB009E897D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E251B78B205986D9004C9DCD /* Toolbelt.framework */,
-				E251B78D205986D9004C9DCD /* ToolbeltTests.xctest */,
 			);
-			name = Products;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E2B8CD91207CAD79008F45EB /* Test Images */ = {
@@ -123,7 +101,7 @@
 				E2DA261C205971F10099EC13 /* Source */,
 				E2DA262F205972440099EC13 /* Resources */,
 				E2DA261B205971F10099EC13 /* Products */,
-				E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */,
+				E2127CDC208448CB009E897D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,35 +181,12 @@
 			mainGroup = E2DA2611205971F10099EC13;
 			productRefGroup = E2DA261B205971F10099EC13 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = E251B786205986D8004C9DCD /* Products */;
-					ProjectRef = E251B785205986D8004C9DCD /* Toolbelt.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				E2DA2619205971F10099EC13 /* iOS Example */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		E251B78B205986D9004C9DCD /* Toolbelt.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Toolbelt.framework;
-			remoteRef = E251B78A205986D9004C9DCD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E251B78D205986D9004C9DCD /* ToolbeltTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ToolbeltTests.xctest;
-			remoteRef = E251B78C205986D9004C9DCD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E2DA2618205971F10099EC13 /* Resources */ = {

@@ -1,0 +1,4 @@
+#!/bin/bash
+# ./test script
+#set -e # stop when a test fails
+xcodebuild test -scheme Toolbelt -destination "platform=iOS Simulator,name=iPhone 7,OS=10.1"
