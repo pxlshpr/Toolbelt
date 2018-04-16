@@ -6,6 +6,7 @@ public class SlideshowImagesCollectionView: UICollectionView {
   var selectedImageIndex: Int = 0
   var imageURLs: [URL] = []
   let preheater = Nuke.Preheater()
+  var applyGradientToViews: Bool = false
 
   convenience init() {
     self.init(frame: .zero, collectionViewLayout: type(of: self).collectionViewLayout())
@@ -51,7 +52,8 @@ extension SlideshowImagesCollectionView: UICollectionViewDataSource {
     
     //setup cell
     imageCell.setupWithImageURL(imageURLs[indexPath.row])
-    
+    imageCell.applyGradient = applyGradientToViews
+
     return imageCell
   }
 }

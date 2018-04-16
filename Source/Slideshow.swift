@@ -23,6 +23,7 @@ public class Slideshow: UIView {
     super.init(frame: .zero)
     self.shouldShowIndicators = showsIndicators
     self.imagesCollectionView.delegate = self
+    self.imagesCollectionView.applyGradientToViews = showsIndicators
     self.imagesCollectionView.setupWithURLs(imageURLs)
     setup()
     

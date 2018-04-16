@@ -1,11 +1,17 @@
 import UIKit
 import Nuke
+import TinyConstraints
 
 class SlideshowImageCollectionViewCell: UICollectionViewCell {
+  
+  var applyGradient: Bool = false
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentView.addSubview(imageView)
+    contentView.addSubview(gradientView)
+//    imageView.edges(to: contentView)
+//    gradientView.edges(to: contentView)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -15,6 +21,7 @@ class SlideshowImageCollectionViewCell: UICollectionViewCell {
   override func prepareForReuse() {
     super.prepareForReuse()
     imageView.image = nil
+    gradientView.isHidden = true
   }
   
   lazy var imageView: UIImageView = {
@@ -26,6 +33,18 @@ class SlideshowImageCollectionViewCell: UICollectionViewCell {
     return imageView
   }()
   
+  lazy var gradientView: GradientView = {
+    let view = GradientView()
+    view.frame = contentView.bounds
+    view.backgroundColor = .clear
+    view.isHidden = true
+    return view
+  }()
+  
+//  override func layoutSubviews() {
+//    super.layoutSubviews()
+//  }
+  
   // MARK: - Setup
   func setupWithImage(_ image: UIImage) {
     log.verbose("Loading cell with image with dimensions \(image.size.width)px x \(image.size.height)px")
@@ -34,6 +53,12 @@ class SlideshowImageCollectionViewCell: UICollectionViewCell {
   
   func setupWithImageURL(_ url: URL) {
     log.verbose("Using Nuke to load cell with url: \(url)")
-    Nuke.Manager.shared.loadImage(with: url, into: imageView)
+    Nuke.Manager.shared.loadImage(with: url, into: imageView) { [weak imageView]
+      (result, isFromMemoryCache) in
+      imageView?.handle(response: result, isFromMemoryCache: isFromMemoryCache)
+      if self.applyGradient {
+        self.gradientView.isHidden = false
+      }
+    }
   }
 }

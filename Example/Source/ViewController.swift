@@ -6,6 +6,7 @@ class ViewController: UIViewController {
   lazy var slideshow: Slideshow = {
     let urlStrings = [
       "http://lorempixel.com/1200/1200/sports/1",
+      "http://wallpaperswide.com/download/white_sand_beach-wallpaper-960x600.jpg",
       "http://lorempixel.com/1200/1200/sports/2",
       "http://lorempixel.com/1200/1200/sports/3",
       "http://lorempixel.com/1200/1200/sports/5",
@@ -14,7 +15,7 @@ class ViewController: UIViewController {
       "http://lorempixel.com/1200/1200/people/2",
       "http://lorempixel.com/1200/1200/people/3",
       "http://lorempixel.com/1200/1200/people/5",
-      "http://lorempixel.com/1200/1200/people/6"
+      "http://lorempixel.com/1200/1200/people/6",
     ]
     let urls = urlStrings.map { URL.init(string: $0) }.compactMap { $0 }
     let slideshow = Slideshow(withImageURLs: urls, showsIndicators: true)
