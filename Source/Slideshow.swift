@@ -1,8 +1,5 @@
 import UIKit
-import SwiftyBeaver
 import TinyConstraints
-
-let log = SwiftyBeaver.self
 
 //MARK: - Class
 public class Slideshow: UIView {
@@ -16,10 +13,6 @@ public class Slideshow: UIView {
   
   //MARK: Public (Initializers)
   public init(withImageURLs imageURLs: [URL], showsIndicators: Bool = false) {
-    let console = ConsoleDestination()
-    log.addDestination(console)
-    log.info("SwiftyBeaver has been setup")
-
     super.init(frame: .zero)
     self.shouldShowIndicators = showsIndicators
     self.imagesCollectionView.delegate = self
@@ -41,6 +34,14 @@ public class Slideshow: UIView {
     return indicatorsView
   }()
   
+  lazy var tapViewContainer: UIView = {
+    let view = UIView()
+    view.backgroundColor = .clear
+    view.addSubview(leftTapView)
+    view.addSubview(rightTapView)
+    return view
+  }()
+  
   lazy var leftTapView: UIView = {
     let view = UIView()
     view.backgroundColor = .clear
@@ -60,32 +61,6 @@ public class Slideshow: UIView {
   }()
   
   lazy var imagesCollectionView = SlideshowImagesCollectionView()
-
-//  lazy var scrollView: UIScrollView = {
-//    let scrollView = UIScrollView()
-//    scrollView.translatesAutoresizingMaskIntoConstraints = false
-//    scrollView.isPagingEnabled = true
-//    scrollView.showsHorizontalScrollIndicator = false
-//    scrollView.backgroundColor = .clear
-//    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedSlideshow))
-//    scrollView.addGestureRecognizer(tapGesture)
-//    scrollView.delegate = self
-//
-//    if #available(iOS 11, *) {
-//      scrollView.contentInsetAdjustmentBehavior = .never
-//    }
-//    // TODO: mention in README that following line is required on view controller for less than iOS 11
-////    self.automaticallyAdjustsScrollViewInsets = false
-//
-//    return scrollView
-//  }()
-//
-//  lazy var contentView: UIView = {
-//    let view = UIView()
-//    view.backgroundColor = .clear
-//    view.translatesAutoresizingMaskIntoConstraints = false
-//    return view
-//  }()
   
   //MARK: Unsorted
   public required init?(coder aDecoder: NSCoder) {
@@ -103,10 +78,8 @@ public class Slideshow: UIView {
   }
   
   public func prepareForReuse() {
-    //TODO: remember contentOffset when reusing (but selectedIndex or something instead)
-//    scrollView.contentOffset = .zero
     imagesCollectionView.prepareForReuse()
-    setup()
+    indicatorsView.prepareForReuse()
   }
     
   public var currentImageView: UIImageView? {
@@ -122,14 +95,13 @@ public class Slideshow: UIView {
   
   public override func layoutIfNeeded() {
     super.layoutIfNeeded()
-    setScrollViewContentOffsetBasedOnSelectedImageIndex()
+    setContentOffsetBasedOnSelectedImageIndex()
   }
   
   public override func layoutSubviews() {
     super.layoutSubviews()
     if let flowLayout = imagesCollectionView.collectionViewLayout
       as? UICollectionViewFlowLayout {
-      log.debug("Setting flow layout item size to \(bounds.size)")
       flowLayout.estimatedItemSize = bounds.size
     }
   }
@@ -140,43 +112,17 @@ extension Slideshow {
   
   private func setup() {
     self.backgroundColor = .clear
-    
-    removeSubviews()
-    addSubview(imagesCollectionView)
-    imagesCollectionView.edges(to: self)
-    
+    addImagesCollectionView()
     if shouldShowIndicators {
-      addIndicators()
-      setupIndicatorConstraints()
+      addIndicatorsCollectionView()
     }
     indicatorsView.numberOfIndicators = numberOfImages
     indicatorsView.reloadData()
-    
-//    scrollView.contentOffset = .zero
   }
   
-  private func removeSubviews() {
-//    imageViews.forEach { $0.removeFromSuperview() }
-//    contentView.removeFromSuperview()
-//    scrollView.removeFromSuperview()
-    imagesCollectionView.removeFromSuperview()
-    indicatorsView.removeFromSuperview()
-    
-//    imageViews = []
-  }
-  
-  private func addIndicators() {
-//    contentView.addSubview(gradientView)
-    
-    addSubview(indicatorsView)
-    
-    addSubview(leftTapView)
-    addSubview(rightTapView)
-  }
-  
-  private func setScrollViewContentOffsetBasedOnSelectedImageIndex() {
-//    let newOffset = CGPoint(x: CGFloat(self.selectedImageIndex) * scrollView.bounds.width, y: 0)
-//    scrollView.setContentOffset(newOffset, animated: false)
+  private func setContentOffsetBasedOnSelectedImageIndex() {
+    let newOffset = CGPoint(x: CGFloat(self.selectedImageIndex) * imagesCollectionView.bounds.width, y: 0)
+    imagesCollectionView.setContentOffset(newOffset, animated: false)
   }
 }
 
@@ -228,4 +174,9 @@ extension Slideshow: UIScrollViewDelegate {
       scrollToIndex(selectedImageIndex + 1)
     }
   }
+}
+
+public protocol SlideshowDelegate: class {
+  func didTapSlideshow(slideshow: Slideshow)
+  func didChangeSelectedImageIndex(to index: Int, onSlideshow slideshow: Slideshow)
 }

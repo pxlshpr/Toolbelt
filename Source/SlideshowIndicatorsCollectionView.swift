@@ -20,9 +20,15 @@ public class SlideshowIndicatorsCollectionView: UICollectionView {
       String(describing: SlideshowIndicatorCollectionViewCell.self))
   }
   
-  public func scrollToIndex(_ index: Int) {
+  func scrollToIndex(_ index: Int) {
     selectedIndicatorIndex = index
     changeContentOffsetIfNeeded()
+    reloadData()
+  }
+  
+  func prepareForReuse() {
+    numberOfIndicators = 0
+    selectedIndicatorIndex = 0
     reloadData()
   }
   

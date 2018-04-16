@@ -12,8 +12,6 @@
 		E2127CC920840DA0009E897D /* SlideshowImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2127CC820840D9F009E897D /* SlideshowImageCollectionViewCell.swift */; };
 		E2127CCB20840F1F009E897D /* Slideshow+Scrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2127CCA20840F1F009E897D /* Slideshow+Scrolling.swift */; };
 		E2127CCD20842FC0009E897D /* Slideshow+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2127CCC20842FC0009E897D /* Slideshow+Constraints.swift */; };
-		E2127CCF20842FEA009E897D /* SlideshowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2127CCE20842FEA009E897D /* SlideshowDelegate.swift */; };
-		E2127CD120843044009E897D /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2127CD020843044009E897D /* GradientView.swift */; };
 		E2127CD72084335C009E897D /* Nuke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2127CD42084335C009E897D /* Nuke.framework */; };
 		E2127CD82084335C009E897D /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2127CD52084335C009E897D /* SwiftyBeaver.framework */; };
 		E2127CD92084335C009E897D /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2127CD62084335C009E897D /* TinyConstraints.framework */; };
@@ -41,8 +39,6 @@
 		E2127CC820840D9F009E897D /* SlideshowImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		E2127CCA20840F1F009E897D /* Slideshow+Scrolling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Slideshow+Scrolling.swift"; sourceTree = "<group>"; };
 		E2127CCC20842FC0009E897D /* Slideshow+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Slideshow+Constraints.swift"; sourceTree = "<group>"; };
-		E2127CCE20842FEA009E897D /* SlideshowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowDelegate.swift; sourceTree = "<group>"; };
-		E2127CD020843044009E897D /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		E2127CD42084335C009E897D /* Nuke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nuke.framework; path = Carthage/Build/iOS/Nuke.framework; sourceTree = "<group>"; };
 		E2127CD52084335C009E897D /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = "<group>"; };
 		E2127CD62084335C009E897D /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = "<group>"; };
@@ -93,8 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				E2443396205967D000255B8D /* Slideshow.swift */,
-				E2127CD020843044009E897D /* GradientView.swift */,
-				E2127CCE20842FEA009E897D /* SlideshowDelegate.swift */,
 				E2127CCC20842FC0009E897D /* Slideshow+Constraints.swift */,
 				E2127CCA20840F1F009E897D /* Slideshow+Scrolling.swift */,
 				E2127CC42084071D009E897D /* SlideshowImagesCollectionView.swift */,
@@ -283,10 +277,8 @@
 			files = (
 				E2D56D87207E308700A5F47C /* SlideshowIndicatorsCollectionView.swift in Sources */,
 				E2D56D89207E32E600A5F47C /* SlideshowIndicatorCollectionViewCell.swift in Sources */,
-				E2127CD120843044009E897D /* GradientView.swift in Sources */,
 				E2127CC7208407A4009E897D /* SlideshowIndicatorType.swift in Sources */,
 				E2127CCD20842FC0009E897D /* Slideshow+Constraints.swift in Sources */,
-				E2127CCF20842FEA009E897D /* SlideshowDelegate.swift in Sources */,
 				E2127CC920840DA0009E897D /* SlideshowImageCollectionViewCell.swift in Sources */,
 				E2127CCB20840F1F009E897D /* Slideshow+Scrolling.swift in Sources */,
 				E2127CC52084071D009E897D /* SlideshowImagesCollectionView.swift in Sources */,

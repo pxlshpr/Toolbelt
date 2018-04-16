@@ -19,14 +19,12 @@ public class SlideshowImagesCollectionView: UICollectionView {
   }
   
   func setupWithURLs(_ urls: [URL]) {
-    log.verbose("Setting up with \(urls.count) urls")
     imageURLs = urls
     reloadData()
     preheater.startPreheating(with: urls.map { Nuke.Request.init(url: $0) })
   }
   
   func prepareForReuse() {
-    log.verbose("Preparing for reuse")
     imageURLs = []
     reloadData()
     preheater.stopPreheating()

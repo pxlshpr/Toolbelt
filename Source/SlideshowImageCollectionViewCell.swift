@@ -1,6 +1,5 @@
 import UIKit
 import Nuke
-import TinyConstraints
 
 class SlideshowImageCollectionViewCell: UICollectionViewCell {
   
@@ -10,8 +9,6 @@ class SlideshowImageCollectionViewCell: UICollectionViewCell {
     super.init(frame: frame)
     contentView.addSubview(imageView)
     contentView.addSubview(gradientView)
-//    imageView.edges(to: contentView)
-//    gradientView.edges(to: contentView)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -41,24 +38,37 @@ class SlideshowImageCollectionViewCell: UICollectionViewCell {
     return view
   }()
   
-//  override func layoutSubviews() {
-//    super.layoutSubviews()
-//  }
-  
   // MARK: - Setup
   func setupWithImage(_ image: UIImage) {
-    log.verbose("Loading cell with image with dimensions \(image.size.width)px x \(image.size.height)px")
     imageView.image = image
   }
   
   func setupWithImageURL(_ url: URL) {
-    log.verbose("Using Nuke to load cell with url: \(url)")
     Nuke.Manager.shared.loadImage(with: url, into: imageView) { [weak imageView]
       (result, isFromMemoryCache) in
       imageView?.handle(response: result, isFromMemoryCache: isFromMemoryCache)
       if self.applyGradient {
         self.gradientView.isHidden = false
       }
+    }
+  }
+}
+
+class GradientView: UIView {
+  
+  private let gradient : CAGradientLayer = CAGradientLayer()
+  
+  override func layoutSublayers(of layer: CALayer) {
+    super.layoutSublayers(of: layer)
+    self.gradient.frame = self.bounds
+  }
+  
+  override public func draw(_ rect: CGRect) {
+    self.gradient.frame = self.bounds
+    self.gradient.colors = [UIColor.clear.cgColor, #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 0.7480736301).cgColor]
+    self.gradient.locations = [0, 5]
+    if self.gradient.superlayer == nil {
+      self.layer.insertSublayer(self.gradient, at: 0)
     }
   }
 }

@@ -16,7 +16,7 @@ extension Slideshow {
 
   public func scrollToIndex(_ index: Int) {
     selectedImageIndex = index
-//    scrollView.setContentOffset(offsetForIndex(selectedImageIndex), animated: true)
+    imagesCollectionView.setContentOffset(offsetForIndex(selectedImageIndex), animated: true)
     delegate?.didChangeSelectedImageIndex(to: selectedImageIndex, onSlideshow: self)
     indicatorsView.scrollToIndex(selectedImageIndex)
   }
