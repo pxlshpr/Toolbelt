@@ -71,11 +71,6 @@ public class Slideshow: UIView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  //TODO: rename this
-  func currentIndex() -> Int {
-    return 0
-  }
-  
   //TODO: make this a var like currentImageView
   public func currentImage() -> UIImage? {
     return currentImageView?.image
@@ -89,7 +84,7 @@ public class Slideshow: UIView {
   public var currentImageView: UIImageView? {
     //TODO: use a FP method like filter, map reduce etc to find this instead of a for loop
     for cell in imagesCollectionView.visibleCells {
-      if imagesCollectionView.indexPath(for: cell)?.row == currentIndex(),
+      if imagesCollectionView.indexPath(for: cell)?.row == selectedImageIndex,
         let imageCell = cell as? SlideshowImageCollectionViewCell {
         return imageCell.imageView
       }
