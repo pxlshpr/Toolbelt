@@ -17,9 +17,13 @@ public class Slideshow: UIView {
     self.shouldShowIndicators = showsIndicators
     self.imagesCollectionView.delegate = self
     self.imagesCollectionView.applyGradientToViews = showsIndicators
-    self.imagesCollectionView.setupWithURLs(imageURLs)
+    setupWithURLs(imageURLs)
     setup()
-    
+  }
+  
+  func setupWithURLs(_ imageURLs: [URL]) {
+    imagesCollectionView.setupWithURLs(imageURLs)
+    indicatorsView.setupWithNumberOfIndicators(imageURLs.count)
   }
   
   var numberOfImages: Int {
@@ -116,8 +120,6 @@ extension Slideshow {
     if shouldShowIndicators {
       addIndicatorsCollectionView()
     }
-    indicatorsView.numberOfIndicators = numberOfImages
-    indicatorsView.reloadData()
   }
   
   private func setContentOffsetBasedOnSelectedImageIndex() {

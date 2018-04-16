@@ -5,9 +5,9 @@ public class SlideshowIndicatorsCollectionView: UICollectionView {
   enum K {
     static let indicatorSize: CGFloat = 14.0
   }
-  var numberOfIndicators: Int = 0
   var selectedIndicatorIndex: Int = 0
-  
+  var numberOfIndicators: Int = 0
+
   convenience init() {
     self.init(frame: .zero, collectionViewLayout: type(of: self).collectionViewLayout())
     self.backgroundColor = .clear
@@ -18,6 +18,12 @@ public class SlideshowIndicatorsCollectionView: UICollectionView {
     self.showsHorizontalScrollIndicator = false
     self.register(SlideshowIndicatorCollectionViewCell.self, forCellWithReuseIdentifier:
       String(describing: SlideshowIndicatorCollectionViewCell.self))
+  }
+  
+  func setupWithNumberOfIndicators(_ numberOfIndicators: Int) {
+    self.numberOfIndicators = numberOfIndicators
+    self.selectedIndicatorIndex = 0
+    self.reloadData()
   }
   
   func scrollToIndex(_ index: Int) {
